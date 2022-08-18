@@ -90,6 +90,22 @@ services:
         - "9906:3306"
     networks:
       - my_network
+    depends_on:
+      - clear_files
+      
+  clear_files:
+    container_name: clear_files
+    build:
+      context: .
+      dockerfile: Dockerfile_PYTHON
+    tty: true           # Container alive
+    command: "python3 /teste/clean_simulation_files.py"
+    environment:
+    - PYTHONUNBUFFERED=1
+    volumes:
+      - ./teste:/teste
+    networks:
+      - my_network
   
   phpmyadmin:
       image: phpmyadmin/phpmyadmin

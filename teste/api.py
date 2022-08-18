@@ -109,6 +109,85 @@ def check_new_agentss_1():
   print("enviando: "+str(return_list))
   return jsonify(return_list)
 
+@app.route('/api/v1/resources/teste_router', methods=['GET'])
+def teste_router():
+
+  #router_type = "random"
+  router_type = "sequential"
+  print("Router type:"+router_type)
+  connected = False
+  while (connected == False):
+    try:
+      cnx = mysql.connector.connect(user='root', password='root',
+                               host='db',
+                               database='MYSQL_DATABASE')
+      connected = cnx.is_connected()
+    except:
+      print("Error connecting to the database")
+      time.sleep(3)
+  cursor = cnx.cursor()
+
+  if(router_type == "random"):
+    order = "RAND()"
+  elif(router_type == "sequential"):
+    order = "created_at ASC"
+
+  query = ("SELECT id, agent_id, data, path, proccessed FROM router "
+            "WHERE proccessed = 0 ORDER BY "+order)
+  modelos_list = ["m1", "m2", "m3"]
+  cursor.execute(query)
+
+
+  return_list = []
+  delete_list = []
+
+  for (id, agent_id, data, path, proccessed) in cursor:
+    return_list.append([agent_id, data, path, id])
+
+  cursor.close()
+
+  cnx.close()
+
+  for tupla in return_list:
+    cnx = mysql.connector.connect(user='root', password='root',
+                               host='db',
+                               database='MYSQL_DATABASE')
+    cursor = cnx.cursor()
+    cnx.start_transaction()
+
+    model_to_send = random.choice(modelos_list)
+
+    agent_id = str(tupla[0])
+    data = tupla[1]
+    path = tupla[2]
+    tupla_id = str(tupla[3])
+    proccessed = str(0)
+
+    return_list = []
+
+    sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
+    sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+    try:
+      cursor.execute(sql1)
+      cursor.execute(sql2)
+      # Make sure data is committed to the database
+      cnx.commit()
+      print("Agent_id: "+agent_id+" sended to model "+model_to_send)
+      new_value = {'id': str(agent_id), 'model': model_to_send}
+      return_list.append(new_value)
+    except mysql.connector.Error as err:
+      print("Failed inserting on database: {}".format(err))
+      print("Rolling back ...")
+      print(e)
+      db.rollback()  # rollback changes
+      new_value = {'id': str(agent_id), 'model': "ERROR"}
+      return_list.append(new_value)
+    finally:
+      cursor.close()
+      cnx.close()
+  return jsonify(return_list)
+
+
 @app.route('/api/v1/resources/check_new_agents', methods=['GET'])
 def check_new_agentss():
 
