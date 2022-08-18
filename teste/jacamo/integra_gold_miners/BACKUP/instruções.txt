@@ -1,0 +1,1 @@
+Só rodar pelo gradle. Backup até o último email do jomi, adiciona focus no agente, funcionando

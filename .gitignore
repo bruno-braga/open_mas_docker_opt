@@ -1,0 +1,15 @@
+#logs/**
+
+teste/__pycache__/**
+
+teste/jacamo/integra_gold_miners/.gradle/**
+teste/jacamo/integra_gold_miners/build/**
+
+teste/jacamo/integra_gold_miners/src/agt/list/**
+# exception to the rule
+!teste/jacamo/integra_gold_miners/src/agt/list/.gitkeep
+
+
+#teste/important/**
+# exception to the rule
+#!teste/important/.gitkeep
