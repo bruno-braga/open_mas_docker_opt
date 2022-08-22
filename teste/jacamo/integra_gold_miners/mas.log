@@ -1,468 +1,488 @@
 [Cartago] Workspace mining created.
 [Cartago] artifact m2view: mining.MiningPlanet(7,1) at mining created.
 [killer_agent] I'm a killer agent
-[738] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[738] I am going to go near (10,32)
-[738] Gold perceived: gold(15,20)
-[738] Dropping near(_,_) desires and intentions to handle gold(15,20)
-[738] Going for gold(15,20)
-[738] Handling gold(15,20) now.
-[738] I've reached 15x20
-[738] I've reached 5x27
+[449] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[449] I am going to go near (9,28)
+[449] I am at (9,27) which is near (9,28)
+[449] I am going to go near (1,28)
+[449] I am at (2,27) which is near (1,28)
+[449] I am going to go near (18,14)
+[449] Gold perceived: gold(19,21)
+[449] Dropping near(_,_) desires and intentions to handle gold(19,21)
+[449] Going for gold(19,21)
+[449] Handling gold(19,21) now.
+[449] I've reached 19x21
+[449] I've reached 5x27
 [WorldModel] Agent 2 carried a gold to depot!
-[738] Finish handling gold(15,20)
-[738] Hello there. I'm saving myself to leave the simulation
-[738] R: 0.1399545064219393
-[738] Sugar -1
-[738] Metabolism 4
-[738] Vision 6
-[738] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 738
-[killer_agent] Killing agent 738
-[136] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[136] I am going to go near (28,25)
-[136] I am at (28,26) which is near (28,25)
-[136] I am going to go near (15,21)
-[killer_agent] This agent has being removed from the simulation: 738
-[136] I am at (15,22) which is near (15,21)
-[136] I am going to go near (6,32)
-[136] I am at (6,31) which is near (6,32)
-[136] I am going to go near (23,17)
-[136] Gold perceived: gold(24,24)
-[136] Dropping near(_,_) desires and intentions to handle gold(24,24)
-[136] Going for gold(24,24)
-[136] Handling gold(24,24) now.
-[136] I've reached 24x24
-[136] I've reached 5x27
+[449] Finish handling gold(19,21)
+[449] Hello there. I'm saving myself to leave the simulation
+[449] R: 0.2661071678102478
+[449] Sugar 0
+[449] Metabolism 4
+[449] Vision 2
+[449] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 449
+[killer_agent] Killing agent 449
+[222] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[222] I am going to go near (8,4)
+[killer_agent] This agent has being removed from the simulation: 449
+[222] I am at (8,5) which is near (8,4)
+[222] I am going to go near (24,25)
+[222] Gold perceived: gold(20,13)
+[222] Dropping near(_,_) desires and intentions to handle gold(20,13)
+[222] Going for gold(20,13)
+[222] Handling gold(20,13) now.
+[222] I've reached 20x13
+[222] I've reached 5x27
 [WorldModel] Agent 2 carried a gold to depot!
-[136] Finish handling gold(24,24)
-[136] Hello there. I'm saving myself to leave the simulation
-[136] R: 0.9234135886801332
-[136] Sugar 0
-[136] Metabolism 3
-[136] Vision 5
-[136] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 136
-[killer_agent] Killing agent 136
+[222] Finish handling gold(20,13)
+[222] Hello there. I'm saving myself to leave the simulation
+[222] R: 0.17609403837859017
+[222] Sugar -1
+[222] Metabolism 4
+[222] Vision 2
+[222] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 222
+[killer_agent] Killing agent 222
+[765] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[killer_agent] This agent has being removed from the simulation: 222
+[765] I am going to go near (22,15)
+[765] I am at (22,16) which is near (22,15)
+[765] I am going to go near (0,25)
+[765] I am at (0,24) which is near (0,25)
+[765] I am going to go near (14,27)
+[765] I am at (14,26) which is near (14,27)
+[765] I am going to go near (7,21)
+[765] I am at (7,22) which is near (7,21)
+[765] I am going to go near (13,14)
+[765] I am at (13,15) which is near (13,14)
+[765] I am going to go near (26,18)
+[765] I am at (26,17) which is near (26,18)
+[765] I am going to go near (1,6)
+[765] I am at (1,7) which is near (1,6)
+[765] I am going to go near (29,16)
+[765] I am at (29,15) which is near (29,16)
+[765] I am going to go near (3,12)
+[765] I am at (3,13) which is near (3,12)
+[765] I am going to go near (7,20)
+[765] I am at (7,19) which is near (7,20)
+[765] I am going to go near (18,1)
+[765] Gold perceived: gold(15,20)
+[765] Dropping near(_,_) desires and intentions to handle gold(15,20)
+[765] Going for gold(15,20)
+[765] Handling gold(15,20) now.
+[765] I've reached 15x20
+[765] I've reached 5x27
+[WorldModel] Agent 2 carried a gold to depot!
+[765] Finish handling gold(15,20)
+[765] Hello there. I'm saving myself to leave the simulation
+[765] R: 0.6743788655377291
+[765] Sugar 0
+[765] Metabolism 3
+[765] Vision 4
+[765] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 765
+[killer_agent] Killing agent 765
+[178] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[178] I am going to go near (25,26)
+[killer_agent] This agent has being removed from the simulation: 765
+[178] I am at (24,27) which is near (25,26)
+[178] I am going to go near (5,16)
+[178] I am at (5,17) which is near (5,16)
+[178] I am going to go near (18,33)
+[178] I am at (18,32) which is near (18,33)
+[178] I am going to go near (1,13)
+[178] I am at (1,14) which is near (1,13)
+[178] I am going to go near (31,18)
+[178] I am at (31,17) which is near (31,18)
+[178] I am going to go near (15,0)
+[178] I am at (15,1) which is near (15,0)
+[178] I am going to go near (32,0)
+[178] I am at (31,1) which is near (32,0)
+[178] I am going to go near (11,29)
+[178] I am at (11,28) which is near (11,29)
+[178] I am going to go near (32,19)
+[178] I am at (32,20) which is near (32,19)
+[178] I am going to go near (8,19)
+[178] Gold perceived: gold(20,20)
+[178] Dropping near(_,_) desires and intentions to handle gold(20,20)
+[178] Going for gold(20,20)
+[178] Handling gold(20,20) now.
+[178] I've reached 20x20
+[178] I've reached 5x27
+[WorldModel] Agent 2 carried a gold to depot!
+[178] Finish handling gold(20,20)
+[178] Hello there. I'm saving myself to leave the simulation
+[178] R: 0.8344888169063299
+[178] Sugar 0
+[178] Metabolism 4
+[178] Vision 1
+[178] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 178
+[killer_agent] Killing agent 178
 [470] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[470] I am going to go near (30,22)
-[killer_agent] This agent has being removed from the simulation: 136
-[470] I am at (30,23) which is near (30,22)
-[470] I am going to go near (32,16)
-[470] I am at (32,17) which is near (32,16)
-[470] I am going to go near (2,28)
-[470] I am at (2,27) which is near (2,28)
-[470] I am going to go near (21,32)
-[470] I am at (21,31) which is near (21,32)
-[470] I am going to go near (2,7)
-[470] I am at (2,8) which is near (2,7)
-[470] I am going to go near (19,21)
-[470] Gold perceived: gold(19,20)
-[470] Dropping near(_,_) desires and intentions to handle gold(19,20)
-[470] Going for gold(19,20)
-[470] Handling gold(19,20) now.
-[470] I've reached 19x20
+[470] I am going to go near (10,27)
+[470] I am at (9,27) which is near (10,27)
+[470] I am going to go near (30,18)
+[killer_agent] This agent has being removed from the simulation: 178
+[470] I am at (30,19) which is near (30,18)
+[470] I am going to go near (32,8)
+[470] I am at (32,9) which is near (32,8)
+[470] I am going to go near (15,13)
+[470] I am at (15,12) which is near (15,13)
+[470] I am going to go near (33,22)
+[470] I am at (33,21) which is near (33,22)
+[470] I am going to go near (22,14)
+[470] I am at (22,15) which is near (22,14)
+[470] I am going to go near (27,32)
+[470] Gold perceived: gold(24,24)
+[470] Dropping near(_,_) desires and intentions to handle gold(24,24)
+[470] Going for gold(24,24)
+[470] Handling gold(24,24) now.
+[470] I've reached 24x24
 [470] I've reached 5x27
 [WorldModel] Agent 2 carried a gold to depot!
-[470] Finish handling gold(19,20)
+[470] Finish handling gold(24,24)
 [470] Hello there. I'm saving myself to leave the simulation
-[470] R: 0.5103213972872562
-[470] Sugar -1
-[470] Metabolism 3
+[470] R: 0.5514537923927565
+[470] Sugar -2
+[470] Metabolism 4
 [470] Vision 1
 [470] Saved my information on file. Sending message to remove agent from simulation
 [killer_agent] I've received a message to kill agent 470
 [killer_agent] Killing agent 470
-[65] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[65] I am going to go near (14,0)
+[417] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[417] I am going to go near (14,11)
 [killer_agent] This agent has being removed from the simulation: 470
-[65] I am at (14,1) which is near (14,0)
-[65] I am going to go near (12,24)
-[65] I am at (12,23) which is near (12,24)
-[65] I am going to go near (16,10)
-[65] I am at (16,11) which is near (16,10)
-[65] I am going to go near (32,5)
-[65] I am at (32,6) which is near (32,5)
-[65] I am going to go near (24,26)
-[65] I am at (24,25) which is near (24,26)
-[65] I am going to go near (20,13)
-[65] Gold perceived: gold(20,24)
-[65] Dropping near(_,_) desires and intentions to handle gold(20,24)
-[65] Going for gold(20,24)
-[65] Handling gold(20,24) now.
-[65] I've reached 20x24
-[65] I've reached 5x27
+[417] I am at (14,12) which is near (14,11)
+[417] I am going to go near (22,6)
+[417] I am at (22,7) which is near (22,6)
+[417] I am going to go near (31,17)
+[417] I am at (31,16) which is near (31,17)
+[417] I am going to go near (27,12)
+[417] I am at (27,13) which is near (27,12)
+[417] I am going to go near (6,31)
+[417] I am at (6,30) which is near (6,31)
+[417] I am going to go near (23,33)
+[417] I am at (23,32) which is near (23,33)
+[417] I am going to go near (2,7)
+[417] I am at (2,8) which is near (2,7)
+[417] I am going to go near (6,30)
+[417] I am at (6,29) which is near (6,30)
+[417] I am going to go near (21,7)
+[417] Gold perceived: gold(20,24)
+[417] Dropping near(_,_) desires and intentions to handle gold(20,24)
+[417] Going for gold(20,24)
+[417] Handling gold(20,24) now.
+[417] I've reached 20x24
+[417] I've reached 5x27
 [WorldModel] Agent 2 carried a gold to depot!
-[65] Finish handling gold(20,24)
-[65] Hello there. I'm saving myself to leave the simulation
-[65] R: 0.14952273304254116
-[65] Sugar -1
-[65] Metabolism 4
-[65] Vision 1
-[65] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 65
-[killer_agent] Killing agent 65
-[795] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[795] I am going to go near (12,33)
-[killer_agent] This agent has being removed from the simulation: 65
-[795] I am at (12,32) which is near (12,33)
-[795] I am going to go near (3,10)
-[795] I am at (3,11) which is near (3,10)
-[795] I am going to go near (11,23)
-[795] I am at (11,22) which is near (11,23)
-[795] I am going to go near (24,8)
-[795] Gold perceived: gold(19,21)
-[795] Dropping near(_,_) desires and intentions to handle gold(19,21)
-[795] Going for gold(19,21)
-[795] Handling gold(19,21) now.
-[795] I've reached 19x21
-[795] I've reached 5x27
+[417] Finish handling gold(20,24)
+[417] Hello there. I'm saving myself to leave the simulation
+[417] R: 0.0978904806858506
+[417] Sugar 0
+[417] Metabolism 4
+[417] Vision 3
+[417] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 417
+[killer_agent] Killing agent 417
+[117] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[117] I am going to go near (7,6)
+[killer_agent] This agent has being removed from the simulation: 417
+[117] I am at (7,7) which is near (7,6)
+[117] I am going to go near (23,27)
+[117] Gold perceived: gold(19,20)
+[117] Dropping near(_,_) desires and intentions to handle gold(19,20)
+[117] Going for gold(19,20)
+[117] Handling gold(19,20) now.
+[117] I've reached 19x20
+[117] I've reached 5x27
 [WorldModel] Agent 2 carried a gold to depot!
-[795] Finish handling gold(19,21)
-[795] Hello there. I'm saving myself to leave the simulation
-[795] R: 0.6025395414027006
-[795] Sugar -1
-[795] Metabolism 3
-[795] Vision 6
-[795] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 795
-[killer_agent] Killing agent 795
-[735] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[735] I am going to go near (14,31)
-[killer_agent] This agent has being removed from the simulation: 795
-[735] I am at (14,30) which is near (14,31)
-[735] I am going to go near (0,15)
-[735] I am at (0,16) which is near (0,15)
-[735] I am going to go near (31,9)
-[735] I am at (31,10) which is near (31,9)
-[735] I am going to go near (31,6)
-[735] I am at (31,7) which is near (31,6)
-[735] I am going to go near (3,28)
-[735] I am at (3,27) which is near (3,28)
-[735] I am going to go near (32,15)
-[735] I am at (32,16) which is near (32,15)
-[735] I am going to go near (0,5)
-[735] I am at (0,6) which is near (0,5)
-[735] I am going to go near (12,30)
-[735] I am at (12,29) which is near (12,30)
-[735] I am going to go near (2,26)
-[735] I am at (2,27) which is near (2,26)
-[735] I am going to go near (18,27)
-[735] I am at (17,27) which is near (18,27)
-[735] I am going to go near (11,29)
-[735] I am at (11,28) which is near (11,29)
-[735] I am going to go near (3,20)
-[735] I am at (3,21) which is near (3,20)
-[735] I am going to go near (14,1)
-[735] I am at (14,2) which is near (14,1)
-[735] I am going to go near (14,31)
-[735] I am at (14,30) which is near (14,31)
-[735] I am going to go near (10,33)
-[735] I am at (10,32) which is near (10,33)
-[735] I am going to go near (25,33)
-[735] I am at (24,32) which is near (25,33)
-[735] I am going to go near (25,5)
-[735] I am at (25,6) which is near (25,5)
-[735] I am going to go near (4,20)
-[735] I am at (4,19) which is near (4,20)
-[735] I am going to go near (14,10)
-[735] I am at (14,11) which is near (14,10)
-[735] I am going to go near (7,12)
-[735] I am at (8,11) which is near (7,12)
-[735] I am going to go near (9,20)
-[735] I am at (9,19) which is near (9,20)
-[735] I am going to go near (11,31)
-[735] I am at (11,30) which is near (11,31)
-[735] I am going to go near (32,20)
-[735] I am at (32,21) which is near (32,20)
-[735] I am going to go near (11,24)
-[735] Gold perceived: gold(20,20)
-[735] Dropping near(_,_) desires and intentions to handle gold(20,20)
-[735] Going for gold(20,20)
-[735] Giving up current gold gold(20,20) to handle gold(20,21) which I am seeing!
-[735] Going for gold(20,21)
-[735] Handling gold(20,21) now.
-[735] I've reached 20x21
-[735] I've reached 5x27
+[117] Finish handling gold(19,20)
+[117] Hello there. I'm saving myself to leave the simulation
+[117] R: 0.6364041207037108
+[117] Sugar 0
+[117] Metabolism 4
+[117] Vision 1
+[117] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 117
+[killer_agent] Killing agent 117
+[264] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[264] I am going to go near (0,27)
+[264] I am at (1,27) which is near (0,27)
+[264] I am going to go near (13,31)
+[killer_agent] This agent has being removed from the simulation: 117
+[264] I am at (13,30) which is near (13,31)
+[264] I am going to go near (4,15)
+[264] I am at (4,16) which is near (4,15)
+[264] I am going to go near (22,21)
+[264] I am at (22,20) which is near (22,21)
+[264] I am going to go near (23,17)
+[264] I am at (23,18) which is near (23,17)
+[264] I am going to go near (15,5)
+[264] I am at (15,6) which is near (15,5)
+[264] I am going to go near (24,33)
+[264] Gold perceived: gold(20,21)
+[264] Dropping near(_,_) desires and intentions to handle gold(20,21)
+[264] Going for gold(20,21)
+[264] Handling gold(20,21) now.
+[264] I've reached 20x21
+[264] I've reached 5x27
 [WorldModel] Agent 2 carried a gold to depot!
-[735] Finish handling gold(20,21)
-[735] Hello there. I'm saving myself to leave the simulation
-[735] R: 0.0308830042031365
-[735] Sugar -1
-[735] Metabolism 3
-[735] Vision 3
-[735] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 735
-[killer_agent] Killing agent 735
-[121] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[121] I am going to go near (8,27)
-[121] I am at (7,27) which is near (8,27)
-[121] I am going to go near (11,30)
-[killer_agent] This agent has being removed from the simulation: 735
-[121] I am at (11,29) which is near (11,30)
-[121] I am going to go near (5,19)
-[121] I am at (5,20) which is near (5,19)
-[121] I am going to go near (0,26)
-[121] I am at (0,25) which is near (0,26)
-[121] I am going to go near (6,4)
-[121] I am at (6,5) which is near (6,4)
-[121] I am going to go near (30,18)
-[121] I am at (30,17) which is near (30,18)
-[121] I am going to go near (14,16)
-[121] I am at (15,17) which is near (14,16)
-[121] I am going to go near (31,8)
-[121] I am at (31,9) which is near (31,8)
-[121] I am going to go near (10,33)
-[121] I am at (10,32) which is near (10,33)
-[121] I am going to go near (21,26)
-[121] I am at (21,27) which is near (21,26)
-[121] I am going to go near (29,32)
-[121] I am at (29,31) which is near (29,32)
-[121] I am going to go near (17,13)
-[121] I am at (17,14) which is near (17,13)
-[121] I am going to go near (8,25)
-[121] I am at (8,24) which is near (8,25)
-[121] I am going to go near (25,8)
-[121] Gold perceived: gold(20,23)
-[121] Dropping near(_,_) desires and intentions to handle gold(20,23)
-[121] Going for gold(20,23)
-[121] Handling gold(20,23) now.
-[121] I've reached 20x23
-[121] I've reached 5x27
+[264] Finish handling gold(20,21)
+[264] Hello there. I'm saving myself to leave the simulation
+[264] R: 0.8668869467787506
+[264] Sugar -1
+[264] Metabolism 2
+[264] Vision 1
+[264] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 264
+[killer_agent] Killing agent 264
+[587] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[587] I am going to go near (27,33)
+[killer_agent] This agent has being removed from the simulation: 264
+[587] I am at (27,32) which is near (27,33)
+[587] I am going to go near (20,13)
+[587] Gold perceived: gold(20,23)
+[587] Dropping near(_,_) desires and intentions to handle gold(20,23)
+[587] Going for gold(20,23)
+[587] Handling gold(20,23) now.
+[587] I've reached 20x23
+[587] I've reached 5x27
 [WorldModel] Agent 2 carried a gold to depot!
-[121] Finish handling gold(20,23)
-[121] Hello there. I'm saving myself to leave the simulation
-[121] R: 0.963506273139321
-[121] Sugar -2
-[121] Metabolism 3
-[121] Vision 1
-[121] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 121
-[killer_agent] Killing agent 121
-[648] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[648] I am going to go near (20,16)
-[killer_agent] This agent has being removed from the simulation: 121
-[648] Gold perceived: gold(20,22)
-[648] Dropping near(_,_) desires and intentions to handle gold(20,22)
-[648] Going for gold(20,22)
-[648] Handling gold(20,22) now.
-[648] I've reached 20x22
-[648] I've reached 5x27
+[587] Finish handling gold(20,23)
+[587] Hello there. I'm saving myself to leave the simulation
+[587] R: 0.03270809259142837
+[587] Sugar -1
+[587] Metabolism 4
+[587] Vision 4
+[587] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 587
+[killer_agent] Killing agent 587
+[613] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[613] I am going to go near (1,31)
+[killer_agent] This agent has being removed from the simulation: 587
+[613] I am at (1,30) which is near (1,31)
+[613] I am going to go near (19,7)
+[613] Gold perceived: gold(20,22)
+[613] Dropping near(_,_) desires and intentions to handle gold(20,22)
+[613] Going for gold(20,22)
+[613] Handling gold(20,22) now.
+[613] I've reached 20x22
+[613] I've reached 5x27
 [WorldModel] Agent 2 carried a gold to depot!
-[648] Finish handling gold(20,22)
-[648] Hello there. I'm saving myself to leave the simulation
-[648] R: 0.9443979806390714
-[648] Sugar 0
-[648] Metabolism 3
-[648] Vision 1
-[648] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 648
-[killer_agent] Killing agent 648
-[203] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[203] I am going to go near (32,19)
-[killer_agent] This agent has being removed from the simulation: 648
-[203] I am at (32,20) which is near (32,19)
-[203] I am going to go near (18,14)
-[203] Gold perceived: gold(20,20)
-[203] Dropping near(_,_) desires and intentions to handle gold(20,20)
-[203] Going for gold(20,20)
-[203] Handling gold(20,20) now.
-[203] I've reached 20x20
-[203] I've reached 5x27
+[613] Finish handling gold(20,22)
+[613] Hello there. I'm saving myself to leave the simulation
+[613] R: 0.951757899446099
+[613] Sugar -1
+[613] Metabolism 4
+[613] Vision 2
+[613] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 613
+[killer_agent] Killing agent 613
+[239] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[239] I am going to go near (1,14)
+[killer_agent] This agent has being removed from the simulation: 613
+[239] I am at (1,15) which is near (1,14)
+[239] I am going to go near (3,13)
+[239] I am at (3,14) which is near (3,13)
+[239] I am going to go near (28,12)
+[239] I am at (28,13) which is near (28,12)
+[239] I am going to go near (22,31)
+[239] I am at (22,30) which is near (22,31)
+[239] I am going to go near (32,27)
+[239] I am at (32,28) which is near (32,27)
+[239] I am going to go near (24,29)
+[239] I am at (25,28) which is near (24,29)
+[239] I am going to go near (8,14)
+[239] I am at (8,15) which is near (8,14)
+[239] I am going to go near (0,22)
+[239] I am at (0,21) which is near (0,22)
+[239] I am going to go near (2,12)
+[239] I am at (2,13) which is near (2,12)
+[239] I am going to go near (14,19)
+[239] I am at (14,18) which is near (14,19)
+[239] I am going to go near (7,28)
+[239] I am at (7,27) which is near (7,28)
+[239] I am going to go near (24,28)
+[239] I am at (23,27) which is near (24,28)
+[239] I am going to go near (31,20)
+[239] I am at (31,21) which is near (31,20)
+[239] I am going to go near (30,2)
+[239] I am at (30,3) which is near (30,2)
+[239] I am going to go near (1,27)
+[239] I am at (1,26) which is near (1,27)
+[239] I am going to go near (3,16)
+[239] I am at (3,17) which is near (3,16)
+[239] I am going to go near (13,8)
+[239] I am at (13,9) which is near (13,8)
+[239] I am going to go near (15,6)
+[239] I am at (15,7) which is near (15,6)
+[239] I am going to go near (13,27)
+[239] I am at (13,26) which is near (13,27)
+[239] I am going to go near (17,3)
+[239] I am at (17,4) which is near (17,3)
+[239] I am going to go near (31,27)
+[239] I am at (31,26) which is near (31,27)
+[239] I am going to go near (22,21)
+[239] I am at (22,22) which is near (22,21)
+[239] I am going to go near (7,18)
+[239] I am at (7,19) which is near (7,18)
+[239] I am going to go near (20,20)
+[239] I am at (19,19) which is near (20,20)
+[239] I am going to go near (2,11)
+[239] I am at (2,12) which is near (2,11)
+[239] I am going to go near (30,18)
+[239] I am at (30,17) which is near (30,18)
+[239] I am going to go near (2,28)
+[239] I am at (2,27) which is near (2,28)
+[239] I am going to go near (20,28)
+[239] I am at (19,27) which is near (20,28)
+[239] I am going to go near (12,11)
+[239] I am at (12,12) which is near (12,11)
+[239] I am going to go near (33,9)
+[239] I am at (33,10) which is near (33,9)
+[239] I am going to go near (16,8)
+[239] I am at (16,9) which is near (16,8)
+[239] I am going to go near (20,3)
+[239] I am at (20,4) which is near (20,3)
+[239] I am going to go near (5,17)
+[239] I am at (5,16) which is near (5,17)
+[239] I am going to go near (2,1)
+[239] Gold perceived: gold(3,5)
+[239] Dropping near(_,_) desires and intentions to handle gold(3,5)
+[239] Going for gold(3,5)
+[239] Handling gold(3,5) now.
+[239] I've reached 3x5
+[239] I've reached 5x27
 [WorldModel] Agent 2 carried a gold to depot!
-[203] Finish handling gold(20,20)
-[203] Hello there. I'm saving myself to leave the simulation
-[203] R: 0.2261545639135153
-[203] Sugar 0
-[203] Metabolism 4
-[203] Vision 1
-[203] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 203
-[killer_agent] Killing agent 203
-[548] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[548] I am going to go near (27,16)
-[killer_agent] This agent has being removed from the simulation: 203
-[548] I am at (27,17) which is near (27,16)
-[548] I am going to go near (10,19)
-[548] I am at (10,18) which is near (10,19)
-[548] I am going to go near (12,7)
-[548] I am at (12,8) which is near (12,7)
-[548] I am going to go near (1,2)
-[548] I am at (1,3) which is near (1,2)
-[548] I am going to go near (6,5)
-[548] I am at (6,4) which is near (6,5)
-[548] I am going to go near (6,28)
-[548] I am at (6,27) which is near (6,28)
-[548] I am going to go near (10,27)
-[548] I am at (9,27) which is near (10,27)
-[548] I am going to go near (10,6)
-[548] I am at (10,7) which is near (10,6)
-[548] I am going to go near (9,17)
-[548] I am at (9,16) which is near (9,17)
-[548] I am going to go near (0,28)
-[548] I am at (0,27) which is near (0,28)
-[548] I am going to go near (29,4)
-[548] I am at (29,5) which is near (29,4)
-[548] I am going to go near (12,28)
-[548] I am at (12,27) which is near (12,28)
-[548] I am going to go near (0,0)
-[548] Gold perceived: gold(1,1)
-[548] Dropping near(_,_) desires and intentions to handle gold(1,1)
-[548] Going for gold(1,1)
-[548] Handling gold(1,1) now.
-[548] I've reached 1x1
-[548] I've reached 5x27
-[WorldModel] Agent 2 carried a gold to depot!
-[548] Finish handling gold(1,1)
-[548] Hello there. I'm saving myself to leave the simulation
-[548] R: 0.1770705175017936
-[548] Sugar 0
-[548] Metabolism 4
-[548] Vision 2
-[548] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 548
-[killer_agent] Killing agent 548
-[605] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[605] I am going to go near (27,6)
-[killer_agent] This agent has being removed from the simulation: 548
-[605] I am at (27,7) which is near (27,6)
-[605] I am going to go near (0,27)
-[605] I am at (0,26) which is near (0,27)
-[605] I am going to go near (4,21)
-[605] I am at (4,22) which is near (4,21)
-[605] I am going to go near (7,24)
-[605] I am at (7,23) which is near (7,24)
-[605] I am going to go near (5,20)
-[605] I am at (5,21) which is near (5,20)
-[605] I am going to go near (32,19)
-[605] I am at (32,20) which is near (32,19)
-[605] I am going to go near (10,6)
-[605] I am at (10,7) which is near (10,6)
-[605] I am going to go near (6,26)
-[605] I am at (6,25) which is near (6,26)
-[605] I am going to go near (24,4)
-[605] I am at (24,5) which is near (24,4)
-[605] I am going to go near (0,32)
-[605] I am at (0,31) which is near (0,32)
-[605] I am going to go near (32,14)
-[605] I am at (32,15) which is near (32,14)
-[605] I am going to go near (7,32)
-[605] I am at (7,31) which is near (7,32)
-[605] I am going to go near (20,31)
-[605] I am at (19,31) which is near (20,31)
-[605] I am going to go near (6,23)
-[605] I am at (6,24) which is near (6,23)
-[605] I am going to go near (33,28)
-[605] I am at (33,27) which is near (33,28)
-[605] I am going to go near (19,1)
-[605] Gold perceived: gold(20,13)
-[605] Dropping near(_,_) desires and intentions to handle gold(20,13)
-[605] Going for gold(20,13)
-[605] Handling gold(20,13) now.
-[605] I've reached 20x13
-[605] I've reached 5x27
-[WorldModel] Agent 2 carried a gold to depot!
-[605] Finish handling gold(20,13)
-[605] Hello there. I'm saving myself to leave the simulation
-[605] R: 0.7919457298206358
-[605] Sugar -1
-[605] Metabolism 3
-[605] Vision 2
-[605] Saved my information on file. Sending message to remove agent from simulation
-[killer_agent] I've received a message to kill agent 605
-[killer_agent] Killing agent 605
-[738] Hello there. I'm saving myself to leave the simulation
-[738] R: 0.7482115679390504
-[738] Sugar -1
-[738] Metabolism 4
-[738] Vision 6
-[738] Saved my information on file. Sending message to remove agent from simulation
-[738] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[738] No fail event was generated for +!start[source(self)]
-[738] Found a goal for which there is no relevant plan: +!start[source(self)]
-[738] No fail event was generated for +!say(hello)[source(self)]
-[738] Found a goal for which there is no relevant plan: +!say(hello)[source(self)]
-[killer_agent] This agent has being removed from the simulation: 605
-[killer_agent] I've received a message to kill agent 738
-[killer_agent] Killing agent 738
-[82] focusing on artifact m2view (at workspace /main/mining) using namespace default
-[82] I am going to go near (9,27)
-[82] I am at (8,27) which is near (9,27)
-[82] I am going to go near (27,20)
-[killer_agent] This agent has being removed from the simulation: 738
-[82] I am at (27,21) which is near (27,20)
-[82] I am going to go near (8,20)
-[82] I am at (9,21) which is near (8,20)
-[82] I am going to go near (21,13)
-[82] I am at (21,14) which is near (21,13)
-[82] I am going to go near (26,0)
-[82] I am at (26,1) which is near (26,0)
-[82] I am going to go near (8,24)
-[82] I am at (8,23) which is near (8,24)
-[82] I am going to go near (25,24)
-[82] I am at (24,23) which is near (25,24)
-[82] I am going to go near (12,19)
-[82] I am at (12,20) which is near (12,19)
-[82] I am going to go near (23,9)
-[82] I am at (23,10) which is near (23,9)
-[82] I am going to go near (15,28)
-[82] I am at (15,27) which is near (15,28)
-[82] I am going to go near (31,21)
-[82] I am at (31,22) which is near (31,21)
-[82] I am going to go near (8,18)
-[82] I am at (8,19) which is near (8,18)
-[82] I am going to go near (6,17)
-[82] I am at (6,18) which is near (6,17)
-[82] I am going to go near (17,11)
-[82] I am at (17,12) which is near (17,11)
-[82] I am going to go near (31,16)
-[82] I am at (31,15) which is near (31,16)
-[82] I am going to go near (5,16)
-[82] I am at (6,15) which is near (5,16)
-[82] I am going to go near (18,2)
-[82] I am at (18,3) which is near (18,2)
-[82] I am going to go near (2,33)
-[82] I am at (2,32) which is near (2,33)
-[82] I am going to go near (14,12)
-[82] I am at (14,13) which is near (14,12)
-[82] I am going to go near (6,16)
-[82] I am at (6,15) which is near (6,16)
-[82] I am going to go near (29,25)
-[82] I am at (29,24) which is near (29,25)
-[82] I am going to go near (6,17)
-[82] I am at (6,18) which is near (6,17)
-[82] I am going to go near (11,1)
-[82] I am at (11,2) which is near (11,1)
-[82] I am going to go near (11,29)
-[82] I am at (11,28) which is near (11,29)
-[82] I am going to go near (8,24)
-[82] I am at (8,25) which is near (8,24)
-[82] I am going to go near (17,10)
-[82] I am at (17,11) which is near (17,10)
-[82] I am going to go near (27,8)
-[82] I am at (27,9) which is near (27,8)
-[82] I am going to go near (8,7)
-[82] I am at (8,8) which is near (8,7)
-[82] I am going to go near (27,1)
-[82] I am at (27,2) which is near (27,1)
-[82] I am going to go near (14,29)
-[82] I am at (14,28) which is near (14,29)
-[82] I am going to go near (29,1)
-[82] I am at (29,2) which is near (29,1)
-[82] I am going to go near (13,5)
-[82] I am at (13,4) which is near (13,5)
-[82] I am going to go near (14,11)
-[82] I am at (14,10) which is near (14,11)
-[82] I am going to go near (18,22)
-[82] I am at (18,21) which is near (18,22)
-[82] I am going to go near (3,30)
-[82] I am at (3,29) which is near (3,30)
-[82] I am going to go near (12,9)
-[82] I am at (12,10) which is near (12,9)
-[82] I am going to go near (12,18)
-[82] I am at (12,17) which is near (12,18)
-[82] I am going to go near (8,21)
-[82] I am at (8,20) which is near (8,21)
-[82] I am going to go near (27,8)
-[82] I am at (27,9) which is near (27,8)
-[82] I am going to go near (11,28)
+[239] Finish handling gold(3,5)
+[239] Hello there. I'm saving myself to leave the simulation
+[239] R: 0.6059371804468369
+[239] Sugar -1
+[239] Metabolism 3
+[239] Vision 3
+[239] Saved my information on file. Sending message to remove agent from simulation
+[killer_agent] I've received a message to kill agent 239
+[killer_agent] Killing agent 239
+[123] focusing on artifact m2view (at workspace /main/mining) using namespace default
+[123] I am going to go near (18,31)
+[killer_agent] This agent has being removed from the simulation: 239
+[123] I am at (18,30) which is near (18,31)
+[123] I am going to go near (33,32)
+[123] I am at (33,31) which is near (33,32)
+[123] I am going to go near (32,6)
+[123] I am at (32,7) which is near (32,6)
+[123] I am going to go near (4,0)
+[123] I am at (4,1) which is near (4,0)
+[123] I am going to go near (23,20)
+[123] I am at (23,19) which is near (23,20)
+[123] I am going to go near (25,23)
+[123] I am at (25,22) which is near (25,23)
+[123] I am going to go near (4,9)
+[123] I am at (4,10) which is near (4,9)
+[123] I am going to go near (29,18)
+[123] I am at (29,17) which is near (29,18)
+[123] I am going to go near (7,7)
+[123] I am at (7,8) which is near (7,7)
+[123] I am going to go near (33,12)
+[123] I am at (33,11) which is near (33,12)
+[123] I am going to go near (33,13)
+[123] I am at (33,12) which is near (33,13)
+[123] I am going to go near (20,8)
+[123] I am at (20,9) which is near (20,8)
+[123] I am going to go near (26,21)
+[123] I am at (26,20) which is near (26,21)
+[123] I am going to go near (2,3)
+[123] I am at (2,4) which is near (2,3)
+[123] I am going to go near (0,7)
+[123] I am at (0,6) which is near (0,7)
+[123] I am going to go near (14,30)
+[123] I am at (14,29) which is near (14,30)
+[123] I am going to go near (26,0)
+[123] I am at (26,1) which is near (26,0)
+[123] I am going to go near (4,32)
+[123] I am at (4,31) which is near (4,32)
+[123] I am going to go near (4,21)
+[123] I am at (4,22) which is near (4,21)
+[123] I am going to go near (18,20)
+[123] I am at (18,21) which is near (18,20)
+[123] I am going to go near (19,10)
+[123] I am at (19,11) which is near (19,10)
+[123] I am going to go near (20,9)
+[123] I am at (20,10) which is near (20,9)
+[123] I am going to go near (26,28)
+[123] I am at (26,27) which is near (26,28)
+[123] I am going to go near (12,28)
+[123] I am at (13,27) which is near (12,28)
+[123] I am going to go near (8,1)
+[123] I am at (8,2) which is near (8,1)
+[123] I am going to go near (16,28)
+[123] I am at (16,27) which is near (16,28)
+[123] I am going to go near (28,2)
+[123] I am at (28,3) which is near (28,2)
+[123] I am going to go near (30,23)
+[123] I am at (30,22) which is near (30,23)
+[123] I am going to go near (19,31)
+[123] I am at (19,30) which is near (19,31)
+[123] I am going to go near (32,1)
+[123] I am at (32,2) which is near (32,1)
+[123] I am going to go near (9,29)
+[123] I am at (9,28) which is near (9,29)
+[123] I am going to go near (6,12)
+[123] I am at (6,13) which is near (6,12)
+[123] I am going to go near (27,10)
+[123] I am at (27,11) which is near (27,10)
+[123] I am going to go near (1,5)
+[123] I am at (1,6) which is near (1,5)
+[123] I am going to go near (18,21)
+[123] I am at (18,20) which is near (18,21)
+[123] I am going to go near (4,12)
+[123] I am at (4,13) which is near (4,12)
+[123] I am going to go near (23,16)
+[123] I am at (23,15) which is near (23,16)
+[123] I am going to go near (21,20)
+[123] I am at (21,19) which is near (21,20)
+[123] I am going to go near (19,26)
+[123] I am at (19,25) which is near (19,26)
+[123] I am going to go near (12,29)
+[123] I am at (12,28) which is near (12,29)
+[123] I am going to go near (6,22)
+[123] I am at (6,23) which is near (6,22)
+[123] I am going to go near (21,22)
+[123] I am at (20,23) which is near (21,22)
+[123] I am going to go near (28,13)
+[123] I am at (28,14) which is near (28,13)
+[123] I am going to go near (7,24)
+[123] I am at (7,23) which is near (7,24)
+[123] I am going to go near (24,18)
+[123] I am at (24,19) which is near (24,18)
+[123] I am going to go near (27,8)
+[123] I am at (27,9) which is near (27,8)
+[123] I am going to go near (11,27)
+[123] I am at (11,26) which is near (11,27)
+[123] I am going to go near (18,24)
+[123] I am at (18,25) which is near (18,24)
+[123] I am going to go near (15,23)
+[123] I am at (15,24) which is near (15,23)
+[123] I am going to go near (0,20)
+[123] I am at (0,21) which is near (0,20)
+[123] I am going to go near (14,24)
+[123] I am at (14,23) which is near (14,24)
+[123] I am going to go near (26,9)
+[123] I am at (26,10) which is near (26,9)
+[123] I am going to go near (3,7)
+[123] I am at (3,8) which is near (3,7)
+[123] I am going to go near (14,4)
+[123] I am at (14,5) which is near (14,4)
+[123] I am going to go near (23,18)
+[123] I am at (23,17) which is near (23,18)
+[123] I am going to go near (32,8)
+[123] I am at (32,9) which is near (32,8)
+[123] I am going to go near (33,12)
+[123] I am at (33,11) which is near (33,12)
+[123] I am going to go near (21,26)
+[123] I am at (21,25) which is near (21,26)
+[123] I am going to go near (22,28)
+[123] I am at (22,27) which is near (22,28)
+[123] I am going to go near (5,2)

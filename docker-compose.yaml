@@ -22,6 +22,7 @@ services:
       - "modelo_2"
       - "api"
       - "router"
+      - "clear_files"
   
   api:
     container_name: api
@@ -163,6 +164,7 @@ services:
     depends_on:
       - "router"
       - "api"
+      - "clear_files"
 
   modelo_2:
     container_name: modelo_2
@@ -184,6 +186,7 @@ services:
     depends_on:
       - "router"
       - "api"
+      - "clear_files"
 
 # 17.08.22 - Backup, funciona 100% no lab com teste API, melhorando a ordem dos containers acima
 # version: "3.8"
