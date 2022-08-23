@@ -9,6 +9,10 @@ teste/jacamo/integra_gold_miners/src/agt/list/**
 # exception to the rule
 !teste/jacamo/integra_gold_miners/src/agt/list/.gitkeep
 
+teste/important/tests/**
+# exception to the rule
+!teste/important/tests/modelo_teste.html
+
 
 #teste/important/**
 # exception to the rule

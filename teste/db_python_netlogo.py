@@ -16,12 +16,21 @@ def teste_exception(error):
   raise Exception(error)
 
 def solicita_cartorio(model, min, max):
+  start = time.time()
+  print("Start time solicita_cartorio: "+str(start))
+  # start = time.time()
+  # print("hello")
+  # end = time.time()
+  # print(end - start)
   retorno = False
   while retorno == False:
     try:
       # response = requests.post('http://localhost:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max}, timeout=5)
       # response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max}, timeout=120)
-      response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max})
+      
+
+      # response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max})
+      response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio_2', json = {"model":model, "min":min, "max":max})
       print("Response from API: "+response.text)
       response.raise_for_status()
 
@@ -36,9 +45,13 @@ def solicita_cartorio(model, min, max):
     except requests.exceptions.RequestException as err:
         print(err)
 
+  end = time.time()
+  print("End time solicita_cartorio: "+str(end - start))
   return retorno
 
 def teste_envio(agent_id, data, path):
+  start = time.time()
+  print("Start time teste_envio: "+str(start))
   retorno = False
   try:
     # response = requests.post('http://localhost:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
@@ -57,9 +70,14 @@ def teste_envio(agent_id, data, path):
   except requests.exceptions.RequestException as err:
       print(err)
 
+  end = time.time()
+  print("End time teste_envio: "+str(end - start))
   return retorno
 
 def teste_recebimento(modelo):
+  start = time.time()
+  print("Start time teste_recebimento: "+str(start))
+  retorno = False
   str1 = ''
   return_list = []
   try:
@@ -79,6 +97,8 @@ def teste_recebimento(modelo):
   except requests.exceptions.RequestException as err:
       print(err)
   # return str1
+  end = time.time()
+  print("End time teste_recebimento: "+str(end - start))
   return return_list
 
 # def send_function(string_to_send):

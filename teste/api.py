@@ -11,6 +11,8 @@ import os
 import re
 import json
 
+import string
+
 import time
 
 #https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask
@@ -101,7 +103,7 @@ def check_new_agentss_1():
       cnx.commit()
     except mysql.connector.Error as err:
       print("Failed inserting on database: {}".format(err))
-      teste_exception(err)
+      # teste_exception(err)
     finally:
       cursor.close()
 
@@ -148,44 +150,123 @@ def teste_router():
 
   cnx.close()
 
-  for tupla in return_list:
-    cnx = mysql.connector.connect(user='root', password='root',
-                               host='db',
-                               database='MYSQL_DATABASE')
-    cursor = cnx.cursor()
-    cnx.start_transaction()
+  if (len(return_list) == 0):
+    print("No agents to be proccessed at the moment.")
+  else:
+    for tupla in return_list:
+      cnx = mysql.connector.connect(user='root', password='root',
+                                 host='db',
+                                 database='MYSQL_DATABASE')
+      cursor = cnx.cursor()
+      cnx.start_transaction()
 
-    model_to_send = random.choice(modelos_list)
+      model_to_send = random.choice(modelos_list)
 
-    agent_id = str(tupla[0])
-    data = tupla[1]
-    path = tupla[2]
-    tupla_id = str(tupla[3])
-    proccessed = str(0)
+      agent_id = str(tupla[0])
+      data = tupla[1]
+      path = tupla[2]
+      tupla_id = str(tupla[3])
+      proccessed = str(0)
 
-    return_list = []
+      return_list = []
 
-    sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-    sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
-    try:
-      cursor.execute(sql1)
-      cursor.execute(sql2)
-      # Make sure data is committed to the database
-      cnx.commit()
-      print("Agent_id: "+agent_id+" sended to model "+model_to_send)
-      new_value = {'id': str(agent_id), 'model': model_to_send}
-      return_list.append(new_value)
-    except mysql.connector.Error as err:
-      print("Failed inserting on database: {}".format(err))
-      print("Rolling back ...")
-      print(e)
-      db.rollback()  # rollback changes
-      new_value = {'id': str(agent_id), 'model': "ERROR"}
-      return_list.append(new_value)
-    finally:
-      cursor.close()
-      cnx.close()
+      sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
+      sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+      try:
+        cursor.execute(sql1)
+        cursor.execute(sql2)
+        # Make sure data is committed to the database
+        cnx.commit()
+        print("Agent_id: "+agent_id+" sended to model "+model_to_send)
+        new_value = {'id': str(agent_id), 'model': model_to_send}
+        return_list.append(new_value)
+      except mysql.connector.Error as err:
+        print("Failed inserting on database: {}".format(err))
+        print("Rolling back ...")
+        print(e)
+        db.rollback()  # rollback changes
+        new_value = {'id': str(agent_id), 'model': "ERROR"}
+        return_list.append(new_value)
+      finally:
+        cursor.close()
+        cnx.close()
   return jsonify(return_list)
+# def teste_router():
+
+#   #router_type = "random"
+#   router_type = "sequential"
+#   print("Router type:"+router_type)
+#   connected = False
+#   while (connected == False):
+#     try:
+#       cnx = mysql.connector.connect(user='root', password='root',
+#                                host='db',
+#                                database='MYSQL_DATABASE')
+#       connected = cnx.is_connected()
+#     except:
+#       print("Error connecting to the database")
+#       time.sleep(3)
+#   cursor = cnx.cursor()
+
+#   if(router_type == "random"):
+#     order = "RAND()"
+#   elif(router_type == "sequential"):
+#     order = "created_at ASC"
+
+#   query = ("SELECT id, agent_id, data, path, proccessed FROM router "
+#             "WHERE proccessed = 0 ORDER BY "+order)
+#   modelos_list = ["m1", "m2", "m3"]
+#   cursor.execute(query)
+
+
+#   return_list = []
+#   delete_list = []
+
+#   for (id, agent_id, data, path, proccessed) in cursor:
+#     return_list.append([agent_id, data, path, id])
+
+#   cursor.close()
+
+#   cnx.close()
+
+#   for tupla in return_list:
+#     cnx = mysql.connector.connect(user='root', password='root',
+#                                host='db',
+#                                database='MYSQL_DATABASE')
+#     cursor = cnx.cursor()
+#     cnx.start_transaction()
+
+#     model_to_send = random.choice(modelos_list)
+
+#     agent_id = str(tupla[0])
+#     data = tupla[1]
+#     path = tupla[2]
+#     tupla_id = str(tupla[3])
+#     proccessed = str(0)
+
+#     return_list = []
+
+#     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
+#     sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+#     try:
+#       cursor.execute(sql1)
+#       cursor.execute(sql2)
+#       # Make sure data is committed to the database
+#       cnx.commit()
+#       print("Agent_id: "+agent_id+" sended to model "+model_to_send)
+#       new_value = {'id': str(agent_id), 'model': model_to_send}
+#       return_list.append(new_value)
+#     except mysql.connector.Error as err:
+#       print("Failed inserting on database: {}".format(err))
+#       print("Rolling back ...")
+#       print(e)
+#       db.rollback()  # rollback changes
+#       new_value = {'id': str(agent_id), 'model': "ERROR"}
+#       return_list.append(new_value)
+#     finally:
+#       cursor.close()
+#       cnx.close()
+#   return jsonify(return_list)
 
 
 @app.route('/api/v1/resources/check_new_agents', methods=['GET'])
@@ -207,34 +288,114 @@ def check_new_agentss():
       connected = cnx.is_connected()
     except:
       print("Error connecting to the DB")
-      time.sleep(3)
+      time.sleep(1)
   query = ("SELECT id, agent_id, data, path, proccessed FROM "+modelo+" "
-            "WHERE proccessed = %s AND %s")
+            "WHERE proccessed = 0")
 
-  cursor.execute(query, (0, "1=1"))
+  cursor.execute(query)
 
+  # records = cursor.fetchall()
+  # row_count = cursor.rowcount
+  # print("row_count: "+str(row_count))
+
+  # if row_count > 0:
+  # id_list = "("
+  id_list = ""
   for (id, agent_id, data, path, proccessed) in cursor:
     return_list.append([agent_id, data, path])
-    to_update.append(id)
+    # to_update.append(id)
+    id_list += str(id)+"," 
+  if(id_list != ""):
+    id_list = id_list[:-1]
+  # id_list += ")"
+
+  print("id_list: "+id_list)
 
   cursor.close()
 
-  for tupla in to_update:
+  # for tupla in to_update:
+  if (id_list != ""):
     try:
       cursor = cnx.cursor()
-      temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id = "+str(tupla)+"; "
+      temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id IN ("+id_list+");"
+      print("temporary query: "+temporary_query)
       query = (temporary_query)
       cursor.execute(temporary_query)
       cnx.commit()
     except mysql.connector.Error as err:
       print("Failed inserting on database: {}".format(err))
-      teste_exception(err)
+      # teste_exception(err)
     finally:
       cursor.close()
+
+  # for (id, agent_id, data, path, proccessed) in cursor:
+  #   return_list.append([agent_id, data, path])
+  #   to_update.append(id)
+
+  # cursor.close()
+
+  # for tupla in to_update:
+  #   try:
+  #     cursor = cnx.cursor()
+  #     temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id = "+str(tupla)+"; "
+  #     query = (temporary_query)
+  #     cursor.execute(temporary_query)
+  #     cnx.commit()
+  #   except mysql.connector.Error as err:
+  #     print("Failed inserting on database: {}".format(err))
+  #     teste_exception(err)
+  #   finally:
+  #     cursor.close()
 
   cnx.close()
   print("enviando: "+str(return_list))
   return jsonify(return_list)
+# def check_new_agentss():
+
+#   query_parameters = request.args
+#   modelo = query_parameters.get('model')
+
+#   return_list = []
+#   to_update = []
+
+#   connected = False
+#   while (connected == False):
+#     try:
+#       cnx = mysql.connector.connect(user='root', password='root',
+#                                      host='db',
+#                                      database='MYSQL_DATABASE')
+#       cursor = cnx.cursor()
+#       connected = cnx.is_connected()
+#     except:
+#       print("Error connecting to the DB")
+#       time.sleep(3)
+#   query = ("SELECT id, agent_id, data, path, proccessed FROM "+modelo+" "
+#             "WHERE proccessed = %s AND %s")
+
+#   cursor.execute(query, (0, "1=1"))
+
+#   for (id, agent_id, data, path, proccessed) in cursor:
+#     return_list.append([agent_id, data, path])
+#     to_update.append(id)
+
+#   cursor.close()
+
+#   for tupla in to_update:
+#     try:
+#       cursor = cnx.cursor()
+#       temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id = "+str(tupla)+"; "
+#       query = (temporary_query)
+#       cursor.execute(temporary_query)
+#       cnx.commit()
+#     except mysql.connector.Error as err:
+#       print("Failed inserting on database: {}".format(err))
+#       teste_exception(err)
+#     finally:
+#       cursor.close()
+
+#   cnx.close()
+#   print("enviando: "+str(return_list))
+#   return jsonify(return_list)
 
 @app.route('/api/v1/resources/sanity_test', methods=['GET'])
 def sanity_test():
@@ -410,8 +571,72 @@ def sanity_test():
   return jsonify(return_list)
 
 
+@app.route('/api/v1/resources/solicita_cartorio_2', methods=['POST'])
+def solicita_cartorio_2():
+  seed = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+  start = time.time()
+  print("Start time solicita_cartorio: "+str(start) +" with seed: "+seed)
+  json_data = request.get_json()
+  print(json_data)
+  model = json_data['model']
+  model_number = model[1:]
+  min = json_data['min']
+  max = json_data['max']
+
+  connected = False
+  while (connected == False):
+    try:
+      cnx = mysql.connector.connect(user='root', password='root',
+                                     host='db',
+                                     database='MYSQL_DATABASE')
+      cursor = cnx.cursor()
+      connected = cnx.is_connected()
+    except:
+      print("Error connecting to the DB")
+      time.sleep(3)
+  retorno = False
+
+  data = ""
+  for agent_id in range(min, max):
+    internal_data = "[" + str(random.randint(5, 25)) + " " + str(random.randint(1, 4)) + " " + str(random.randint(1, 6)) + "]"
+    data += "('"+str(agent_id)+"', '"+internal_data+"', "+"''"+")"
+    data += ", "
+
+  data = data[:-2]
+  print("data: "+data)
+
+  try:
+    cursor = cnx.cursor()
+    sql1 = "INSERT INTO "+model+ " (agent_id, data, path) "+"VALUES "+data+";"
+    print("sql1: "+sql1)
+    cursor.execute(sql1)
+    # Make sure data is committed to the database
+    cnx.commit()
+    retorno = True
+  except mysql.connector.Error as err:
+    print("Failed inserting on database: {}".format(err))
+    # teste_exception(err)
+    retorno = False
+  finally:
+    cursor.close()
+
+  # if (retorno == False):
+  #   break
+
+  cnx.close()
+
+  end = time.time()
+  print("End time solicita_cartorio: "+str(end - start) +" with seed: "+seed)
+  if(retorno):
+    return 'true'
+  else:
+    return 'false'
+
 @app.route('/api/v1/resources/solicita_cartorio', methods=['POST'])
 def solicita_cartorio():
+  seed = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+  start = time.time()
+  print("Start time solicita_cartorio: "+str(start) +" with seed: "+seed)
   json_data = request.get_json()
   print(json_data)
   model = json_data['model']
@@ -443,7 +668,7 @@ def solicita_cartorio():
         retorno = True
     except mysql.connector.Error as err:
         print("Failed inserting on database: {}".format(err))
-        teste_exception(err)
+        # teste_exception(err)
         retorno = False
     finally:
         cursor.close()
@@ -452,6 +677,9 @@ def solicita_cartorio():
         break
 
   cnx.close()
+
+  end = time.time()
+  print("End time solicita_cartorio: "+str(end - start) +" with seed: "+seed)
   if(retorno):
     return 'true'
   else:
@@ -490,7 +718,7 @@ def teste_envio():
     retorno = True
   except mysql.connector.Error as err:
     print("Failed inserting on database: {}".format(err))
-    teste_exception(err)
+    # teste_exception(err)
     retorno = False
 
   cursor.close()

@@ -51,13 +51,17 @@ to new_setup
 end
 
 to new_solicita_cartorio
-  print("funcao python")
+  print("funcao python new_solicita_cartorio")
+  print("no netlogo, tempo inicial do solicita_cartorio")
+  print(date-and-time)
   py:setup py:python
   print("iniciando cartorio: ")
   py:run "from db_python_netlogo import solicita_cartorio"
   let teste py:runresult (word "solicita_cartorio('" ("m2") "'" "," (400) ", " (800) ")")
   print("retorno cartorio: ")
   print(teste)
+  print("no netlogo, tempo final do solicita_cartorio")
+  print(date-and-time)
 end
 
 to solicita_cartorio
@@ -90,7 +94,7 @@ to solicita_cartorio
 end
 
 to new_send_agent_to_model
-  print("funcao python")
+  print("funcao python new_send_agent_to_model")
   py:setup py:python
   py:run "from db_python_netlogo import teste_envio"
   ; "teste_envio('12', '[1 2 3]', '1-1')"
@@ -240,7 +244,9 @@ to send_agent_to_model
 end
 
 to new_check_new_agent
-  print("funcao python")
+  print("funcao python new_check_new_agent")
+  print("no netlogo, tempo inicial do new_check_new_agent")
+  print(date-and-time)
   py:setup py:python
   py:run "from db_python_netlogo import teste_recebimento"
   let teste py:runresult (word "teste_recebimento('" ("m2") "')")
@@ -304,11 +310,13 @@ to new_check_new_agent
   [
     print ("banco vazio")
   ]
+  print("no netlogo, tempo final do new_check_new_agent")
+  print(date-and-time)
   print("fim teste_recebimento: -----------")
 end
 
 to teste_python
-print("funcao python")
+print("funcao python teste_python")
   py:setup py:python
 ;  py:run "from db_python_netlogo import teste_envio"
 ;  let teste py:runresult (word "teste_envio('" "[" "\"" "agent" "\"" " " ("agent_id") " " ("sugar") " " ("metabolism") " " ("vision") " " (word "\"" (ticks) "-1" "\"") "]" "')")
