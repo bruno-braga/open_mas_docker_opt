@@ -5,9 +5,18 @@ teste/__pycache__/**
 teste/jacamo/integra_gold_miners/.gradle/**
 teste/jacamo/integra_gold_miners/build/**
 
+teste/jacamo/integra_gold_miners/mas.log
+teste/jacamo/integra_gold_miners/mas.log.lck
+
 teste/jacamo/integra_gold_miners/src/agt/list/**
 # exception to the rule
 !teste/jacamo/integra_gold_miners/src/agt/list/.gitkeep
+
+teste/important/m1_alive.txt
+teste/important/m1_output.txt
+teste/important/m2_alive.txt
+teste/important/m2_output.txt
+teste/jacamo/integra_gold_miners/mas.log
 
 teste/important/tests/**
 # exception to the rule
