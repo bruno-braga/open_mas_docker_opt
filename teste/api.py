@@ -84,9 +84,9 @@ def check_new_agentss_1():
       print("Error connecting to the DB")
       time.sleep(3)
   query = ("SELECT id, agent_id, data, path, proccessed FROM "+modelo+" "
-            "WHERE proccessed = %s AND %s ORDER BY created_at ASC LIMIT 1")
+            "WHERE proccessed = 0 ORDER BY created_at ASC LIMIT 1")
 
-  cursor.execute(query, (0, "1=1"))
+  cursor.execute(query)
 
   for (id, agent_id, data, path, proccessed) in cursor:
     return_list.append([agent_id, data, path])
