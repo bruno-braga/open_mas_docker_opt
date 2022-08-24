@@ -472,7 +472,7 @@ def sanity_test():
     text = f.read()
     text = text[1:]
     if docker_debugger: print(text)
-  m1_alive = [int(x) for x in text.split()]
+    m1_alive = [int(x) for x in text.split()]
 
   if docker_debugger: print("m1_alive:")
   if docker_debugger: print(m1_alive)
@@ -483,7 +483,7 @@ def sanity_test():
     text = f.read()
     text = text[1:]
     if docker_debugger: print(text)
-  m2_alive = [int(x) for x in text.split()]
+    m2_alive = [int(x) for x in text.split()]
 
   if docker_debugger: print("m2_alive:")
   if docker_debugger: print(m2_alive)
