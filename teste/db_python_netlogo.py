@@ -30,7 +30,7 @@ def solicita_cartorio(model, min, max):
       
 
       # response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max})
-      response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio_2', json = {"model":model, "min":min, "max":max})
+      response = requests.post('http://api:5000/api/v1/resources/register_agents_on_platform', json = {"model":model, "min":min, "max":max})
       print("Response from API: "+response.text)
       response.raise_for_status()
 
@@ -104,7 +104,7 @@ def teste_recebimento(modelo):
 # def send_function(string_to_send):
 #     return "3"
 
-def teste_router():
+def process_agents_on_router():
   #router_type = "random"
   router_type = "sequential"
   print("Router type:"+router_type)
@@ -183,7 +183,7 @@ def teste_router():
       cursor.close()
       cnx.close()
 
-def backup_funcional_teste_router():
+def backup_funcional_process_agents_on_router():
   while True:
     cnx = mysql.connector.connect(user='root', password='root',
                                  host='db',
@@ -432,7 +432,7 @@ def print_teste_recebimento(modelo):
 def print_send_function(string_to_send):
     return "3"
 
-def print_teste_router():
+def print_process_agents_on_router():
   #while True:
   cnx = mysql.connector.connect(user='root', password='root',
                                host='db',
@@ -694,7 +694,7 @@ def print_teste_router():
 # def send_function(string_to_send):
 #     return "3"
 
-# def teste_router():
+# def process_agents_on_router():
 #   while True:
 #     cnx = mysql.connector.connect(user='root', password='root',
 #                                  host='db',
@@ -943,7 +943,7 @@ def print_teste_router():
 # def print_send_function(string_to_send):
 #     return "3"
 
-# def print_teste_router():
+# def print_process_agents_on_router():
 #   #while True:
 #   cnx = mysql.connector.connect(user='root', password='root',
 #                                host='db',
@@ -1214,7 +1214,7 @@ def print_teste_router():
 # def send_function(string_to_send):
 #     return "3"
 
-# def teste_router():
+# def process_agents_on_router():
 #   #while True:
 #   cnx = mysql.connector.connect(user='root', password='root',
 #                                host='db',

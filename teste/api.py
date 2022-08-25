@@ -113,8 +113,8 @@ def check_new_agentss_1():
   if docker_debugger: print("enviando: "+str(return_list))
   return jsonify(return_list)
 
-@app.route('/api/v1/resources/teste_router', methods=['GET'])
-def teste_router():
+@app.route('/api/v1/resources/process_agents_on_router', methods=['GET'])
+def process_agents_on_router():
 
   #router_type = "random"
   router_type = "sequential"
@@ -193,7 +193,7 @@ def teste_router():
         cursor.close()
         cnx.close()
   return jsonify(return_list)
-# def teste_router():
+# def process_agents_on_router():
 
 #   #router_type = "random"
 #   router_type = "sequential"
@@ -581,8 +581,8 @@ def sanity_test():
   return jsonify(return_list)
 
 
-@app.route('/api/v1/resources/solicita_cartorio_2', methods=['POST'])
-def solicita_cartorio_2():
+@app.route('/api/v1/resources/register_agents_on_platform', methods=['POST'])
+def register_agents_on_platform():
   seed = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
   start = time.time()
   if docker_debugger: print("Start time solicita_cartorio: "+str(start) +" with seed: "+seed)
