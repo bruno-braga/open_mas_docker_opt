@@ -36,7 +36,7 @@ CREATE TABLE `m1` (
   `data` char(255) NOT NULL,
   `path` text NOT NULL,
   `asl_file_path` char(255) NOT NULL DEFAULT '',
-  `proccessed` tinyint(1) NOT NULL DEFAULT '0',
+  `processed` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -53,7 +53,7 @@ CREATE TABLE `m2` (
   `data` char(255) NOT NULL,
   `path` text NOT NULL,
   `asl_file_path` char(255) NOT NULL DEFAULT '',
-  `proccessed` tinyint(1) NOT NULL DEFAULT '0',
+  `processed` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -70,7 +70,7 @@ CREATE TABLE `m3` (
   `data` char(255) NOT NULL,
   `path` text NOT NULL,
   `asl_file_path` char(255) NOT NULL DEFAULT '',
-  `proccessed` tinyint(1) NOT NULL DEFAULT '0',
+  `processed` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -87,7 +87,7 @@ CREATE TABLE `router` (
   `data` char(255) NOT NULL,
   `path` text NOT NULL,
   `asl_file_path` char(255) NOT NULL DEFAULT '',
-  `proccessed` tinyint(1) NOT NULL DEFAULT '0',
+  `processed` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

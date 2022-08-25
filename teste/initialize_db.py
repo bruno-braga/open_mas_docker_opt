@@ -19,7 +19,7 @@ TABLES['router'] = (
     # "  `path` char(255) NOT NULL DEFAULT '',"
     "  `path` TEXT NOT NULL ,"
     "  `asl_file_path` char(255) NOT NULL DEFAULT '',"
-    "  `proccessed` boolean DEFAULT 0 NOT NULL,"
+    "  `processed` boolean DEFAULT 0 NOT NULL,"
     "  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,"
     "  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL"
     ") ENGINE=InnoDB")
@@ -32,7 +32,7 @@ TABLES['m1'] = (
     # "  `path` char(255) NOT NULL DEFAULT '',"
     "  `path` TEXT NOT NULL ,"
     "  `asl_file_path` char(255) NOT NULL DEFAULT '',"
-    "  `proccessed` boolean DEFAULT 0 NOT NULL,"
+    "  `processed` boolean DEFAULT 0 NOT NULL,"
     "  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,"
     "  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL"
     ") ENGINE=InnoDB")
@@ -45,7 +45,7 @@ TABLES['m2'] = (
     # "  `path` char(255) NOT NULL DEFAULT '',"
     "  `path` TEXT NOT NULL ,"
     "  `asl_file_path` char(255) NOT NULL DEFAULT '',"
-    "  `proccessed` boolean DEFAULT 0 NOT NULL,"
+    "  `processed` boolean DEFAULT 0 NOT NULL,"
     "  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,"
     "  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL"
     ") ENGINE=InnoDB")
@@ -58,7 +58,7 @@ TABLES['m3'] = (
     # "  `path` char(255) NOT NULL DEFAULT '',"
     "  `path` TEXT NOT NULL ,"
     "  `asl_file_path` char(255) NOT NULL DEFAULT '',"
-    "  `proccessed` boolean DEFAULT 0 NOT NULL,"
+    "  `processed` boolean DEFAULT 0 NOT NULL,"
     "  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,"
     "  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL"
     ") ENGINE=InnoDB")
@@ -130,7 +130,7 @@ cnx.close()
 #     "  CREATE TABLE `router` ("
 #     "  `id` SERIAL PRIMARY KEY,"
 #     "  `data` char(255) NOT NULL,"
-#     "  `proccessed` boolean DEFAULT 0 NOT NULL,"
+#     "  `processed` boolean DEFAULT 0 NOT NULL,"
 #     "  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,"
 #     "  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL"
 #     ") ENGINE=InnoDB")
@@ -139,7 +139,7 @@ cnx.close()
 #     "  CREATE TABLE `m1` ("
 #     "  `id` SERIAL PRIMARY KEY,"
 #     "  `data` char(255) NOT NULL,"
-#     "  `proccessed` boolean DEFAULT 0 NOT NULL,"
+#     "  `processed` boolean DEFAULT 0 NOT NULL,"
 #     "  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,"
 #     "  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL"
 #     ") ENGINE=InnoDB")
@@ -148,7 +148,7 @@ cnx.close()
 #     "  CREATE TABLE `m2` ("
 #     "  `id` SERIAL PRIMARY KEY,"
 #     "  `data` char(255) NOT NULL,"
-#     "  `proccessed` boolean DEFAULT 0 NOT NULL,"
+#     "  `processed` boolean DEFAULT 0 NOT NULL,"
 #     "  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,"
 #     "  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL"
 #     ") ENGINE=InnoDB")
@@ -157,7 +157,7 @@ cnx.close()
 #     "  CREATE TABLE `m3` ("
 #     "  `id` SERIAL PRIMARY KEY,"
 #     "  `data` char(255) NOT NULL,"
-#     "  `proccessed` boolean DEFAULT 0 NOT NULL,"
+#     "  `processed` boolean DEFAULT 0 NOT NULL,"
 #     "  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,"
 #     "  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL"
 #     ") ENGINE=InnoDB")

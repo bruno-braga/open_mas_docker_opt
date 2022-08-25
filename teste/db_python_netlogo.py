@@ -127,8 +127,8 @@ def process_agents_on_router():
   elif(router_type == "sequential"):
     order = "created_at ASC"
 
-  query = ("SELECT id, agent_id, data, path, proccessed FROM router "
-            "WHERE proccessed = 0 ORDER BY "+order)
+  query = ("SELECT id, agent_id, data, path, processed FROM router "
+            "WHERE processed = 0 ORDER BY "+order)
   modelos_list = ["m1", "m2", "m3"]
   #model_to_send = random.choice(modelos_list)
   cursor.execute(query)
@@ -137,7 +137,7 @@ def process_agents_on_router():
   return_list = []
   delete_list = []
 
-  for (id, agent_id, data, path, proccessed) in cursor:
+  for (id, agent_id, data, path, processed) in cursor:
     return_list.append([agent_id, data, path, id])
 
   cursor.close()
@@ -158,10 +158,10 @@ def process_agents_on_router():
     data = tupla[1]
     path = tupla[2]
     tupla_id = str(tupla[3])
-    proccessed = str(0)
+    processed = str(0)
 
-    sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-    sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+    sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+    sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
     try:
       cursor.execute(sql1)
       cursor.execute(sql2)
@@ -189,15 +189,15 @@ def backup_funcional_process_agents_on_router():
                                  host='db',
                                  database='MYSQL_DATABASE')
     cursor = cnx.cursor()
-    query = ("SELECT id, agent_id, data, path, proccessed FROM router "
-              "WHERE proccessed = 0")
+    query = ("SELECT id, agent_id, data, path, processed FROM router "
+              "WHERE processed = 0")
     cursor.execute(query)
 
 
     return_list = []
     delete_list = []
 
-    for (id, agent_id, data, path, proccessed) in cursor:
+    for (id, agent_id, data, path, processed) in cursor:
       return_list.append([agent_id, data, path, id])
 
     cursor.close()
@@ -218,10 +218,10 @@ def backup_funcional_process_agents_on_router():
       data = tupla[1]
       path = tupla[2]
       tupla_id = str(tupla[3])
-      proccessed = str(0)
+      processed = str(0)
 
-      sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-      sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+      sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+      sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
       try:
         cursor.execute(sql1)
         cursor.execute(sql2)
@@ -249,15 +249,15 @@ def backup_funcional_process_agents_on_router():
   #                                host='db',
   #                                database='MYSQL_DATABASE')
   #   cursor = cnx.cursor()
-  #   query = ("SELECT id, agent_id, data, path, proccessed FROM router "
-  #             "WHERE proccessed = 0")
+  #   query = ("SELECT id, agent_id, data, path, processed FROM router "
+  #             "WHERE processed = 0")
   #   cursor.execute(query)
 
 
   #   return_list = []
   #   delete_list = []
 
-  #   for (id, agent_id, data, path, proccessed) in cursor:
+  #   for (id, agent_id, data, path, processed) in cursor:
   #     return_list.append([agent_id, data, path, id])
 
   #   cursor.close()
@@ -276,10 +276,10 @@ def backup_funcional_process_agents_on_router():
   #     data = tupla[1]
   #     path = tupla[2]
   #     tupla_id = str(tupla[3])
-  #     proccessed = str(0)
+  #     processed = str(0)
 
-  #     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-  #     sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+  #     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+  #     sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
   #     try:
   #       cursor.execute(sql1)
   #       cursor.execute(sql2)
@@ -396,15 +396,15 @@ def print_teste_recebimento(modelo):
                                  host='db',
                                  database='MYSQL_DATABASE')
   cursor = cnx.cursor()
-  query = ("SELECT id, agent_id, data, path, proccessed FROM "+modelo+" "
-            "WHERE proccessed = %s AND %s")
+  query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
+            "WHERE processed = %s AND %s")
 
   # print("modelo:"+modelo)
   cursor.execute(query, (0, "1=1"))
 
-  for (id, agent_id, data, path, proccessed) in cursor:
-    print("id: {}, agent_id: {}, data: {}, path: {}, proccessed: {}".format(
-      id, agent_id, data, path, proccessed))
+  for (id, agent_id, data, path, processed) in cursor:
+    print("id: {}, agent_id: {}, data: {}, path: {}, processed: {}".format(
+      id, agent_id, data, path, processed))
     return_list.append([agent_id, data, path])
     to_update.append(id)
 
@@ -414,7 +414,7 @@ def print_teste_recebimento(modelo):
 
   for tupla in to_update:
     cursor = cnx.cursor()
-    temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id = "+str(tupla)+"; "
+    temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id = "+str(tupla)+"; "
     print("temporary query:"+temporary_query)
     query = (temporary_query)
     cursor.execute(temporary_query)
@@ -438,8 +438,8 @@ def print_process_agents_on_router():
                                host='db',
                                database='MYSQL_DATABASE')
   cursor = cnx.cursor()
-  query = ("SELECT id, agent_id, data, path, proccessed FROM router "
-            "WHERE proccessed = 0")
+  query = ("SELECT id, agent_id, data, path, processed FROM router "
+            "WHERE processed = 0")
 
   # print("modelo:"+modelo)
   cursor.execute(query)
@@ -450,9 +450,9 @@ def print_process_agents_on_router():
 
   print("lendo router: ")
 
-  for (id, agent_id, data, path, proccessed) in cursor:
-    print("id: {}, agent_id: {}, data: {}, path: {}, proccessed: {}".format(
-      id, agent_id, data, path, proccessed))
+  for (id, agent_id, data, path, processed) in cursor:
+    print("id: {}, agent_id: {}, data: {}, path: {}, processed: {}".format(
+      id, agent_id, data, path, processed))
     return_list.append([agent_id, data, path, id])
 
 
@@ -481,32 +481,32 @@ def print_process_agents_on_router():
     data = tupla[1]
     path = tupla[2]
     tupla_id = str(tupla[3])
-    proccessed = str(0)
+    processed = str(0)
 
-    sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-    sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+    sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+    sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
 
 
     # full_query = "START TRANSACTION; "
-    # full_query += "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES ('"+tupla[0]+"' ,0); "
+    # full_query += "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES ('"+tupla[0]+"' ,0); "
     # # full_query += "DELETE FROM router WHERE id = "+str(tupla[1])+"; "
-    # full_query += "UPDATE router SET proccessed = 1 WHERE id = "+str(tupla[1])+"; "
+    # full_query += "UPDATE router SET processed = 1 WHERE id = "+str(tupla[1])+"; "
     # full_query += "COMMIT;"
 
     # full_query = "START TRANSACTION; "
-    # full_query += "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES ('"+tupla[0]+"' ,0); "
+    # full_query += "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES ('"+tupla[0]+"' ,0); "
     # # full_query += "DELETE FROM router WHERE id = "+str(tupla[1])+"; "
-    # full_query += "UPDATE router SET proccessed = 1 WHERE id = "+str(tupla[1])+"; "
+    # full_query += "UPDATE router SET processed = 1 WHERE id = "+str(tupla[1])+"; "
     # full_query += "COMMIT;"
 
     # full_query = "START TRANSACTION; "
-    # full_query += "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES (%s, %s); "
+    # full_query += "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES (%s, %s); "
     # full_query += "DELETE FROM router WHERE id = %s "
     # full_query += "COMMIT;"
 
     # print("full query: "+full_query)
     # add_employee = ("INSERT INTO "+model_to_send+ " "
-    #                "(data, proccessed) "
+    #                "(data, processed) "
     #                "VALUES (%s, %s)")
 
     # data_employee = (tupla[0], 0, str(tupla[1]))
@@ -648,15 +648,15 @@ def print_process_agents_on_router():
 #                                  host='db',
 #                                  database='MYSQL_DATABASE')
 #   cursor = cnx.cursor()
-#   query = ("SELECT id, agent_id, data, path, proccessed FROM "+modelo+" "
-#             "WHERE proccessed = %s AND %s")
+#   query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
+#             "WHERE processed = %s AND %s")
 
 #   # print("modelo:"+modelo)
 #   cursor.execute(query, (0, "1=1"))
 
-#   for (id, agent_id, data, path, proccessed) in cursor:
-#     # print("id: {}, agent_id: {}, data: {}, path: {}, proccessed: {}".format(
-#     #   id, agent_id, data, path, proccessed))
+#   for (id, agent_id, data, path, processed) in cursor:
+#     # print("id: {}, agent_id: {}, data: {}, path: {}, processed: {}".format(
+#     #   id, agent_id, data, path, processed))
 #     return_list.append([agent_id, data, path])
 #     to_update.append(id)
 
@@ -671,7 +671,7 @@ def print_process_agents_on_router():
 #       # cnx.commit()
 
 #       cursor = cnx.cursor()
-#       temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id = "+str(tupla)+"; "
+#       temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id = "+str(tupla)+"; "
 #       # print("temporary query:"+temporary_query)
 #       query = (temporary_query)
 #       cursor.execute(temporary_query)
@@ -700,15 +700,15 @@ def print_process_agents_on_router():
 #                                  host='db',
 #                                  database='MYSQL_DATABASE')
 #     cursor = cnx.cursor()
-#     query = ("SELECT id, agent_id, data, path, proccessed FROM router "
-#               "WHERE proccessed = 0")
+#     query = ("SELECT id, agent_id, data, path, processed FROM router "
+#               "WHERE processed = 0")
 #     cursor.execute(query)
 
 
 #     return_list = []
 #     delete_list = []
 
-#     for (id, agent_id, data, path, proccessed) in cursor:
+#     for (id, agent_id, data, path, processed) in cursor:
 #       return_list.append([agent_id, data, path, id])
 
 #     cursor.close()
@@ -729,10 +729,10 @@ def print_process_agents_on_router():
 #       data = tupla[1]
 #       path = tupla[2]
 #       tupla_id = str(tupla[3])
-#       proccessed = str(0)
+#       processed = str(0)
 
-#       sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-#       sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+#       sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+#       sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
 #       try:
 #         cursor.execute(sql1)
 #         cursor.execute(sql2)
@@ -760,15 +760,15 @@ def print_process_agents_on_router():
 #   #                                host='db',
 #   #                                database='MYSQL_DATABASE')
 #   #   cursor = cnx.cursor()
-#   #   query = ("SELECT id, agent_id, data, path, proccessed FROM router "
-#   #             "WHERE proccessed = 0")
+#   #   query = ("SELECT id, agent_id, data, path, processed FROM router "
+#   #             "WHERE processed = 0")
 #   #   cursor.execute(query)
 
 
 #   #   return_list = []
 #   #   delete_list = []
 
-#   #   for (id, agent_id, data, path, proccessed) in cursor:
+#   #   for (id, agent_id, data, path, processed) in cursor:
 #   #     return_list.append([agent_id, data, path, id])
 
 #   #   cursor.close()
@@ -787,10 +787,10 @@ def print_process_agents_on_router():
 #   #     data = tupla[1]
 #   #     path = tupla[2]
 #   #     tupla_id = str(tupla[3])
-#   #     proccessed = str(0)
+#   #     processed = str(0)
 
-#   #     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-#   #     sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+#   #     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+#   #     sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
 #   #     try:
 #   #       cursor.execute(sql1)
 #   #       cursor.execute(sql2)
@@ -907,15 +907,15 @@ def print_process_agents_on_router():
 #                                  host='db',
 #                                  database='MYSQL_DATABASE')
 #   cursor = cnx.cursor()
-#   query = ("SELECT id, agent_id, data, path, proccessed FROM "+modelo+" "
-#             "WHERE proccessed = %s AND %s")
+#   query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
+#             "WHERE processed = %s AND %s")
 
 #   # print("modelo:"+modelo)
 #   cursor.execute(query, (0, "1=1"))
 
-#   for (id, agent_id, data, path, proccessed) in cursor:
-#     print("id: {}, agent_id: {}, data: {}, path: {}, proccessed: {}".format(
-#       id, agent_id, data, path, proccessed))
+#   for (id, agent_id, data, path, processed) in cursor:
+#     print("id: {}, agent_id: {}, data: {}, path: {}, processed: {}".format(
+#       id, agent_id, data, path, processed))
 #     return_list.append([agent_id, data, path])
 #     to_update.append(id)
 
@@ -925,7 +925,7 @@ def print_process_agents_on_router():
 
 #   for tupla in to_update:
 #     cursor = cnx.cursor()
-#     temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id = "+str(tupla)+"; "
+#     temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id = "+str(tupla)+"; "
 #     print("temporary query:"+temporary_query)
 #     query = (temporary_query)
 #     cursor.execute(temporary_query)
@@ -949,8 +949,8 @@ def print_process_agents_on_router():
 #                                host='db',
 #                                database='MYSQL_DATABASE')
 #   cursor = cnx.cursor()
-#   query = ("SELECT id, agent_id, data, path, proccessed FROM router "
-#             "WHERE proccessed = 0")
+#   query = ("SELECT id, agent_id, data, path, processed FROM router "
+#             "WHERE processed = 0")
 
 #   # print("modelo:"+modelo)
 #   cursor.execute(query)
@@ -961,9 +961,9 @@ def print_process_agents_on_router():
 
 #   print("lendo router: ")
 
-#   for (id, agent_id, data, path, proccessed) in cursor:
-#     print("id: {}, agent_id: {}, data: {}, path: {}, proccessed: {}".format(
-#       id, agent_id, data, path, proccessed))
+#   for (id, agent_id, data, path, processed) in cursor:
+#     print("id: {}, agent_id: {}, data: {}, path: {}, processed: {}".format(
+#       id, agent_id, data, path, processed))
 #     return_list.append([agent_id, data, path, id])
 
 
@@ -992,32 +992,32 @@ def print_process_agents_on_router():
 #     data = tupla[1]
 #     path = tupla[2]
 #     tupla_id = str(tupla[3])
-#     proccessed = str(0)
+#     processed = str(0)
 
-#     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-#     sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+#     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+#     sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
 
 
 #     # full_query = "START TRANSACTION; "
-#     # full_query += "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES ('"+tupla[0]+"' ,0); "
+#     # full_query += "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES ('"+tupla[0]+"' ,0); "
 #     # # full_query += "DELETE FROM router WHERE id = "+str(tupla[1])+"; "
-#     # full_query += "UPDATE router SET proccessed = 1 WHERE id = "+str(tupla[1])+"; "
+#     # full_query += "UPDATE router SET processed = 1 WHERE id = "+str(tupla[1])+"; "
 #     # full_query += "COMMIT;"
 
 #     # full_query = "START TRANSACTION; "
-#     # full_query += "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES ('"+tupla[0]+"' ,0); "
+#     # full_query += "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES ('"+tupla[0]+"' ,0); "
 #     # # full_query += "DELETE FROM router WHERE id = "+str(tupla[1])+"; "
-#     # full_query += "UPDATE router SET proccessed = 1 WHERE id = "+str(tupla[1])+"; "
+#     # full_query += "UPDATE router SET processed = 1 WHERE id = "+str(tupla[1])+"; "
 #     # full_query += "COMMIT;"
 
 #     # full_query = "START TRANSACTION; "
-#     # full_query += "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES (%s, %s); "
+#     # full_query += "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES (%s, %s); "
 #     # full_query += "DELETE FROM router WHERE id = %s "
 #     # full_query += "COMMIT;"
 
 #     # print("full query: "+full_query)
 #     # add_employee = ("INSERT INTO "+model_to_send+ " "
-#     #                "(data, proccessed) "
+#     #                "(data, processed) "
 #     #                "VALUES (%s, %s)")
 
 #     # data_employee = (tupla[0], 0, str(tupla[1]))
@@ -1156,7 +1156,7 @@ def print_process_agents_on_router():
 #   # tomorrow = datetime.now().date() + timedelta(days=1)
 
 #   add_employee = ("INSERT INTO router "
-#                  "(data, proccessed) "
+#                  "(data, processed) "
 #                  "VALUES (%s, %s)")
 
 #   data_employee = (string_recebida, 0)
@@ -1193,15 +1193,15 @@ def print_process_agents_on_router():
 #                                  host='db',
 #                                  database='MYSQL_DATABASE')
 #   cursor = cnx.cursor()
-#   query = ("SELECT id, data, proccessed FROM "+modelo+" "
-#             "WHERE proccessed = %s AND %s")
+#   query = ("SELECT id, data, processed FROM "+modelo+" "
+#             "WHERE processed = %s AND %s")
 
 #   # print("modelo:"+modelo)
 #   cursor.execute(query, (0, "1=1"))
 
-#   for (id, data, proccessed) in cursor:
+#   for (id, data, processed) in cursor:
 #     print("{}, {}, {}".format(
-#       id, data, proccessed))
+#       id, data, processed))
 #     return_list.append(data)
 
 #   cursor.close()
@@ -1220,8 +1220,8 @@ def print_process_agents_on_router():
 #                                host='db',
 #                                database='MYSQL_DATABASE')
 #   cursor = cnx.cursor()
-#   query = ("SELECT id, data, proccessed FROM router "
-#             "WHERE proccessed = 0")
+#   query = ("SELECT id, data, processed FROM router "
+#             "WHERE processed = 0")
 
 #   # print("modelo:"+modelo)
 #   cursor.execute(query)
@@ -1232,9 +1232,9 @@ def print_process_agents_on_router():
 
 #   print("lendo router: ")
 
-#   for (id, data, proccessed) in cursor:
+#   for (id, data, processed) in cursor:
 #     print("{}, {}, {}".format(
-#       id, data, proccessed))
+#       id, data, processed))
 #     return_list.append([data, id])
 
 
@@ -1259,30 +1259,30 @@ def print_process_agents_on_router():
 
 #     print("tupla: "+tupla[0]+" indo para modelo : "+model_to_send)
 
-#     sql1 = "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES ('"+tupla[0]+"' ,0); "
-#     sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+str(tupla[1])+"; "
+#     sql1 = "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES ('"+tupla[0]+"' ,0); "
+#     sql2 = "UPDATE router SET processed = 1 WHERE id = "+str(tupla[1])+"; "
 
 
 #     # full_query = "START TRANSACTION; "
-#     # full_query += "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES ('"+tupla[0]+"' ,0); "
+#     # full_query += "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES ('"+tupla[0]+"' ,0); "
 #     # # full_query += "DELETE FROM router WHERE id = "+str(tupla[1])+"; "
-#     # full_query += "UPDATE router SET proccessed = 1 WHERE id = "+str(tupla[1])+"; "
+#     # full_query += "UPDATE router SET processed = 1 WHERE id = "+str(tupla[1])+"; "
 #     # full_query += "COMMIT;"
 
 #     # full_query = "START TRANSACTION; "
-#     # full_query += "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES ('"+tupla[0]+"' ,0); "
+#     # full_query += "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES ('"+tupla[0]+"' ,0); "
 #     # # full_query += "DELETE FROM router WHERE id = "+str(tupla[1])+"; "
-#     # full_query += "UPDATE router SET proccessed = 1 WHERE id = "+str(tupla[1])+"; "
+#     # full_query += "UPDATE router SET processed = 1 WHERE id = "+str(tupla[1])+"; "
 #     # full_query += "COMMIT;"
 
 #     # full_query = "START TRANSACTION; "
-#     # full_query += "INSERT INTO "+model_to_send+ " (data, proccessed) "+"VALUES (%s, %s); "
+#     # full_query += "INSERT INTO "+model_to_send+ " (data, processed) "+"VALUES (%s, %s); "
 #     # full_query += "DELETE FROM router WHERE id = %s "
 #     # full_query += "COMMIT;"
 
 #     # print("full query: "+full_query)
 #     # add_employee = ("INSERT INTO "+model_to_send+ " "
-#     #                "(data, proccessed) "
+#     #                "(data, processed) "
 #     #                "VALUES (%s, %s)")
 
 #     # data_employee = (tupla[0], 0, str(tupla[1]))
@@ -1333,8 +1333,8 @@ def print_process_agents_on_router():
   #                              host='db',
   #                              database='MYSQL_DATABASE')
   # cursor = cnx.cursor()
-  # query = ("SELECT id, data, proccessed FROM router "
-  #           "WHERE proccessed = 0")
+  # query = ("SELECT id, data, processed FROM router "
+  #           "WHERE processed = 0")
 
   # # print("modelo:"+modelo)
   # cursor.execute(query)
@@ -1345,9 +1345,9 @@ def print_process_agents_on_router():
 
   # print("lendo router: ")
 
-  # for (id, data, proccessed) in cursor:
+  # for (id, data, processed) in cursor:
   #   print("{}, {}, {}".format(
-  #     id, data, proccessed))
+  #     id, data, processed))
   #   return_list.append([data, id])
 
 
@@ -1364,7 +1364,7 @@ def print_process_agents_on_router():
   #   print("tupla: "+tupla[0]+" indo para modelo : "+model_to_send)
 
   #   add_employee = ("INSERT INTO "+model_to_send+ " "
-  #                  "(data, proccessed) "
+  #                  "(data, processed) "
   #                  "VALUES (%s, %s)")
 
   #   data_employee = (tupla[0], 0)

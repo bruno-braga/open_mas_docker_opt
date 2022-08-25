@@ -51,12 +51,12 @@ def output_php():
       if docker_debugger: print("**Error** Error connecting to the DB")
       time.sleep(3)
 
-  query = "SELECT MAX(id) AS id, agent_id, MAX(data) AS data, MAX(path) AS path, MAX(proccessed) AS proccessed FROM "+modelo+" GROUP BY agent_id ORDER BY agent_id ASC";
+  query = "SELECT MAX(id) AS id, agent_id, MAX(data) AS data, MAX(path) AS path, MAX(processed) AS processed FROM "+modelo+" GROUP BY agent_id ORDER BY agent_id ASC";
   cursor.execute(query)
 
-  for (id, agent_id, data, path, proccessed) in cursor:
+  for (id, agent_id, data, path, processed) in cursor:
     if docker_debugger: print("iii")
-    return_list.append([agent_id, data, path, proccessed])
+    return_list.append([agent_id, data, path, processed])
     to_update.append(id)
 
   cursor.close()
@@ -85,12 +85,12 @@ def check_new_agentss_1():
     except:
       if docker_debugger: print("**Error** Error connecting to the DB")
       time.sleep(3)
-  query = ("SELECT id, agent_id, data, path, proccessed FROM "+modelo+" "
-            "WHERE proccessed = 0 ORDER BY created_at ASC LIMIT 1")
+  query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
+            "WHERE processed = 0 ORDER BY created_at ASC LIMIT 1")
 
   cursor.execute(query)
 
-  for (id, agent_id, data, path, proccessed) in cursor:
+  for (id, agent_id, data, path, processed) in cursor:
     return_list.append([agent_id, data, path])
     to_update.append(id)
 
@@ -99,7 +99,7 @@ def check_new_agentss_1():
   for tupla in to_update:
     try:
       cursor = cnx.cursor()
-      temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id = "+str(tupla)+"; "
+      temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id = "+str(tupla)+"; "
       query = (temporary_query)
       cursor.execute(temporary_query)
       cnx.commit()
@@ -136,8 +136,8 @@ def process_agents_on_router():
   elif(router_type == "sequential"):
     order = "created_at ASC"
 
-  query = ("SELECT id, agent_id, data, path, proccessed FROM router "
-            "WHERE proccessed = 0 ORDER BY "+order)
+  query = ("SELECT id, agent_id, data, path, processed FROM router "
+            "WHERE processed = 0 ORDER BY "+order)
   modelos_list = ["m1", "m2", "m3"]
   cursor.execute(query)
 
@@ -145,7 +145,7 @@ def process_agents_on_router():
   return_list = []
   delete_list = []
 
-  for (id, agent_id, data, path, proccessed) in cursor:
+  for (id, agent_id, data, path, processed) in cursor:
     return_list.append([agent_id, data, path, id])
 
   cursor.close()
@@ -153,7 +153,7 @@ def process_agents_on_router():
   cnx.close()
 
   if (len(return_list) == 0):
-    if docker_debugger: print("No agents to be proccessed at the moment.")
+    if docker_debugger: print("No agents to be processed at the moment.")
   else:
     for tupla in return_list:
       cnx = mysql.connector.connect(user='root', password='root',
@@ -168,12 +168,12 @@ def process_agents_on_router():
       data = tupla[1]
       path = tupla[2]
       tupla_id = str(tupla[3])
-      proccessed = str(0)
+      processed = str(0)
 
       return_list = []
 
-      sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-      sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+      sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+      sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
       try:
         cursor.execute(sql1)
         cursor.execute(sql2)
@@ -215,8 +215,8 @@ def process_agents_on_router():
 #   elif(router_type == "sequential"):
 #     order = "created_at ASC"
 
-#   query = ("SELECT id, agent_id, data, path, proccessed FROM router "
-#             "WHERE proccessed = 0 ORDER BY "+order)
+#   query = ("SELECT id, agent_id, data, path, processed FROM router "
+#             "WHERE processed = 0 ORDER BY "+order)
 #   modelos_list = ["m1", "m2", "m3"]
 #   cursor.execute(query)
 
@@ -224,7 +224,7 @@ def process_agents_on_router():
 #   return_list = []
 #   delete_list = []
 
-#   for (id, agent_id, data, path, proccessed) in cursor:
+#   for (id, agent_id, data, path, processed) in cursor:
 #     return_list.append([agent_id, data, path, id])
 
 #   cursor.close()
@@ -244,12 +244,12 @@ def process_agents_on_router():
 #     data = tupla[1]
 #     path = tupla[2]
 #     tupla_id = str(tupla[3])
-#     proccessed = str(0)
+#     processed = str(0)
 
 #     return_list = []
 
-#     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, proccessed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+proccessed+"');"
-#     sql2 = "UPDATE router SET proccessed = 1 WHERE id = "+tupla_id+"; "
+#     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+#     sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
 #     try:
 #       cursor.execute(sql1)
 #       cursor.execute(sql2)
@@ -291,8 +291,8 @@ def check_new_agentss():
     except:
       if docker_debugger: print("**Error** Error connecting to the DB")
       time.sleep(1)
-  query = ("SELECT id, agent_id, data, path, proccessed FROM "+modelo+" "
-            "WHERE proccessed = 0")
+  query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
+            "WHERE processed = 0")
 
   cursor.execute(query)
 
@@ -303,7 +303,7 @@ def check_new_agentss():
   # if row_count > 0:
   # id_list = "("
   id_list = ""
-  for (id, agent_id, data, path, proccessed) in cursor:
+  for (id, agent_id, data, path, processed) in cursor:
     return_list.append([agent_id, data, path])
     # to_update.append(id)
     id_list += str(id)+"," 
@@ -319,7 +319,7 @@ def check_new_agentss():
   if (id_list != ""):
     try:
       cursor = cnx.cursor()
-      temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id IN ("+id_list+");"
+      temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id IN ("+id_list+");"
       if docker_debugger: print("temporary query: "+temporary_query)
       query = (temporary_query)
       cursor.execute(temporary_query)
@@ -330,7 +330,7 @@ def check_new_agentss():
     finally:
       cursor.close()
 
-  # for (id, agent_id, data, path, proccessed) in cursor:
+  # for (id, agent_id, data, path, processed) in cursor:
   #   return_list.append([agent_id, data, path])
   #   to_update.append(id)
 
@@ -339,7 +339,7 @@ def check_new_agentss():
   # for tupla in to_update:
   #   try:
   #     cursor = cnx.cursor()
-  #     temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id = "+str(tupla)+"; "
+  #     temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id = "+str(tupla)+"; "
   #     query = (temporary_query)
   #     cursor.execute(temporary_query)
   #     cnx.commit()
@@ -371,12 +371,12 @@ def check_new_agentss():
 #     except:
 #       if docker_debugger: print("Error connecting to the DB")
 #       time.sleep(3)
-#   query = ("SELECT id, agent_id, data, path, proccessed FROM "+modelo+" "
-#             "WHERE proccessed = %s AND %s")
+#   query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
+#             "WHERE processed = %s AND %s")
 
 #   cursor.execute(query, (0, "1=1"))
 
-#   for (id, agent_id, data, path, proccessed) in cursor:
+#   for (id, agent_id, data, path, processed) in cursor:
 #     return_list.append([agent_id, data, path])
 #     to_update.append(id)
 
@@ -385,7 +385,7 @@ def check_new_agentss():
 #   for tupla in to_update:
 #     try:
 #       cursor = cnx.cursor()
-#       temporary_query = "UPDATE "+modelo+" SET proccessed = 1 WHERE id = "+str(tupla)+"; "
+#       temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id = "+str(tupla)+"; "
 #       query = (temporary_query)
 #       cursor.execute(temporary_query)
 #       cnx.commit()
@@ -431,7 +431,7 @@ def sanity_test():
       time.sleep(3)
 
   cursor = cnx.cursor()
-  query = ("SELECT agent_id FROM m1 WHERE proccessed = 0 ORDER BY agent_id")
+  query = ("SELECT agent_id FROM m1 WHERE processed = 0 ORDER BY agent_id")
   cursor.execute(query)
   for agent_id in cursor:
     string1 = str(agent_id)
@@ -443,7 +443,7 @@ def sanity_test():
   if docker_debugger: print(m1_on_db)
 
   cursor = cnx.cursor()
-  query = ("SELECT agent_id FROM m2 WHERE proccessed = 0 ORDER BY agent_id")
+  query = ("SELECT agent_id FROM m2 WHERE processed = 0 ORDER BY agent_id")
   cursor.execute(query)
   for agent_id in cursor:
     string1 = str(agent_id)
@@ -455,7 +455,7 @@ def sanity_test():
   if docker_debugger: print(m2_on_db)
 
   cursor = cnx.cursor()
-  query = ("SELECT agent_id FROM m3 WHERE proccessed = 0 ORDER BY agent_id")
+  query = ("SELECT agent_id FROM m3 WHERE processed = 0 ORDER BY agent_id")
   cursor.execute(query)
   for agent_id in cursor:
     string1 = str(agent_id)
@@ -489,7 +489,7 @@ def sanity_test():
   if docker_debugger: print(m2_alive)
 
   cursor = cnx.cursor()
-  query = ("SELECT agent_id FROM m3 WHERE proccessed = 1 ORDER BY id DESC LIMIT 1")
+  query = ("SELECT agent_id FROM m3 WHERE processed = 1 ORDER BY id DESC LIMIT 1")
   cursor.execute(query)
   for agent_id in cursor:
     string1 = str(agent_id)
@@ -501,7 +501,7 @@ def sanity_test():
   if docker_debugger: print(m3_alive)
 
   cursor = cnx.cursor()
-  query = ("SELECT agent_id FROM router WHERE proccessed = 0 ORDER BY agent_id")
+  query = ("SELECT agent_id FROM router WHERE processed = 0 ORDER BY agent_id")
   cursor.execute(query)
   for agent_id in cursor:
     string1 = str(agent_id)
@@ -543,20 +543,20 @@ def sanity_test():
 
   # Test if m3 tuples has files:
 
-  m3_proccessed_agents = []
+  m3_processed_agents = []
   cursor = cnx.cursor()
-  query = ("SELECT agent_id FROM m3 WHERE proccessed = 1 ORDER BY agent_id")
+  query = ("SELECT agent_id FROM m3 WHERE processed = 1 ORDER BY agent_id")
   cursor.execute(query)
   for agent_id in cursor:
     string1 = str(agent_id)
     agent_id_part = int(re.search(r'\d+', string1).group())
-    m3_proccessed_agents.append(agent_id_part)
+    m3_processed_agents.append(agent_id_part)
   cursor.close()
 
   #Alive agent
   m3_alive_agent = m3_alive[0]
 
-  for agent_id in m3_proccessed_agents:
+  for agent_id in m3_processed_agents:
     fname = "/teste/jacamo/integra_gold_miners/src/agt/list/"+str(agent_id)+".asl"
     if(not os.path.isfile(fname)):
       if(agent_id != m3_alive_agent):

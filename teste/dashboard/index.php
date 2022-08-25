@@ -80,7 +80,7 @@
   // <th>Sugar</th>
   // <th>Metabolism</th>
   // <th>Vision</th>
-  // <th>Proccessed</th>
+  // <th>processed</th>
   // <th>File</th>
   // <th>Traveling Path</th>
   // </tr>
@@ -104,12 +104,12 @@
   //   $metabolism = $data[1];
   //   $vision = $data[2];
   //   $path = $value[2];
-  //   $proccessed = $value[3];
+  //   $processed = $value[3];
   //   echo '<td class="ids">'.$agent_id.'</td>';
   //   echo '<td>'.$sugar.'</td>';
   //   echo '<td>'.$metabolism.'</td>';
   //   echo '<td class="vision">'.$vision.'</td>';
-  //   echo '<td>'.$proccessed.'</td>';
+  //   echo '<td>'.$processed.'</td>';
   //   if (in_array(($agent_id), $out)) { 
   //     //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
   //     echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
@@ -129,7 +129,7 @@
      // <th>Sugar</th>
      // <th>Metabolism</th>
      // <th>Vision</th>
-     // <th>Proccessed</th>
+     // <th>processed</th>
      // <th>File</th>
      // <th>Traveling Path</th>
      // </tr>
@@ -148,7 +148,7 @@
   <th>Sugar</th>
   <th>Metabolism</th>
   <th>Vision</th>
-  <th>Proccessed</th>
+  <th>processed</th>
   <th>File</th>
   <th>Traveling Path</th>
   </tr>
@@ -172,12 +172,12 @@
     $metabolism = $data[1];
     $vision = $data[2];
     $path = $value[2];
-    $proccessed = $value[3];
+    $processed = $value[3];
     echo '<td class="ids">'.$agent_id.'</td>';
     echo '<td>'.$sugar.'</td>';
     echo '<td>'.$metabolism.'</td>';
     echo '<td class="vision">'.$vision.'</td>';
-    echo '<td>'.$proccessed.'</td>';
+    echo '<td>'.$processed.'</td>';
     if (in_array(($agent_id), $out)) { 
       //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
       echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
@@ -197,7 +197,7 @@
      <th>Sugar</th>
      <th>Metabolism</th>
      <th>Vision</th>
-     <th>Proccessed</th>
+     <th>processed</th>
      <th>File</th>
      <th>Traveling Path</th>
      </tr>
@@ -216,7 +216,7 @@
   <th>Sugar</th>
   <th>Metabolism</th>
   <th>Vision</th>
-  <th>Proccessed</th>
+  <th>processed</th>
   <th>File</th>
   <th>Traveling Path</th>
   </tr>
@@ -240,12 +240,12 @@
     $metabolism = $data[1];
     $vision = $data[2];
     $path = $value[2];
-    $proccessed = $value[3];
+    $processed = $value[3];
     echo '<td class="ids">'.$agent_id.'</td>';
     echo '<td>'.$sugar.'</td>';
     echo '<td>'.$metabolism.'</td>';
     echo '<td class="vision">'.$vision.'</td>';
-    echo '<td>'.$proccessed.'</td>';
+    echo '<td>'.$processed.'</td>';
     if (in_array(($agent_id), $out)) { 
       //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
       echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
@@ -265,7 +265,7 @@
      <th>Sugar</th>
      <th>Metabolism</th>
      <th>Vision</th>
-     <th>Proccessed</th>
+     <th>processed</th>
      <th>File</th>
      <th>Traveling Path</th>
      </tr>
@@ -284,7 +284,7 @@
   <th>Sugar</th>
   <th>Metabolism</th>
   <th>Vision</th>
-  <th>Proccessed</th>
+  <th>processed</th>
   <th>File</th>
   <th>Traveling Path</th>
   </tr>
@@ -308,12 +308,12 @@
     $metabolism = $data[1];
     $vision = $data[2];
     $path = $value[2];
-    $proccessed = $value[3];
+    $processed = $value[3];
     echo '<td class="ids">'.$agent_id.'</td>';
     echo '<td>'.$sugar.'</td>';
     echo '<td>'.$metabolism.'</td>';
     echo '<td class="vision">'.$vision.'</td>';
-    echo '<td>'.$proccessed.'</td>';
+    echo '<td>'.$processed.'</td>';
     if (in_array(($agent_id), $out)) { 
       //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
       echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
@@ -333,7 +333,7 @@
      <th>Sugar</th>
      <th>Metabolism</th>
      <th>Vision</th>
-     <th>Proccessed</th>
+     <th>processed</th>
      <th>File</th>
      <th>Traveling Path</th>
      </tr>
@@ -352,7 +352,7 @@
   <th>Sugar</th>
   <th>Metabolism</th>
   <th>Vision</th>
-  <th>Proccessed</th>
+  <th>processed</th>
   <th>File</th>
   <th>Traveling Path</th>
   </tr>
@@ -376,12 +376,12 @@
     $metabolism = $data[1];
     $vision = $data[2];
     $path = $value[2];
-    $proccessed = $value[3];
+    $processed = $value[3];
     echo '<td class="ids">'.$agent_id.'</td>';
     echo '<td>'.$sugar.'</td>';
     echo '<td>'.$metabolism.'</td>';
     echo '<td class="vision">'.$vision.'</td>';
-    echo '<td>'.$proccessed.'</td>';
+    echo '<td>'.$processed.'</td>';
     if (in_array(($agent_id), $out)) { 
       //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
       echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
@@ -401,7 +401,7 @@
      <th>Sugar</th>
      <th>Metabolism</th>
      <th>Vision</th>
-     <th>Proccessed</th>
+     <th>processed</th>
      <th>File</th>
      <th>Traveling Path</th>
      </tr>
