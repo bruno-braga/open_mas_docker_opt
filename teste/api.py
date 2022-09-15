@@ -580,6 +580,75 @@ def sanity_test():
 
   return jsonify(return_list)
 
+@app.route('/api/v1/resources/sanity_test_agent_path_history', methods=['GET'])
+def sanity_test_agent_path_history():
+
+  query_parameters = request.args
+  search_agent_id = query_parameters.get('agent_id')
+
+  if docker_debugger: print("search_agent_id: " + search_agent_id)
+
+  return_list = []
+
+  connected = False
+  while (connected == False):
+    try:
+      cnx = mysql.connector.connect(user='root', password='root',
+                                     host='db',
+                                     database='MYSQL_DATABASE')
+      cursor = cnx.cursor()
+      connected = cnx.is_connected()
+    except:
+      if docker_debugger: print("**Error** Error connecting to the DB")
+      time.sleep(3)
+
+  cursor = cnx.cursor()
+  query = ("SELECT agent_id FROM m1 WHERE processed = 0 ORDER BY agent_id")
+  cursor.execute(query)
+  for agent_id in cursor:
+    string1 = str(agent_id)
+    agent_id_part = int(re.search(r'\d+', string1).group())
+    m1_on_db.append(agent_id_part)
+  cursor.close()
+
+  cursor = cnx.cursor()
+ 	# (SELECT * from m1 where agent_id = 1)
+	# UNION
+	# (SELECT * from m2 where agent_id = 1)
+	# UNION
+	# (SELECT * from m3 where agent_id = 1)
+  
+
+  # query = "";
+  # query += "(SELECT * from m1 where agent_id = " + str(585) + ")";
+  # query += " UNION ";
+  # query += "(SELECT * from m2 where agent_id = " + str(585) + ")"; 
+  # query += " UNION ";
+  # query += "(SELECT * from m3 where agent_id = " + str(585) + ")";
+
+  # SELECT LENGTH(path) AS path_length FROM m3 WHERE agent_id = 585 AND LENGTH(path) > 11;
+
+  query = "SELECT * from router where agent_id = " + str(search_agent_id) + " ORDER BY LENGTH(path) ASC";
+  if docker_debugger: print(query)
+  	
+  cursor.execute(query)
+  for id, agent_id, data, path, asl_file_path, processed, created_at, updated_at in cursor:
+
+    if docker_debugger: print(agent_id)
+    # new_value = {'id': str(agent_id), 'path': path, 'data': data}
+    new_value = {'path': path}
+    return_list.append(new_value)
+  cursor.close()
+
+  cnx.close()
+  
+  if(len(return_list) == 0):
+    new_value = {}
+    return_list.append(new_value)
+
+  return jsonify(return_list)
+
+
 
 @app.route('/api/v1/resources/register_agents_on_platform', methods=['POST'])
 def register_agents_on_platform():
