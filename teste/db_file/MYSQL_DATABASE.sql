@@ -78,6 +78,20 @@ CREATE TABLE `m3` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `alive_agents`
+--
+
+CREATE TABLE `alive_agents` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `agent_id` int(11) NOT NULL,
+  `model` char(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `router`
 --
 
@@ -118,6 +132,13 @@ ALTER TABLE `m3`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Índices para tabela `alive_agents`
+--
+ALTER TABLE `alive_agents`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Índices para tabela `router`
 --
 ALTER TABLE `router`
@@ -144,6 +165,12 @@ ALTER TABLE `m2`
 -- AUTO_INCREMENT de tabela `m3`
 --
 ALTER TABLE `m3`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `alive_agents`
+--
+ALTER TABLE `alive_agents`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --

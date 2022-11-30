@@ -466,27 +466,51 @@ def sanity_test():
   if docker_debugger: print("m3_on_db:")
   if docker_debugger: print(m3_on_db)
 
-  fname = "/teste/important/m1_alive.txt"
-  if(os.path.isfile(fname)):
-    f = open(fname, "r")
-    text = f.read()
-    text = text[1:]
-    if docker_debugger: print(text)
-    m1_alive = [int(x) for x in text.split()]
+  cursor = cnx.cursor()
+  query = ("SELECT agent_id FROM alive_agents WHERE model = 'm1' ORDER BY agent_id")
+  cursor.execute(query)
+  for agent_id in cursor:
+    string1 = str(agent_id)
+    agent_id_part = int(re.search(r'\d+', string1).group())
+    m1_alive.append(agent_id_part)
+  cursor.close()
 
   if docker_debugger: print("m1_alive:")
   if docker_debugger: print(m1_alive)
 
-  fname = "/teste/important/m2_alive.txt"
-  if(os.path.isfile(fname)):
-    f = open(fname, "r")
-    text = f.read()
-    text = text[1:]
-    if docker_debugger: print(text)
-    m2_alive = [int(x) for x in text.split()]
+  cursor = cnx.cursor()
+  query = ("SELECT agent_id FROM alive_agents WHERE model = 'm2' ORDER BY agent_id")
+  cursor.execute(query)
+  for agent_id in cursor:
+    string1 = str(agent_id)
+    agent_id_part = int(re.search(r'\d+', string1).group())
+    m2_alive.append(agent_id_part)
+  cursor.close()
 
   if docker_debugger: print("m2_alive:")
   if docker_debugger: print(m2_alive)
+
+  # fname = "/teste/important/m1_alive.txt"
+  # if(os.path.isfile(fname)):
+  #   f = open(fname, "r")
+  #   text = f.read()
+  #   text = text[1:]
+  #   if docker_debugger: print(text)
+  #   m1_alive = [int(x) for x in text.split()]
+
+  # if docker_debugger: print("m1_alive:")
+  # if docker_debugger: print(m1_alive)
+
+  # fname = "/teste/important/m2_alive.txt"
+  # if(os.path.isfile(fname)):
+  #   f = open(fname, "r")
+  #   text = f.read()
+  #   text = text[1:]
+  #   if docker_debugger: print(text)
+  #   m2_alive = [int(x) for x in text.split()]
+
+  # if docker_debugger: print("m2_alive:")
+  # if docker_debugger: print(m2_alive)
 
   cursor = cnx.cursor()
   query = ("SELECT agent_id FROM m3 WHERE processed = 1 ORDER BY id DESC LIMIT 1")
@@ -763,6 +787,48 @@ def solicita_cartorio():
     return 'true'
   else:
     return 'false'
+
+@app.route('/api/v1/resources/model_to_alive', methods=['POST'])
+def model_to_alive():
+  json_data = request.get_json()
+  if docker_debugger: print(json_data)
+  agent_id = json_data['agent_id']
+  model = json_data['model']
+
+  connected = False
+  while (connected == False):
+    try:
+      cnx = mysql.connector.connect(user='root', password='root',
+                                     host='db',
+                                     database='MYSQL_DATABASE')
+      cursor = cnx.cursor()
+      connected = cnx.is_connected()
+    except:
+      if docker_debugger: print("**Error** Error connecting to the DB")
+      time.sleep(3)
+
+  add_agent = ("INSERT INTO alive_agents "
+                 "(agent_id, model) "
+                 "VALUES (%s, %s)")
+
+  data_agent = (agent_id, model)
+  try:
+    cursor.execute(add_agent, data_agent)
+    # Make sure data is committed to the database
+    cnx.commit()
+    retorno = True
+  except mysql.connector.Error as err:
+    if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
+    # teste_exception(err)
+    retorno = False
+
+  cursor.close()
+  cnx.close()
+  if(retorno):
+    return 'true'
+  else:
+    return 'false'
+
 
 
 @app.route('/api/v1/resources/model_to_router', methods=['POST'])

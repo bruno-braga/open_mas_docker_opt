@@ -49,9 +49,34 @@ def solicita_cartorio(model, min, max):
   print("End time solicita_cartorio: "+str(end - start))
   return retorno
 
-def teste_envio(agent_id, data, path):
+def send_agent_to_alive(agent_id, model):
   start = time.time()
-  print("Start time teste_envio: "+str(start))
+  print("Start time send_agent_to_alive: "+str(start))
+  retorno = False
+  try:
+    # response = requests.post('http://localhost:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
+    #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
+    response = requests.post('http://api:5000/api/v1/resources/model_to_alive', json = {"agent_id":agent_id, "model":model})
+    response.raise_for_status()
+
+    #print(response)
+    retorno = True
+  except requests.exceptions.HTTPError as errh:
+      print(errh)
+  except requests.exceptions.ConnectionError as errc:
+      print(errc)
+  except requests.exceptions.Timeout as errt:
+      print(errt)
+  except requests.exceptions.RequestException as err:
+      print(err)
+
+  end = time.time()
+  print("End time send_agent_to_router: "+str(end - start))
+  return retorno
+
+def send_agent_to_router(agent_id, data, path):
+  start = time.time()
+  print("Start time send_agent_to_router: "+str(start))
   retorno = False
   try:
     # response = requests.post('http://localhost:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
@@ -71,7 +96,7 @@ def teste_envio(agent_id, data, path):
       print(err)
 
   end = time.time()
-  print("End time teste_envio: "+str(end - start))
+  print("End time send_agent_to_router: "+str(end - start))
   return retorno
 
 def teste_recebimento(modelo):
@@ -338,7 +363,7 @@ def print_solicita_cartorio(model, qtd):
   cnx.close()
   return retorno
 
-def print_teste_envio(agent_id, data, path):
+def print_send_agent_to_router(agent_id, data, path):
 
   cnx = mysql.connector.connect(user='root', password='root',
                                  host='db',

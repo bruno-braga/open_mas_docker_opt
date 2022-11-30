@@ -96,8 +96,8 @@ end
 to new_send_agent_to_model
   print("funcao python new_send_agent_to_model")
   py:setup py:python
-  py:run "from db_python_netlogo import teste_envio"
-  ; "teste_envio('12', '[1 2 3]', '1-1')"
+  py:run "from db_python_netlogo import send_agent_to_router"
+  ; "send_agent_to_router('12', '[1 2 3]', '1-1')"
 
   let updated_historic ""
   ifelse (historic = "")
@@ -112,7 +112,7 @@ to new_send_agent_to_model
   set tupla lput metabolism tupla
   set tupla lput vision tupla
 
-  let teste py:runresult (word "teste_envio('" (agent_id) "', '" tupla "', '" (updated_historic) "')")
+  let teste py:runresult (word "send_agent_to_router('" (agent_id) "', '" tupla "', '" (updated_historic) "')")
 
   print("Envio de agente realizado com sucesso?")
   print (teste)
@@ -590,6 +590,15 @@ to print_alive_agents
     [
       print agent_id
       file-write (agent_id)
+
+      print("funcao python send_agent_to_alive")
+      py:setup py:python
+      py:run "from db_python_netlogo import send_agent_to_alive"
+
+      ;let model "m1"
+      let teste py:runresult (word "send_agent_to_alive('" (agent_id) "', 'm2')")
+      print("Envio de agente realizado com sucesso?")
+      print (teste)
     ]
   ]
   file-close
