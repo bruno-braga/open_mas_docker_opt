@@ -73,9 +73,7 @@ services:
   db:
     container_name: db
     restart: always
-    build:
-        context: ./db
-        dockerfile: Dockerfile
+    image: mysql/mysql-server:5.7
     environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_ROOT_HOST: '%'
@@ -131,6 +129,7 @@ services:
     tty: true           # Container alive
     environment:
       - output_agents=${output_agents}
+      - host=api
     ports:
       - "80:80"
     volumes:
