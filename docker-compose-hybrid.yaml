@@ -1,98 +1,98 @@
 version: "3.8"
 services:
-  jacamo:
-    container_name: jacamo
-    build:
-      context: .
-      #dockerfile: Dockerfile_JACAMO
-      dockerfile: Dockerfile_GRADLE
-    tty: true           # Container alive
-    #command: "/bin/sh -c 'gradle >> /teste/important/gradle_output.txt'"
-    ports:
-      - "3271:3271"
-      - "3272:3272"
-      - "3273:3273"
-    volumes:
-      - ./teste:/teste
-      - ./teste/jacamo/integra_gold_miners:/home/gradle/project
-    networks:
-      - my_network
-    depends_on:
-      - "modelo_1"
-      - "modelo_2"
-      - "api"
-      - "router"
-      - "clear_files"
+  # jacamo:
+  #   container_name: jacamo
+  #   build:
+  #     context: .
+  #     #dockerfile: Dockerfile_JACAMO
+  #     dockerfile: Dockerfile_GRADLE
+  #   tty: true           # Container alive
+  #   #command: "/bin/sh -c 'gradle >> /teste/important/gradle_output.txt'"
+  #   ports:
+  #     - "3271:3271"
+  #     - "3272:3272"
+  #     - "3273:3273"
+  #   volumes:
+  #     - ./teste:/teste
+  #     - ./teste/jacamo/integra_gold_miners:/home/gradle/project
+  #   networks:
+  #     - my_network
+  #   depends_on:
+  #     - "modelo_1"
+  #     - "modelo_2"
+  #     - "api"
+  #     - "router"
+  #     - "clear_files"
   
-  api:
-    container_name: api
-    build:
-      context: .
-      dockerfile: Dockerfile_PYTHON
-    tty: true           # Container alive
-    command: "python3 /teste/api.py"
-    environment:
-    - PYTHONUNBUFFERED=1
-    # - request_input_file=${request_input_file}
-    # - dead_agents_file=${dead_agents_file}
-    # - model_input_file=${model_input_file}
-    ports:
-        - "5000:5000"
-    volumes:
-      - ./teste:/teste
-    networks:
-      - my_network
-    depends_on:
-        # - "db"
-        db:
-            condition: service_healthy
-            # condition: service_completed_successfully
+  # api:
+  #   container_name: api
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile_PYTHON
+  #   tty: true           # Container alive
+  #   command: "python3 /teste/api.py"
+  #   environment:
+  #   - PYTHONUNBUFFERED=1
+  #   # - request_input_file=${request_input_file}
+  #   # - dead_agents_file=${dead_agents_file}
+  #   # - model_input_file=${model_input_file}
+  #   ports:
+  #       - "5000:5000"
+  #   volumes:
+  #     - ./teste:/teste
+  #   networks:
+  #     - my_network
+  #   depends_on:
+  #       # - "db"
+  #       db:
+  #           condition: service_healthy
+  #           # condition: service_completed_successfully
   
-  router:
-    container_name: router
-    build:
-      context: .
-      dockerfile: Dockerfile_PYTHON
-    tty: true           # Container alive
-    command: "python3 /teste/router.py"
-    environment:
-    - PYTHONUNBUFFERED=1
-    # - request_input_file=${request_input_file}
-    # - dead_agents_file=${dead_agents_file}
-    # - model_input_file=${model_input_file}
-    volumes:
-      - ./teste:/teste
-    networks:
-      - my_network
-    depends_on:
-        # - "db"
-        db:
-            condition: service_healthy
-            # condition: service_completed_successfully
+  # router:
+  #   container_name: router
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile_PYTHON
+  #   tty: true           # Container alive
+  #   command: "python3 /teste/router.py"
+  #   environment:
+  #   - PYTHONUNBUFFERED=1
+  #   # - request_input_file=${request_input_file}
+  #   # - dead_agents_file=${dead_agents_file}
+  #   # - model_input_file=${model_input_file}
+  #   volumes:
+  #     - ./teste:/teste
+  #   networks:
+  #     - my_network
+  #   depends_on:
+  #       # - "db"
+  #       db:
+  #           condition: service_healthy
+  #           # condition: service_completed_successfully
 
-  db:
-    container_name: db
-    restart: always
-    build:
-        context: ./db
-        dockerfile: Dockerfile
-    environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_ROOT_HOST: '%'
-        # MYSQL_DATABASE: MYSQL_DATABASE
-        # MYSQL_USER: MYSQL_USER
-        # MYSQL_PASSWORD: MYSQL_PASSWORD
-    healthcheck:
-      test:  mysql --user=root --password=root -e 'select * from MYSQL_DATABASE.m1' MYSQL_DATABASE
-    volumes:
-      - ./teste:/teste
-      - ./teste/db_file:/docker-entrypoint-initdb.d
-    ports:
-        - "9906:3306"
-    networks:
-      - my_network
-    depends_on:
-      - clear_files
+  # db:
+  #   container_name: db
+  #   restart: always
+  #   build:
+  #       context: ./db
+  #       dockerfile: Dockerfile
+  #   environment:
+  #       MYSQL_ROOT_PASSWORD: root
+  #       MYSQL_ROOT_HOST: '%'
+  #       # MYSQL_DATABASE: MYSQL_DATABASE
+  #       # MYSQL_USER: MYSQL_USER
+  #       # MYSQL_PASSWORD: MYSQL_PASSWORD
+  #   healthcheck:
+  #     test:  mysql --user=root --password=root -e 'select * from MYSQL_DATABASE.m1' MYSQL_DATABASE
+  #   volumes:
+  #     - ./teste:/teste
+  #     - ./teste/db_file:/docker-entrypoint-initdb.d
+  #   ports:
+  #       - "9906:3306"
+  #   networks:
+  #     - my_network
+  #   depends_on:
+  #     - clear_files
       
   clear_files:
     container_name: clear_files
@@ -108,41 +108,41 @@ services:
     networks:
       - my_network
   
-  phpmyadmin:
-      image: phpmyadmin/phpmyadmin
-      container_name: phpmyadmin
-      networks:
-        - my_network
-      ports:
-          - '8080:80'
-      restart: always
-      environment:
-          PMA_HOST: db
-      depends_on:
-          # - "db"
-          db:
-            condition: service_healthy
-            # condition: service_completed_successfully
-  php:
-    container_name: php
-    build:
-      context: .
-      dockerfile: Dockerfile_PHP
-    tty: true           # Container alive
-    environment:
-      - output_agents=${output_agents}
-    ports:
-      - "80:80"
-    volumes:
-      - ./teste:/var/www/html
-      - ./teste:/teste
-    depends_on:
-          # - "db"
-          db:
-            condition: service_healthy
-            # condition: service_completed_successfully
-    networks:
-      - my_network
+  # phpmyadmin:
+  #     image: phpmyadmin/phpmyadmin
+  #     container_name: phpmyadmin
+  #     networks:
+  #       - my_network
+  #     ports:
+  #         - '8080:80'
+  #     restart: always
+  #     environment:
+  #         PMA_HOST: db
+  #     depends_on:
+  #         # - "db"
+  #         db:
+  #           condition: service_healthy
+  #           # condition: service_completed_successfully
+  # php:
+  #   container_name: php
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile_PHP
+  #   tty: true           # Container alive
+  #   environment:
+  #     - output_agents=${output_agents}
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./teste:/var/www/html
+  #     - ./teste:/teste
+  #   depends_on:
+  #         # - "db"
+  #         db:
+  #           condition: service_healthy
+  #           # condition: service_completed_successfully
+  #   networks:
+  #     - my_network
 
   modelo_1:
     container_name: modelo_1
@@ -157,14 +157,14 @@ services:
     - model_file=/teste/m1_varios_arquivos.nlogo
     - experiment=experiment1
     - auto_run=True
-    - host=api
+    - host=144.22.197.41
     volumes:
       - ./teste:/teste
     networks:
       - my_network
     depends_on:
-      - "router"
-      - "api"
+      # - "router"
+      # - "api"
       - "clear_files"
 
   modelo_2:
@@ -180,14 +180,14 @@ services:
     - model_file=/teste/m2_varios_arquivos.nlogo
     - experiment=experiment1
     - auto_run=True
-    - host=api
+    - host=144.22.197.41
     volumes:
       - ./teste:/teste
     networks:
       - my_network
     depends_on:
-      - "router"
-      - "api"
+      # - "router"
+      # - "api"
       - "clear_files"
 
 # 17.08.22 - Backup, funciona 100% no lab com teste API, melhorando a ordem dos containers acima

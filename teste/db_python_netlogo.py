@@ -12,8 +12,11 @@ import time
 
 import requests
 
+import os
+
+host = os.environ['host']
 #host = "api"
-host = "144.22.197.41"
+#host = "144.22.197.41"
 port = "5000"
 
 
@@ -23,6 +26,7 @@ def teste_exception(error):
 def solicita_cartorio(model, min, max):
   start = time.time()
   print("Start time solicita_cartorio: "+str(start))
+  print("Host: "+host)
   # start = time.time()
   # print("hello")
   # end = time.time()
@@ -37,21 +41,31 @@ def solicita_cartorio(model, min, max):
       # response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max})
       
       #response = requests.post('http://api:5000/api/v1/resources/register_agents_on_platform', json = {"model":model, "min":min, "max":max})
-      response = requests.post('http://'+host+':'+port+'/api/v1/resources/register_agents_on_platform', json = {"model":model, "min":min, "max":max})
+      response = requests.post('http://'+host+':'+port+'/api/v1/resources/register_agents_on_platform', json = {"model":model, "min":min, "max":max}, timeout=5)
       print("Response from API: "+response.text)
       response.raise_for_status()
 
       #print(response)
+      print("Function worked well")
       retorno = True
     except requests.exceptions.HTTPError as errh:
         print(errh)
+        print("Error type 1, sleeping and retrying")
+        time.sleep(1)
     except requests.exceptions.ConnectionError as errc:
         print(errc)
+        print("Error type 2, sleeping and retrying")
+        time.sleep(1)
     except requests.exceptions.Timeout as errt:
         print(errt)
+        print("Error type 3, sleeping and retrying")
+        time.sleep(1)
     except requests.exceptions.RequestException as err:
         print(err)
+        print("Error type 4, sleeping and retrying")
+        time.sleep(1)
 
+  print("Left loop")
   end = time.time()
   print("End time solicita_cartorio: "+str(end - start))
   return retorno
@@ -60,52 +74,74 @@ def send_agent_to_alive(agent_id, model):
   start = time.time()
   print("Start time send_agent_to_alive: "+str(start))
   retorno = False
-  try:
-    # response = requests.post('http://localhost:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
-    #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
-    
-    #response = requests.post('http://api:5000/api/v1/resources/model_to_alive', json = {"agent_id":agent_id, "model":model})
-    response = requests.post('http://'+host+':'+port+'/api/v1/resources/model_to_alive', json = {"agent_id":agent_id, "model":model})
-    response.raise_for_status()
+  while retorno == False:
+    try:
+      # response = requests.post('http://localhost:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
+      #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
+      
+      #response = requests.post('http://api:5000/api/v1/resources/model_to_alive', json = {"agent_id":agent_id, "model":model})
+      response = requests.post('http://'+host+':'+port+'/api/v1/resources/model_to_alive', json = {"agent_id":agent_id, "model":model}, timeout=5)
+      response.raise_for_status()
 
-    #print(response)
-    retorno = True
-  except requests.exceptions.HTTPError as errh:
-      print(errh)
-  except requests.exceptions.ConnectionError as errc:
-      print(errc)
-  except requests.exceptions.Timeout as errt:
-      print(errt)
-  except requests.exceptions.RequestException as err:
-      print(err)
+      #print(response)
+      print("Function worked well")
+      retorno = True
+    except requests.exceptions.HTTPError as errh:
+        print(errh)
+        print("Error type 1, sleeping and retrying")
+        time.sleep(1)
+    except requests.exceptions.ConnectionError as errc:
+        print(errc)
+        print("Error type 2, sleeping and retrying")
+        time.sleep(1)
+    except requests.exceptions.Timeout as errt:
+        print(errt)
+        print("Error type 3, sleeping and retrying")
+        time.sleep(1)
+    except requests.exceptions.RequestException as err:
+        print(err)
+        print("Error type 4, sleeping and retrying")
+        time.sleep(1)
 
+  print("Left loop")
   end = time.time()
-  print("End time send_agent_to_router: "+str(end - start))
+  print("End time send_agent_to_alive: "+str(end - start))
   return retorno
 
 def send_agent_to_router(agent_id, data, path):
   start = time.time()
   print("Start time send_agent_to_router: "+str(start))
   retorno = False
-  try:
-    # response = requests.post('http://localhost:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
-    #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
-    
-    #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path})
-    response = requests.post('http://'+host+':'+port+'/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path})
-    response.raise_for_status()
+  while retorno == False:
+    try:
+      # response = requests.post('http://localhost:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
+      #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
+      
+      #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path})
+      response = requests.post('http://'+host+':'+port+'/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
+      response.raise_for_status()
 
-    #print(response)
-    retorno = True
-  except requests.exceptions.HTTPError as errh:
-      print(errh)
-  except requests.exceptions.ConnectionError as errc:
-      print(errc)
-  except requests.exceptions.Timeout as errt:
-      print(errt)
-  except requests.exceptions.RequestException as err:
-      print(err)
+      #print(response)
+      print("Function worked well")
+      retorno = True
+    except requests.exceptions.HTTPError as errh:
+        print(errh)
+        print("Error type 1, sleeping and retrying")
+        time.sleep(1)
+    except requests.exceptions.ConnectionError as errc:
+        print(errc)
+        print("Error type 2, sleeping and retrying")
+        time.sleep(1)
+    except requests.exceptions.Timeout as errt:
+        print(errt)
+        print("Error type 3, sleeping and retrying")
+        time.sleep(1)
+    except requests.exceptions.RequestException as err:
+        print(err)
+        print("Error type 4, sleeping and retrying")
+        time.sleep(1)
 
+  print("Left loop")
   end = time.time()
   print("End time send_agent_to_router: "+str(end - start))
   return retorno
@@ -113,28 +149,40 @@ def send_agent_to_router(agent_id, data, path):
 def teste_recebimento(modelo):
   start = time.time()
   print("Start time teste_recebimento: "+str(start))
-  retorno = False
   str1 = ''
   return_list = []
-  try:
-    # response = requests.get('http://localhost:5000/api/v1/resources/check_new_agents', params={"model":modelo}, timeout=5)
-    # response = requests.get('http://api:5000/api/v1/resources/check_new_agents', params={"model":modelo}, timeout=5)
-    
-    #response = requests.get('http://api:5000/api/v1/resources/check_new_agents', params={"model":modelo})
-    response = requests.get('http://'+host+':'+port+'/api/v1/resources/check_new_agents', params={"model":modelo})
-    response.raise_for_status()
-    return_list = response.json()
-    
-    #str1 = ''.join(str(e) for e in response.json())
-  except requests.exceptions.HTTPError as errh:
-      print(errh)
-  except requests.exceptions.ConnectionError as errc:
-      print(errc)
-  except requests.exceptions.Timeout as errt:
-      print(errt)
-  except requests.exceptions.RequestException as err:
-      print(err)
+  retorno = False
+  while retorno == False:
+    try:
+      # response = requests.get('http://localhost:5000/api/v1/resources/check_new_agents', params={"model":modelo}, timeout=5)
+      # response = requests.get('http://api:5000/api/v1/resources/check_new_agents', params={"model":modelo}, timeout=5)
+      
+      #response = requests.get('http://api:5000/api/v1/resources/check_new_agents', params={"model":modelo})
+      response = requests.get('http://'+host+':'+port+'/api/v1/resources/check_new_agents', params={"model":modelo}, timeout=5)
+      response.raise_for_status()
+      return_list = response.json()
+
+      print("Function worked well")
+      retorno = True    
+      #str1 = ''.join(str(e) for e in response.json())
+    except requests.exceptions.HTTPError as errh:
+        print(errh)
+        print("Error type 1, sleeping and retrying")
+        time.sleep(1)
+    except requests.exceptions.ConnectionError as errc:
+        print(errc)
+        print("Error type 2, sleeping and retrying")
+        time.sleep(1)
+    except requests.exceptions.Timeout as errt:
+        print(errt)
+        print("Error type 3, sleeping and retrying")
+        time.sleep(1)
+    except requests.exceptions.RequestException as err:
+        print(err)
+        print("Error type 4, sleeping and retrying")
+        time.sleep(1)
   # return str1
+  print("Left loop")
   end = time.time()
   print("End time teste_recebimento: "+str(end - start))
   return return_list
