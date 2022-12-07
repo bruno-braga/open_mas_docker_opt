@@ -873,4 +873,16 @@ def teste_envio():
   else:
     return 'false'
 
+
+# testing connection before enabling API
+connected = False
+while (connected == False):
+  try:
+    cnx = mysql.connector.connect(user='root', password='root',
+                                   host='db',
+                                   database='MYSQL_DATABASE')
+    connected = cnx.is_connected()
+  except:
+    if docker_debugger: print("**Error** Error connecting to the DB")
+    time.sleep(3)
 app.run(host="0.0.0.0", port=5000)
