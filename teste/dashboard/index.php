@@ -206,7 +206,7 @@
      </tfoot>
      </table>";
 
-  $teste = CallAPI("GET", "http://api:5000/api/v1/resources/output_php?model=m2");
+  $teste = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m2");
   $teste = json_decode($teste);
 
   echo "<center><h1>List of agents: m2</h1></center>";
@@ -274,7 +274,7 @@
      </tfoot>
      </table>";
 
-     $teste = CallAPI("GET", "http://api:5000/api/v1/resources/output_php?model=m3");
+     $teste = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m3");
   $teste = json_decode($teste);
 
   echo "<center><h1>List of agents: m3</h1></center>";
@@ -342,7 +342,7 @@
      </tfoot>
      </table>";
 
-     $teste = CallAPI("GET", "http://api:5000/api/v1/resources/output_php?model=router");
+     $teste = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=router");
   $teste = json_decode($teste);
 
   echo "<center><h1>List of agents: router</h1></center>";
