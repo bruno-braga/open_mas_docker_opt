@@ -31,8 +31,6 @@
   ini_set('display_startup_errors', '1');
   error_reporting(E_ALL);
 
-  $host = $_ENV["host"];
-
   // Method: POST, PUT, GET etc
   // Data: array("param" => "value") ==> index.php?param=value
 
@@ -138,7 +136,9 @@
      // </tfoot>
      // </table>";
 
-     $teste = CallAPI("GET", "http://"+$host+":5000/api/v1/resources/output_php?model=m1");
+  $host = getenv("host");
+  echo "host: ".$host;
+  $teste = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m1");
   $teste = json_decode($teste);
 
   echo "<center><h1>List of agents: m1</h1></center>";
