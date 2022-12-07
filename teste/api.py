@@ -807,14 +807,15 @@ def model_to_alive():
       if docker_debugger: print("**Error** Error connecting to the DB")
       time.sleep(3)
 
-  query = "INSERT INTO alive_agents (agent_id, model) VALUES ("
+  query = "INSERT INTO alive_agents (agent_id, model) VALUES "
   for agent_id in agent_id_list.split(","):
     query += "("
     query += str(agent_id)
     query += ", "
     query += str(model)
-    query += ")"
-  query += ")"
+    query += "), "
+  #remove last ,
+  query = query[:-1]
 
   # add_agent = ("INSERT INTO alive_agents "
   #                "(agent_id, model) "
