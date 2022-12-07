@@ -42,7 +42,8 @@ def execute_model():
     #cmd = "netlogo-headless.bat --model teste6_fitness_desvio.nlogo --experiment experiment2"
     # cmd = "netlogo-headless.bat --model "+'"C:\\Program Files\\NetLogo 6.0.4\\teste6_fitness_desvio.nlogo"'+" --experiment experiment2"
     #cmd = "/opt/netlogo/netlogo-headless.sh --model /teste/novo_model.nlogo --experiment experiment3"
-    time.sleep(10)
+    
+    #time.sleep(10)
 
     now = datetime.now()
 
@@ -51,6 +52,7 @@ def execute_model():
 
     cmd = "/opt/netlogo/netlogo-headless.sh --model "+model_file+" --experiment "+experiment
     print (cmd)
+    print ("Starting model...")
     os.system(cmd)
 
     now = datetime.now()

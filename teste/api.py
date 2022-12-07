@@ -812,10 +812,14 @@ def model_to_alive():
     query += "("
     query += str(agent_id)
     query += ", "
-    query += str(model)
+    query += "'"+str(model)+"'"
     query += "), "
-  #remove last ,
-  query = query[:-1]
+  #remove last comma and space
+  query = query[:-2]
+  #add ; to the end of query
+  query += ";"
+
+  if docker_debugger: print("Query: "+query)
 
   # add_agent = ("INSERT INTO alive_agents "
   #                "(agent_id, model) "

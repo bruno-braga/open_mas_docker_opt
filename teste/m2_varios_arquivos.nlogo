@@ -51,16 +51,16 @@ to new_setup
 end
 
 to new_solicita_cartorio
-  print("funcao python new_solicita_cartorio")
-  print("no netlogo, tempo inicial do solicita_cartorio")
+  print("NL: funcao python new_solicita_cartorio")
+  print("NL: no netlogo, tempo inicial do solicita_cartorio")
   print(date-and-time)
   py:setup py:python
-  print("iniciando cartorio: ")
+  print("NL: iniciando cartorio: ")
   py:run "from db_python_netlogo import solicita_cartorio"
   let teste py:runresult (word "solicita_cartorio('" ("m2") "'" "," (400) ", " (800) ")")
-  print("retorno cartorio: ")
+  print("NL: retorno cartorio: ")
   print(teste)
-  print("no netlogo, tempo final do solicita_cartorio")
+  print("NL: no netlogo, tempo final do solicita_cartorio")
   print(date-and-time)
 end
 
@@ -94,7 +94,7 @@ to solicita_cartorio
 end
 
 to new_send_agent_to_model
-  print("funcao python new_send_agent_to_model")
+  print("NL: funcao python new_send_agent_to_model")
   py:setup py:python
   py:run "from db_python_netlogo import send_agent_to_router"
   ; "send_agent_to_router('12', '[1 2 3]', '1-1')"
@@ -114,34 +114,34 @@ to new_send_agent_to_model
 
   let teste py:runresult (word "send_agent_to_router('" (agent_id) "', '" tupla "', '" (updated_historic) "')")
 
-  print("Envio de agente realizado com sucesso?")
+  print("NL: Envio de agente realizado com sucesso?")
   print (teste)
-;  print("Todos os agentes para processar:")
+;  print("NL: Todos os agentes para processar:")
 ;  print(teste)
-;  print("separados:")
+;  print("NL: separados:")
 ;  ifelse(length teste > 0)
 ;  [
-;    print("entra primeiro if")
+;    print("NL: entra primeiro if")
 ;    foreach teste
 ;    [
 ;      x ->
-;      print("agente: ")
+;      print("NL: agente: ")
 ;      print (x)
 ;
-;      print("agent_id:")
+;      print("NL: agent_id:")
 ;      print(item 0 x)
-;      print("tupla interna:")
+;      print("NL: tupla interna:")
 ;      print(item 1 x)
-;      print("path:")
+;      print("NL: path:")
 ;      print(item 2 x)
 ;
 ;      let tupla_interna read-from-string item 1 x
 ;
-;      print("tupla interna 0 - sugar:")
+;      print("NL: tupla interna 0 - sugar:")
 ;      print(item 0 tupla_interna)
-;      print("tupla interna 1 - metabolism:")
+;      print("NL: tupla interna 1 - metabolism:")
 ;      print(item 1 tupla_interna)
-;      print("tupla interna 2 - vision:")
+;      print("NL: tupla interna 2 - vision:")
 ;      print(item 2 tupla_interna)
 ;
 ;      create-turtles 1
@@ -175,7 +175,7 @@ to new_send_agent_to_model
 ;  [
 ;    print ("banco vazio")
 ;  ]
-;  print("fim teste_recebimento: -----------")
+;  print("NL: fim teste_recebimento: -----------")
 end
 
 to send_agent_to_model
@@ -244,39 +244,39 @@ to send_agent_to_model
 end
 
 to new_check_new_agent
-  print("funcao python new_check_new_agent")
-  print("no netlogo, tempo inicial do new_check_new_agent")
+  print("NL: funcao python new_check_new_agent")
+  print("NL: no netlogo, tempo inicial do new_check_new_agent")
   print(date-and-time)
   py:setup py:python
   py:run "from db_python_netlogo import teste_recebimento"
   let teste py:runresult (word "teste_recebimento('" ("m2") "')")
-  print("teste_recebimento: -----------")
-  print("Todos os agentes para processar:")
+  print("NL: teste_recebimento: -----------")
+  print("NL: Todos os agentes para processar:")
   print(teste)
-  print("separados:")
+  print("NL: separados:")
   ifelse(length teste > 0)
   [
-    print("entra primeiro if")
+    print("NL: entra primeiro if")
     foreach teste
     [
       x ->
-      print("agente: ")
+      print("NL: agente: ")
       print (x)
 
-      print("agent_id:")
+      print("NL: agent_id:")
       print(item 0 x)
-      print("tupla interna:")
+      print("NL: tupla interna:")
       print(item 1 x)
-      print("path:")
+      print("NL: path:")
       print(item 2 x)
 
       let tupla_interna read-from-string item 1 x
 
-      print("tupla interna 0 - sugar:")
+      print("NL: tupla interna 0 - sugar:")
       print(item 0 tupla_interna)
-      print("tupla interna 1 - metabolism:")
+      print("NL: tupla interna 1 - metabolism:")
       print(item 1 tupla_interna)
-      print("tupla interna 2 - vision:")
+      print("NL: tupla interna 2 - vision:")
       print(item 2 tupla_interna)
 
       create-turtles 1
@@ -310,55 +310,55 @@ to new_check_new_agent
   [
     print ("banco vazio")
   ]
-  print("no netlogo, tempo final do new_check_new_agent")
+  print("NL: no netlogo, tempo final do new_check_new_agent")
   print(date-and-time)
-  print("fim teste_recebimento: -----------")
+  print("NL: fim teste_recebimento: -----------")
 end
 
 to teste_python
-print("funcao python teste_python")
+print("NL: funcao python teste_python")
   py:setup py:python
 ;  py:run "from db_python_netlogo import teste_envio"
 ;  let teste py:runresult (word "teste_envio('" "[" "\"" "agent" "\"" " " ("agent_id") " " ("sugar") " " ("metabolism") " " ("vision") " " (word "\"" (ticks) "-1" "\"") "]" "')")
 py:run "from db_python_netlogo import teste_recebimento"
   let teste py:runresult (word "teste_recebimento('" ("m2") "')")
-  print("teste_recebimento: -----------")
-  print("Todos os agentes para processar:")
+  print("NL: teste_recebimento: -----------")
+  print("NL: Todos os agentes para processar:")
   print(teste)
-  print("separados:")
+  print("NL: separados:")
   ifelse(length teste > 0)
   [
-    print("entra primeiro if")
+    print("NL: entra primeiro if")
     foreach teste
     [
       x ->
-      ;print("1")
+      ;print("NL: 1")
       ;foreach read-from-string x
-      print("agente: ")
+      print("NL: agente: ")
       print (x)
 
       ;let tupla read-from-string item 1 y
-      print("agent_id:")
+      print("NL: agent_id:")
       print(item 0 x)
-      print("tupla interna:")
+      print("NL: tupla interna:")
       print(item 1 x)
-      print("path:")
+      print("NL: path:")
       print(item 2 x)
 
       let tupla_interna read-from-string item 1 x
 
-      print("tupla interna 0 - sugar:")
+      print("NL: tupla interna 0 - sugar:")
       print(item 0 tupla_interna)
-      print("tupla interna 1 - metabolism:")
+      print("NL: tupla interna 1 - metabolism:")
       print(item 1 tupla_interna)
-      print("tupla interna 2 - vision:")
+      print("NL: tupla interna 2 - vision:")
       print(item 2 tupla_interna)
     ]
   ]
   [
     print ("banco vazio")
   ]
-  print("fim teste_recebimento: -----------")
+  print("NL: fim teste_recebimento: -----------")
 
 end
 
@@ -369,12 +369,12 @@ to check_new_agent
   let files_to_check []
   if (file-exists? original_file)
   [
-    ;print("existe arquivo original")
+    ;print("NL: existe arquivo original")
     file-open original_file
     while [not file-at-end?]
     [
       let found_file file-read
-      ;print("linha encontrada:")
+      ;print("NL: linha encontrada:")
       ;print(found_file)
       set files_to_check lput found_file files_to_check
     ]
@@ -384,15 +384,15 @@ to check_new_agent
   foreach files_to_check
   [
     x ->
-;    print("linhas do primeiro arquivo:")
+;    print("NL: linhas do primeiro arquivo:")
 ;    print(x)
 
     if (file-exists? x)
     [
-      print("---")
-      print("existe:")
+      print("NL: ---")
+      print("NL: existe:")
       print(x)
-      print("---")
+      print("NL: ---")
 
       file-open x
 
@@ -441,14 +441,14 @@ to check_new_agent
   foreach to_delete
   [
     x ->
-    print("excluir:")
+    print("NL: excluir:")
     print(x)
     file-delete x
   ]
 
 ;      if (file-exists? file_path)
 ;      [
-;        print("existe arquivo da linha")
+;        print("NL: existe arquivo da linha")
 ;        file-open file_path
 ;        ;print "---"
 ;        while [not file-at-end?]
@@ -491,7 +491,7 @@ to check_new_agent
 ;        ]
 ;        file-close
 ;;        file-close
-;;        print("excluindo arquivo")
+;;        print("NL: excluindo arquivo")
 ;;        print(file_path)
 ;;        file-delete file_path
 ;      ]
@@ -502,7 +502,7 @@ to check_new_agent
 ;  foreach to_delete
 ;  [
 ;    x ->
-;    print("excluir:")
+;    print("NL: excluir:")
 ;    print(x)
 ;    ;file-write (word "a")
 ;  ]
@@ -511,16 +511,16 @@ to check_new_agent
 ;  let to_delete []
 ;  if (file-exists? original_file)
 ;  [
-;    print("existe arquivo original")
+;    print("NL: existe arquivo original")
 ;    file-open original_file
 ;    while [not file-at-end?]
 ;    [
 ;      let file_path file-read
-;      print("linha encontrada:")
+;      print("NL: linha encontrada:")
 ;      print(file_path)
 ;      if (file-exists? file_path)
 ;      [
-;        print("existe arquivo da linha")
+;        print("NL: existe arquivo da linha")
 ;        file-open file_path
 ;        ;print "---"
 ;        while [not file-at-end?]
@@ -563,7 +563,7 @@ to check_new_agent
 ;        ]
 ;        file-close
 ;;        file-close
-;;        print("excluindo arquivo")
+;;        print("NL: excluindo arquivo")
 ;;        print(file_path)
 ;;        file-delete file_path
 ;      ]
@@ -574,7 +574,7 @@ to check_new_agent
 ;  foreach to_delete
 ;  [
 ;    x ->
-;    print("excluir:")
+;    print("NL: excluir:")
 ;    print(x)
 ;    ;file-write (word "a")
 ;  ]
@@ -593,10 +593,10 @@ to print_alive_agents
       file-write (agent_id)
       ifelse(alive_agents != "")
       [
-        set alive_agents (word alive_agents agent_id)
+        set alive_agents (word alive_agents "," agent_id)
       ]
       [
-        set alive_agents (word alive_agents "," agent_id)
+        set alive_agents (word alive_agents agent_id)
       ]
     ]
   ]
@@ -604,13 +604,13 @@ to print_alive_agents
   if(alive_agents != "")
   [
 
-    print("funcao python send_agent_to_alive")
+    print("NL: funcao python send_agent_to_alive")
     py:setup py:python
     py:run "from db_python_netlogo import send_agent_to_alive"
 
     ;let model "m2"
     let teste py:runresult (word "send_agent_to_alive('" (alive_agents) "', 'm2')")
-    print("Envio de agente realizado com sucesso?")
+    print("NL: Envio de agente realizado com sucesso?")
     print (teste)
   ]
   file-close
@@ -626,13 +626,13 @@ to print_alive_agents_single
       print agent_id
       file-write (agent_id)
 
-      print("funcao python send_agent_to_alive")
+      print("NL: funcao python send_agent_to_alive")
       py:setup py:python
       py:run "from db_python_netlogo import send_agent_to_alive"
 
       ;let model "m2"
       let teste py:runresult (word "send_agent_to_alive('" (agent_id) "', 'm2')")
-      print("Envio de agente realizado com sucesso?")
+      print("NL: Envio de agente realizado com sucesso?")
       print (teste)
     ]
   ]
@@ -705,30 +705,30 @@ to load-config-from-file2
 end
 
 to export_output_to_File
-  print("---------- FIM DA SIMULACAO...")
-;  print("AGENTES QUE ENTRARIAM NA SIMULACAO: ")
+  print("NL: ---------- FIM DA SIMULACAO...")
+;  print("NL: AGENTES QUE ENTRARIAM NA SIMULACAO: ")
 ;  py:setup py:python
 ;  py:run "from db_python_netlogo import teste_recebimento"
 ;  let teste py:runresult (word "teste_recebimento('" ("m2") "')")
 ;  ifelse(length teste > 0)
 ;  [
-;    print("entra primeiro if")
+;    print("NL: entra primeiro if")
 ;    foreach teste
 ;    [
 ;      x ->
 ;
-;      ;print("agent_id:")
+;      ;print("NL: agent_id:")
 ;      print(item 0 x)
 ;    ]
 ;  ]
 ;  [
-;    print("Nenhum agente para entrar na simulacao")
+;    print("NL: Nenhum agente para entrar na simulacao")
 ;  ]
 
-  print("AGENTES VIVOS: ")
+  print("NL: AGENTES VIVOS: ")
   print_alive_agents
 ;  export-output "important/m2.txt"
-  print("---------- FIM!")
+  print("NL: ---------- FIM!")
 end
 
 to print_agent_random
@@ -787,8 +787,8 @@ end
 ;;
 
 to go
-  print("------------BEGIN TICK --------------")
-  print("Tick number: ")
+  print("NL: ------------BEGIN TICK --------------")
+  print("NL: Tick number: ")
   print(ticks)
 ;  if (ticks = 1000)
 ;  [
@@ -823,7 +823,7 @@ to go
     ]
     run visualization
   ]
-  print("------------END TICK --------------")
+  print("NL: ------------END TICK --------------")
   tick
 end
 
