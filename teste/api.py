@@ -792,6 +792,57 @@ def solicita_cartorio():
 def model_to_alive():
   json_data = request.get_json()
   if docker_debugger: print(json_data)
+  agent_id_list = json_data['agent_id']
+  model = json_data['model']
+
+  connected = False
+  while (connected == False):
+    try:
+      cnx = mysql.connector.connect(user='root', password='root',
+                                     host='db',
+                                     database='MYSQL_DATABASE')
+      cursor = cnx.cursor()
+      connected = cnx.is_connected()
+    except:
+      if docker_debugger: print("**Error** Error connecting to the DB")
+      time.sleep(3)
+
+  query = "INSERT INTO alive_agents (agent_id, model) VALUES ("
+  for agent_id in agent_id_list.split(","):
+    query += "("
+    query += str(agent_id)
+    query += ", "
+    query += str(model)
+    query += ")"
+  query += ")"
+
+  # add_agent = ("INSERT INTO alive_agents "
+  #                "(agent_id, model) "
+  #                "VALUES (%s, %s)")
+
+  # data_agent = (agent_id, model)
+  try:
+    #cursor.execute(add_agent, data_agent)
+    cursor.execute(query)
+    # Make sure data is committed to the database
+    cnx.commit()
+    retorno = True
+  except mysql.connector.Error as err:
+    if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
+    # teste_exception(err)
+    retorno = False
+
+  cursor.close()
+  cnx.close()
+  if(retorno):
+    return 'true'
+  else:
+    return 'false'
+
+@app.route('/api/v1/resources/model_to_alive_single', methods=['POST'])
+def model_to_alive_single():
+  json_data = request.get_json()
+  if docker_debugger: print(json_data)
   agent_id = json_data['agent_id']
   model = json_data['model']
 

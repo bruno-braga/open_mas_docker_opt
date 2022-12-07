@@ -580,8 +580,42 @@ to check_new_agent
 ;  ]
 end
 
-
 to print_alive_agents
+  let file_path "important/m1_alive.txt"
+  file-open file_path
+  let alive_agents ""
+  foreach sort-on [agent_id] turtles
+  [
+    the-turtle -> ask the-turtle
+    [
+      print agent_id
+      file-write (agent_id)
+      ifelse(alive_agents != "")
+      [
+        set alive_agents (word alive_agents agent_id)
+      ]
+      [
+        set alive_agents (word alive_agents "," agent_id)
+      ]
+    ]
+  ]
+
+  if(alive_agents != "")
+  [
+
+    print("funcao python send_agent_to_alive")
+    py:setup py:python
+    py:run "from db_python_netlogo import send_agent_to_alive"
+
+    ;let model "m1"
+    let teste py:runresult (word "send_agent_to_alive('" (alive_agents) "', 'm1')")
+    print("Envio de agente realizado com sucesso?")
+    print (teste)
+  ]
+  file-close
+end
+
+to print_alive_agents_single
   let file_path "important/m1_alive.txt"
   file-open file_path
   foreach sort-on [agent_id] turtles
