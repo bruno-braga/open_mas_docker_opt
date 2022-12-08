@@ -48,14 +48,16 @@ public class my_delete_ag extends DefaultInternalAction {
             // RuntimeServices provides services to create agents in the current platform (Local, JADE, JaCaMo, ...)
             RuntimeServices rs = RuntimeServicesFactory.get();
 
-            boolean using_docker = true;
-            String host = "";
+            String host = System.getenv("host");
 
-            if (using_docker){
-                host = "api";
-            } else {
-                host = "localhost";
-            }
+            // boolean using_docker = true;
+            // String host = "";
+
+            // if (using_docker){
+            //     host = "api";
+            // } else {
+            //     host = "localhost";
+            // }
 
             System.out.println("Executing JAVA custom code - delete");
 
