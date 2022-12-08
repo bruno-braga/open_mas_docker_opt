@@ -20,8 +20,8 @@ services:
     networks:
       - my_network
     depends_on:
-      - "modelo_1"
-      - "modelo_2"
+      # - "modelo_1"
+      # - "modelo_2"
       - "api"
       - "router"
       - "clear_files"
