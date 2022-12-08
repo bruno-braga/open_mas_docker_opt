@@ -89,14 +89,16 @@ public class my_create_ag extends DefaultInternalAction {
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
 
-        boolean using_docker = true;
-        String host = "";
+        String host = System.getenv("host");
 
-        if (using_docker){
-            host = "api";
-        } else {
-            host = "localhost";
-        }
+        // boolean using_docker = true;
+        // String host = "";
+
+        // if (using_docker){
+        //     host = "api";
+        // } else {
+        //     host = "localhost";
+        // }
 
         //String version = Runtime.class.getPackage().getImplementationVersion();
 
