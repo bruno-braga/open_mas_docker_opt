@@ -598,9 +598,9 @@ def sanity_test():
   # f = open(file_path, "r")
   # print(f.read())
   
-  if(len(return_list) == 0):
-    new_value = {'id': str(0), 'error': "none"}
-    return_list.append(new_value)
+#  if(len(return_list) == 0):
+#    new_value = {'id': str(0), 'error': "none"}
+#    return_list.append(new_value)
 
   return jsonify(return_list)
 
