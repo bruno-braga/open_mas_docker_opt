@@ -22,6 +22,20 @@ app.config["DEBUG"] = True
 
 docker_debugger = True
 
+def connect_to_db():
+  connected = False
+  while (connected == False):
+    try:
+      cnx = mysql.connector.connect(user='root', password='root',
+                                     host='db',
+                                     database='MYSQL_DATABASE')
+      cursor = cnx.cursor()
+      connected = cnx.is_connected()
+    except:
+      if docker_debugger: print("**Error** Error connecting to the DB")
+      time.sleep(3)
+
+  return cnx, cursor
 
 
 @app.errorhandler(404)
@@ -39,17 +53,19 @@ def output_php():
   return_list = []
   to_update = []
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(3)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
 
   query = "SELECT MAX(id) AS id, agent_id, MAX(data) AS data, MAX(path) AS path, MAX(processed) AS processed FROM "+modelo+" GROUP BY agent_id ORDER BY agent_id ASC";
   cursor.execute(query)
@@ -74,17 +90,19 @@ def check_new_agentss_1():
   return_list = []
   to_update = []
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(3)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
   query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
             "WHERE processed = 0 ORDER BY created_at ASC LIMIT 1")
 
@@ -119,16 +137,18 @@ def process_agents_on_router():
   #router_type = "random"
   router_type = "sequential"
   if docker_debugger: print("Router type:"+router_type)
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                               host='db',
-                               database='MYSQL_DATABASE')
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the database")
-      time.sleep(3)
+
+  cnx, cursor = connect_to_db()
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                              host='db',
+  #                              database='MYSQL_DATABASE')
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the database")
+  #     time.sleep(3)
   cursor = cnx.cursor()
 
   if(router_type == "random"):
@@ -280,17 +300,19 @@ def check_new_agentss():
   return_list = []
   to_update = []
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(1)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(1)
   query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
             "WHERE processed = 0")
 
@@ -418,17 +440,19 @@ def sanity_test():
 
   on_router = []
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(3)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
 
   cursor = cnx.cursor()
   query = ("SELECT agent_id FROM m1 WHERE processed = 0 ORDER BY agent_id")
@@ -614,17 +638,19 @@ def sanity_test_agent_path_history():
 
   return_list = []
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(3)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
 
   cursor = cnx.cursor()
   query = ("SELECT agent_id FROM m1 WHERE processed = 0 ORDER BY agent_id")
@@ -686,17 +712,19 @@ def register_agents_on_platform():
   min = json_data['min']
   max = json_data['max']
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(3)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
   retorno = False
 
   data = ""
@@ -747,17 +775,19 @@ def solicita_cartorio():
   min = json_data['min']
   max = json_data['max']
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(3)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
   retorno = False
   for agent_id in range(min, max):
     cursor = cnx.cursor()
@@ -795,17 +825,19 @@ def model_to_alive():
   agent_id_list = json_data['agent_id']
   model = json_data['model']
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(3)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
 
   query = "INSERT INTO alive_agents (agent_id, model) VALUES "
   for agent_id in agent_id_list.split(","):
@@ -851,17 +883,19 @@ def model_to_alive_single():
   agent_id = json_data['agent_id']
   model = json_data['model']
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(3)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
 
   add_agent = ("INSERT INTO alive_agents "
                  "(agent_id, model) "
@@ -895,17 +929,19 @@ def teste_envio():
   data = json_data['data']
   path = json_data['path']
 
-  connected = False
-  while (connected == False):
-    try:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                     host='db',
-                                     database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
-      connected = cnx.is_connected()
-    except:
-      if docker_debugger: print("**Error** Error connecting to the DB")
-      time.sleep(3)
+  cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
 
   add_agent = ("INSERT INTO router "
                  "(agent_id, data, path) "
@@ -931,14 +967,15 @@ def teste_envio():
 
 
 # testing connection before enabling API
-connected = False
-while (connected == False):
-  try:
-    cnx = mysql.connector.connect(user='root', password='root',
-                                   host='db',
-                                   database='MYSQL_DATABASE')
-    connected = cnx.is_connected()
-  except:
-    if docker_debugger: print("**Error** Error connecting to the DB")
-    time.sleep(3)
+cnx_test, cursor_test = connect_to_db()
+# connected = False
+# while (connected == False):
+#   try:
+#     cnx = mysql.connector.connect(user='root', password='root',
+#                                    host='db',
+#                                    database='MYSQL_DATABASE')
+#     connected = cnx.is_connected()
+#   except:
+#     if docker_debugger: print("**Error** Error connecting to the DB")
+#     time.sleep(3)
 app.run(host="0.0.0.0", port=5000)
