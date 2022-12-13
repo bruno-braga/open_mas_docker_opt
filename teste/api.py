@@ -176,10 +176,7 @@ def process_agents_on_router():
     if docker_debugger: print("No agents to be processed at the moment.")
   else:
     for tupla in return_list:
-      cnx = mysql.connector.connect(user='root', password='root',
-                                 host='db',
-                                 database='MYSQL_DATABASE')
-      cursor = cnx.cursor()
+      cnx, cursor = connect_to_db()
       cnx.start_transaction()
 
       model_to_send = random.choice(modelos_list)
