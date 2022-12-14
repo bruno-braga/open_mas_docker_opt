@@ -41,7 +41,7 @@ def solicita_cartorio(model, min, max):
       # response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max})
       
       #response = requests.post('http://api:5000/api/v1/resources/register_agents_on_platform', json = {"model":model, "min":min, "max":max})
-      response = requests.post('http://'+host+':'+port+'/api/v1/resources/register_agents_on_platform', json = {"model":model, "min":min, "max":max}, timeout=5)
+      response = requests.post('http://'+host+':'+port+'/api/v1/resources/register_agents_on_platform', json = {"model":model, "min":min, "max":max}, timeout=120)
       print("Response from API: "+response.text)
       response.raise_for_status()
 
@@ -80,7 +80,7 @@ def send_agent_to_alive(agent_id, model):
       #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
       
       #response = requests.post('http://api:5000/api/v1/resources/model_to_alive', json = {"agent_id":agent_id, "model":model})
-      response = requests.post('http://'+host+':'+port+'/api/v1/resources/model_to_alive', json = {"agent_id":agent_id, "model":model}, timeout=5)
+      response = requests.post('http://'+host+':'+port+'/api/v1/resources/model_to_alive', json = {"agent_id":agent_id, "model":model}, timeout=120)
       response.raise_for_status()
 
       #print(response)
@@ -118,7 +118,7 @@ def send_agent_to_router(agent_id, data, path):
       #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
       
       #response = requests.post('http://api:5000/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path})
-      response = requests.post('http://'+host+':'+port+'/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=5)
+      response = requests.post('http://'+host+':'+port+'/api/v1/resources/model_to_router', json = {"agent_id":agent_id, "data":data, "path":path}, timeout=120)
       response.raise_for_status()
 
       #print(response)
@@ -158,7 +158,7 @@ def teste_recebimento(modelo):
       # response = requests.get('http://api:5000/api/v1/resources/check_new_agents', params={"model":modelo}, timeout=5)
       
       #response = requests.get('http://api:5000/api/v1/resources/check_new_agents', params={"model":modelo})
-      response = requests.get('http://'+host+':'+port+'/api/v1/resources/check_new_agents', params={"model":modelo}, timeout=5)
+      response = requests.get('http://'+host+':'+port+'/api/v1/resources/check_new_agents', params={"model":modelo}, timeout=120)
       response.raise_for_status()
       return_list = response.json()
 
