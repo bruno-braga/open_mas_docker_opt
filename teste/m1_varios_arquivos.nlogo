@@ -112,6 +112,8 @@ to new_send_agent_to_model
   set tupla lput metabolism tupla
   set tupla lput vision tupla
 
+  print("NL: sending this agent to router:")
+  print(agent_id)
   let teste py:runresult (word "send_agent_to_router('" (agent_id) "', '" tupla "', '" (updated_historic) "')")
 
   print("NL: Envio de agente realizado com sucesso?")
