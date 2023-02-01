@@ -5,7 +5,7 @@ services:
     build:
       context: .
       #dockerfile: Dockerfile_JACAMO
-      dockerfile: Dockerfile_GRADLE
+      dockerfile: Dockerfile_GRADLE_arm64
     tty: true           # Container alive
     #command: "/bin/sh -c 'gradle >> /teste/important/gradle_output.txt'"
     ports:
@@ -75,7 +75,7 @@ services:
   db:
     container_name: db
     restart: always
-    image: mysql/mysql
+    image: arm64v8/mysql
     environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_ROOT_HOST: '%'
@@ -109,7 +109,7 @@ services:
       - my_network
   
   phpmyadmin:
-      image: phpmyadmin/phpmyadmin
+      image: arm64v8/phpmyadmin
       container_name: phpmyadmin
       networks:
         - my_network
