@@ -487,7 +487,7 @@ services:
 # #   data:
 # # services:
 # #   db:
-# #     image: mysql:5.6
+# #     image: mysql/mysql-server:5.7
 # #     ports:
 # #       - "3306:3306"
 # #     volumes:

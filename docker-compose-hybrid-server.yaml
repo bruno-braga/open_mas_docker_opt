@@ -75,7 +75,7 @@ services:
   db:
     container_name: db
     restart: always
-    image: mysql/mysql
+    image: mysql/mysql-server:5.7
     environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_ROOT_HOST: '%'
