@@ -827,24 +827,24 @@
 		var on_router = [
 		]
 
-		var array_teste = []
+		var my_array = []
 
 		// for (var i = 1; i <= 799; i++) {
-		// 	array_teste.push(i);
+		// 	my_array.push(i);
 		// }
 
-		var teste = 0;
+		var cont = 0;
 		for (var i = 1; i <= 799; i++) {
 			if (!m1_alive.includes(i) && !m2_alive.includes(i) && !m3_alive.includes(i) &&
 				!m1_on_db.includes(i) && !m2_on_db.includes(i) && !m3_on_db.includes(i) &&
 				!on_router.includes(i)){
 				console.log(i + " ta em nenhum");
-				teste += 1;
+				cont += 1;
 			}
 		}
-		if (teste > 0){
+		if (cont > 0){
 			console.log("azedou")
-			console.log("total: "+teste)
+			console.log("total: "+cont)
 		}
 		else
 			console.log("ta tudo certo")
@@ -863,16 +863,16 @@
 		on_router.forEach(myFunction);
 
 		function myFunction(item) {
-		  array_teste.push(item);
+		  my_array.push(item);
 		  //console.log(item);
 		}
 
-		//console.log(array_teste);
+		//console.log(my_array);
 
 		//const arr = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
 		const counts = {};
 
-		for (const num of array_teste) {
+		for (const num of my_array) {
 		  counts[num] = counts[num] ? counts[num] + 1 : 1;
 		}
 
@@ -888,13 +888,13 @@
 
 
 
-		// const occurrences = array_teste.reduce(function (acc, curr) {
+		// const occurrences = my_array.reduce(function (acc, curr) {
 		//   return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
 		// }, {});
 
 		// const counts = {};
 
-		// for (const num of array_teste) {
+		// for (const num of my_array) {
 		//   counts[num] = counts[num] ? counts[num] + 1 : 1;
 		// }
 

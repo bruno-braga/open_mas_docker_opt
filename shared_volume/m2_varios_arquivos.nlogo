@@ -57,9 +57,9 @@ to new_solicita_cartorio
   py:setup py:python
   print("NL: iniciando cartorio: ")
   py:run "from db_python_netlogo import solicita_cartorio"
-  let teste py:runresult (word "solicita_cartorio('" ("m2") "'" "," (400) ", " (800) ")")
+  let result py:runresult (word "solicita_cartorio('" ("m2") "'" "," (400) ", " (800) ")")
   print("NL: retorno cartorio: ")
-  print(teste)
+  print(result)
   print("NL: no netlogo, tempo final do solicita_cartorio")
   print(date-and-time)
 end
@@ -114,17 +114,17 @@ to new_send_agent_to_model
 
   print("NL: sending this agent to router:")
   print(agent_id)
-  let teste py:runresult (word "send_agent_to_router('" (agent_id) "', '" tupla "', '" (updated_historic) "')")
+  let result py:runresult (word "send_agent_to_router('" (agent_id) "', '" tupla "', '" (updated_historic) "')")
 
   print("NL: Envio de agente realizado com sucesso?")
-  print (teste)
+  print (result)
 ;  print("NL: Todos os agentes para processar:")
-;  print(teste)
+;  print(result)
 ;  print("NL: separados:")
-;  ifelse(length teste > 0)
+;  ifelse(length result > 0)
 ;  [
 ;    print("NL: entra primeiro if")
-;    foreach teste
+;    foreach result
 ;    [
 ;      x ->
 ;      print("NL: agente: ")
@@ -177,7 +177,7 @@ to new_send_agent_to_model
 ;  [
 ;    print ("banco vazio")
 ;  ]
-;  print("NL: fim teste_recebimento: -----------")
+;  print("NL: fim testing_receiving: -----------")
 end
 
 to send_agent_to_model
@@ -250,16 +250,16 @@ to new_check_new_agent
   print("NL: no netlogo, tempo inicial do new_check_new_agent")
   print(date-and-time)
   py:setup py:python
-  py:run "from db_python_netlogo import teste_recebimento"
-  let teste py:runresult (word "teste_recebimento('" ("m2") "')")
-  print("NL: teste_recebimento: -----------")
+  py:run "from db_python_netlogo import testing_receiving"
+  let result py:runresult (word "testing_receiving('" ("m2") "')")
+  print("NL: testing_receiving: -----------")
   print("NL: Todos os agentes para processar:")
-  print(teste)
+  print(result)
   print("NL: separados:")
-  ifelse(length teste > 0)
+  ifelse(length result > 0)
   [
     print("NL: entra primeiro if")
-    foreach teste
+    foreach result
     [
       x ->
       print("NL: agente: ")
@@ -314,24 +314,24 @@ to new_check_new_agent
   ]
   print("NL: no netlogo, tempo final do new_check_new_agent")
   print(date-and-time)
-  print("NL: fim teste_recebimento: -----------")
+  print("NL: fim testing_receiving: -----------")
 end
 
-to teste_python
-print("NL: funcao python teste_python")
+to testing_python
+print("NL: funcao python testing_python")
   py:setup py:python
-;  py:run "from db_python_netlogo import teste_envio"
-;  let teste py:runresult (word "teste_envio('" "[" "\"" "agent" "\"" " " ("agent_id") " " ("sugar") " " ("metabolism") " " ("vision") " " (word "\"" (ticks) "-1" "\"") "]" "')")
-py:run "from db_python_netlogo import teste_recebimento"
-  let teste py:runresult (word "teste_recebimento('" ("m2") "')")
-  print("NL: teste_recebimento: -----------")
+;  py:run "from db_python_netlogo import testing_send"
+;  let result py:runresult (word "testing_send('" "[" "\"" "agent" "\"" " " ("agent_id") " " ("sugar") " " ("metabolism") " " ("vision") " " (word "\"" (ticks) "-1" "\"") "]" "')")
+py:run "from db_python_netlogo import testing_receiving"
+  let result py:runresult (word "testing_receiving('" ("m2") "')")
+  print("NL: testing_receiving: -----------")
   print("NL: Todos os agentes para processar:")
-  print(teste)
+  print(result)
   print("NL: separados:")
-  ifelse(length teste > 0)
+  ifelse(length result > 0)
   [
     print("NL: entra primeiro if")
-    foreach teste
+    foreach result
     [
       x ->
       ;print("NL: 1")
@@ -360,7 +360,7 @@ py:run "from db_python_netlogo import teste_recebimento"
   [
     print ("banco vazio")
   ]
-  print("NL: fim teste_recebimento: -----------")
+  print("NL: fim testing_receiving: -----------")
 
 end
 
@@ -611,9 +611,9 @@ to print_alive_agents
     py:run "from db_python_netlogo import send_agent_to_alive"
 
     ;let model "m2"
-    let teste py:runresult (word "send_agent_to_alive('" (alive_agents) "', 'm2')")
+    let result py:runresult (word "send_agent_to_alive('" (alive_agents) "', 'm2')")
     print("NL: Envio de agente realizado com sucesso?")
-    print (teste)
+    print (result)
   ]
   file-close
 end
@@ -633,9 +633,9 @@ to print_alive_agents_single
       py:run "from db_python_netlogo import send_agent_to_alive"
 
       ;let model "m2"
-      let teste py:runresult (word "send_agent_to_alive('" (agent_id) "', 'm2')")
+      let result py:runresult (word "send_agent_to_alive('" (agent_id) "', 'm2')")
       print("NL: Envio de agente realizado com sucesso?")
-      print (teste)
+      print (result)
     ]
   ]
   file-close
@@ -710,12 +710,12 @@ to export_output_to_File
   print("NL: ---------- FIM DA SIMULACAO...")
 ;  print("NL: AGENTES QUE ENTRARIAM NA SIMULACAO: ")
 ;  py:setup py:python
-;  py:run "from db_python_netlogo import teste_recebimento"
-;  let teste py:runresult (word "teste_recebimento('" ("m2") "')")
-;  ifelse(length teste > 0)
+;  py:run "from db_python_netlogo import testing_receiving"
+;  let result py:runresult (word "testing_receiving('" ("m2") "')")
+;  ifelse(length result > 0)
 ;  [
 ;    print("NL: entra primeiro if")
-;    foreach teste
+;    foreach result
 ;    [
 ;      x ->
 ;
@@ -796,7 +796,7 @@ to go
 ;  [
 ;    stop
 ;  ]
-;teste_python
+;testing_python
 
   if (ticks = 1)
   [

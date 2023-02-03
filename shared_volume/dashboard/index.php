@@ -19,9 +19,6 @@
 
   <?php
   $out = array();
-  // foreach (glob('../jacamo/src/src/agt/list/*.asl') as $filename) {
-  // foreach (glob('../jacamo/INTEGRANDO COM API/eee/src/agt/list/*.asl') as $filename) {
-  // foreach (glob('../jacamo/INTEGRANDO COM API/teste-gradle-docker/fff/src/agt/list/*.asl') as $filename) {
   foreach (glob('../jacamo/integra_gold_miners/src/agt/list/*.asl') as $filename) {
     $p = pathinfo($filename);
     $out[] = $p['filename'];
@@ -68,78 +65,10 @@
       return $result;
   }
 
-  // $teste = CallAPI("GET", "http://api:5000/api/v1/resources/output_php?model=m3");
-  // $teste = json_decode($teste);
-
-  // echo "<center><h1>List of agents</h1></center>";
-  // echo '
-  // <table id="example" class="display" style="width:100%">
-  // <thead>
-  // <tr>
-  // <th>ID</th>
-  // <th>Sugar</th>
-  // <th>Metabolism</th>
-  // <th>Vision</th>
-  // <th>processed</th>
-  // <th>File</th>
-  // <th>Traveling Path</th>
-  // </tr>
-  // </thead>
-  // <tbody>
-  // ';
-
-  // foreach ($teste as $value) {
-  //   echo "<tr>";
-  //    // $c++;
-  //    // $line = explode(" ", $lines);
-
-  //    // $line = str_replace(']', ' ', $line);
-
-  //    // echo '<td class="ids">'.$line[1].'</td>';
-  //   $agent_id = $value[0];
-  //   $data = str_replace("[", "", $value[1]);
-  //   $data = str_replace("]", "", $data);
-  //   $data = explode(" ", $data);
-  //   $sugar = $data[0];
-  //   $metabolism = $data[1];
-  //   $vision = $data[2];
-  //   $path = $value[2];
-  //   $processed = $value[3];
-  //   echo '<td class="ids">'.$agent_id.'</td>';
-  //   echo '<td>'.$sugar.'</td>';
-  //   echo '<td>'.$metabolism.'</td>';
-  //   echo '<td class="vision">'.$vision.'</td>';
-  //   echo '<td>'.$processed.'</td>';
-  //   if (in_array(($agent_id), $out)) { 
-  //     //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
-  //     echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
-  //   }
-  //   else
-  //     echo '<td><button>'."No File".'</button></td>';
-
-  //   echo '<td>'.$path.'</td>';
-  //   echo "</tr>";
-  // }
-
-     // echo "
-     // </tbody>
-     // <tfoot>
-     // <tr>
-     // <th>ID</th>
-     // <th>Sugar</th>
-     // <th>Metabolism</th>
-     // <th>Vision</th>
-     // <th>processed</th>
-     // <th>File</th>
-     // <th>Traveling Path</th>
-     // </tr>
-     // </tfoot>
-     // </table>";
-
   $host = getenv("host");
   echo "host: ".$host;
-  $teste = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m1");
-  $teste = json_decode($teste);
+  $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m1");
+  $response = json_decode($response);
 
   echo "<center><h1>List of agents: m1</h1></center>";
   echo '
@@ -158,7 +87,7 @@
   <tbody>
   ';
 
-  foreach ($teste as $value) {
+  foreach ($response as $value) {
     echo "<tr>";
      // $c++;
      // $line = explode(" ", $lines);
@@ -206,8 +135,8 @@
      </tfoot>
      </table>";
 
-  $teste = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m2");
-  $teste = json_decode($teste);
+  $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m2");
+  $response = json_decode($response);
 
   echo "<center><h1>List of agents: m2</h1></center>";
   echo '
@@ -226,7 +155,7 @@
   <tbody>
   ';
 
-  foreach ($teste as $value) {
+  foreach ($response as $value) {
     echo "<tr>";
      // $c++;
      // $line = explode(" ", $lines);
@@ -274,8 +203,8 @@
      </tfoot>
      </table>";
 
-     $teste = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m3");
-  $teste = json_decode($teste);
+  $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m3");
+  $response = json_decode($response);
 
   echo "<center><h1>List of agents: m3</h1></center>";
   echo '
@@ -294,7 +223,7 @@
   <tbody>
   ';
 
-  foreach ($teste as $value) {
+  foreach ($response as $value) {
     echo "<tr>";
      // $c++;
      // $line = explode(" ", $lines);
@@ -342,8 +271,8 @@
      </tfoot>
      </table>";
 
-     $teste = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=router");
-  $teste = json_decode($teste);
+     $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=router");
+  $response = json_decode($response);
 
   echo "<center><h1>List of agents: router</h1></center>";
   echo '
@@ -362,7 +291,7 @@
   <tbody>
   ';
 
-  foreach ($teste as $value) {
+  foreach ($response as $value) {
     echo "<tr>";
      // $c++;
      // $line = explode(" ", $lines);
@@ -463,8 +392,8 @@
       var fired_button = $(this).html();
       //alert("value: "+fired_button);
 
-      //'../jacamo/INTEGRANDO COM API/teste-gradle-docker/fff/src/agt/list/*.asl'
-      //var url = '../jacamo/INTEGRANDO COM API/teste-gradle-docker/fff/src/agt/list/'+fired_button+'.asl';
+      //'../jacamo/INTEGRANDO COM API/gradle-docker/fff/src/agt/list/*.asl'
+      //var url = '../jacamo/INTEGRANDO COM API/gradle-docker/fff/src/agt/list/'+fired_button+'.asl';
       var url = '../jacamo/integra_gold_miners/src/agt/list/'+fired_button+'.asl';
       // var url = '../jacamo/INTEGRANDO COM API/eee/src/agt/list/'+fired_button+'.asl';
       var xhr = new XMLHttpRequest();

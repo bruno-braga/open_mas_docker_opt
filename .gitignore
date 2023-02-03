@@ -1,29 +1,29 @@
 #logs/**
 
-teste/__pycache__/**
+shared_volume/__pycache__/**
 
-teste/jacamo/integra_gold_miners/.gradle/**
-teste/jacamo/integra_gold_miners/build/**
+shared_volume/jacamo/integra_gold_miners/.gradle/**
+shared_volume/jacamo/integra_gold_miners/build/**
 
-teste/jacamo/integra_gold_miners/mas.log
-teste/jacamo/integra_gold_miners/mas.log.lck
+shared_volume/jacamo/integra_gold_miners/mas.log
+shared_volume/jacamo/integra_gold_miners/mas.log.lck
 
-teste/jacamo/integra_gold_miners/src/agt/list/**
+shared_volume/jacamo/integra_gold_miners/src/agt/list/**
 # exception to the rule
-!teste/jacamo/integra_gold_miners/src/agt/list/.gitkeep
+!shared_volume/jacamo/integra_gold_miners/src/agt/list/.gitkeep
 
-teste/important/m1_alive.txt
-teste/important/m1_output.txt
-teste/important/m2_alive.txt
-teste/important/m2_output.txt
-teste/jacamo/integra_gold_miners/mas.log
-teste/jacamo/integra_gold_miners/mas.log.lck
+shared_volume/important/m1_alive.txt
+shared_volume/important/m1_output.txt
+shared_volume/important/m2_alive.txt
+shared_volume/important/m2_output.txt
+shared_volume/jacamo/integra_gold_miners/mas.log
+shared_volume/jacamo/integra_gold_miners/mas.log.lck
 
-teste/important/tests/**
+shared_volume/important/tests/**
 # exception to the rule
-!teste/important/tests/modelo_teste.html
+!shared_volume/important/tests/modelo.html
 
 
-#teste/important/**
+#shared_volume/important/**
 # exception to the rule
-#!teste/important/.gitkeep
+#!shared_volume/important/.gitkeep

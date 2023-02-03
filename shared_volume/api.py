@@ -123,7 +123,7 @@ def check_new_agentss_1():
       cnx.commit()
     except mysql.connector.Error as err:
       if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-      # teste_exception(err)
+      # testing_exception(err)
     finally:
       cursor.close()
 
@@ -345,7 +345,7 @@ def check_new_agentss():
       cnx.commit()
     except mysql.connector.Error as err:
       if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-      # teste_exception(err)
+      # testing_exception(err)
     finally:
       cursor.close()
 
@@ -364,7 +364,7 @@ def check_new_agentss():
   #     cnx.commit()
   #   except mysql.connector.Error as err:
   #     if docker_debugger: print("Failed inserting on database: {}".format(err))
-  #     teste_exception(err)
+  #     testing_exception(err)
   #   finally:
   #     cursor.close()
 
@@ -410,7 +410,7 @@ def check_new_agentss():
 #       cnx.commit()
 #     except mysql.connector.Error as err:
 #       if docker_debugger: print("Failed inserting on database: {}".format(err))
-#       teste_exception(err)
+#       testing_exception(err)
 #     finally:
 #       cursor.close()
 
@@ -511,7 +511,7 @@ def sanity_test():
   if docker_debugger: print("m2_alive:")
   if docker_debugger: print(m2_alive)
 
-  # fname = "/teste/important/m1_alive.txt"
+  # fname = "/shared_volume/important/m1_alive.txt"
   # if(os.path.isfile(fname)):
   #   f = open(fname, "r")
   #   text = f.read()
@@ -522,7 +522,7 @@ def sanity_test():
   # if docker_debugger: print("m1_alive:")
   # if docker_debugger: print(m1_alive)
 
-  # fname = "/teste/important/m2_alive.txt"
+  # fname = "/shared_volume/important/m2_alive.txt"
   # if(os.path.isfile(fname)):
   #   f = open(fname, "r")
   #   text = f.read()
@@ -602,7 +602,7 @@ def sanity_test():
   m3_alive_agent = m3_alive[0]
 
   for agent_id in m3_processed_agents:
-    fname = "/teste/jacamo/integra_gold_miners/src/agt/list/"+str(agent_id)+".asl"
+    fname = "/shared_volume/jacamo/integra_gold_miners/src/agt/list/"+str(agent_id)+".asl"
     if(not os.path.isfile(fname)):
       if(agent_id != m3_alive_agent):
         if docker_debugger: print("**Error** "+str(agent_id)+ " asl file does not exists")
@@ -611,7 +611,7 @@ def sanity_test():
 
   cnx.close()
 
-  # file_path = "/teste/important/tests/errors.txt"
+  # file_path = "/shared_volume/important/tests/errors.txt"
   # with open(file_path,"a+") as f:
   #   f.write("aaa"+"\n")
 
@@ -743,7 +743,7 @@ def register_agents_on_platform():
     retorno = True
   except mysql.connector.Error as err:
     if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-    # teste_exception(err)
+    # testing_exception(err)
     retorno = False
   finally:
     cursor.close()
@@ -798,7 +798,7 @@ def solicita_cartorio():
         retorno = True
     except mysql.connector.Error as err:
         if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-        # teste_exception(err)
+        # testing_exception(err)
         retorno = False
     finally:
         cursor.close()
@@ -863,7 +863,7 @@ def model_to_alive():
     retorno = True
   except mysql.connector.Error as err:
     if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-    # teste_exception(err)
+    # testing_exception(err)
     retorno = False
 
   cursor.close()
@@ -906,7 +906,7 @@ def model_to_alive_single():
     retorno = True
   except mysql.connector.Error as err:
     if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-    # teste_exception(err)
+    # testing_exception(err)
     retorno = False
 
   cursor.close()
@@ -919,7 +919,7 @@ def model_to_alive_single():
 
 
 @app.route('/api/v1/resources/model_to_router', methods=['POST'])
-def teste_envio():
+def testing_sending():
   json_data = request.get_json()
   if docker_debugger: print(json_data)
   agent_id = json_data['agent_id']
@@ -952,7 +952,7 @@ def teste_envio():
     retorno = True
   except mysql.connector.Error as err:
     if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-    # teste_exception(err)
+    # testing_exception(err)
     retorno = False
 
   cursor.close()

@@ -2,7 +2,7 @@ initial_print.
 +initial_print : true
   <- .print("I'm a killer agent").
 
-@pteste4[atomic]
+@pfunction4[atomic]
 +kill(V0, V1, X, B0, B1, B2) : true
   <- .print("I've received a message to kill agent ",X);
   	 .print("Killing agent ",X);
@@ -18,10 +18,10 @@ initial_print.
 
 +previous_information_all(X, Y, Z) : true
   <- 
-  .concat("",X, " ", Y, " ", Z, TESTE2)
+  .concat("",X, " ", Y, " ", Z, OLD2)
   .print("Previous Information Function:");
   .print("My previous information X, Y, Z: ", X, Y, Z);
-  .print("My previous information TESTE2: ", TESTE2);
+  .print("My previous information OLD2: ", OLD2);
   mylib.my_delete_ag(X, Y, Z);
   /* -previous_information_all(X, Y, Z); */
   .print("Sended to aaa_my_delete_ag").

@@ -140,9 +140,7 @@
      }
 
      fclose($handle);
-
-     // ADICIONANDO O GENERAL, PRA TESTE
-     $file_name = "/teste/important/general_send_agent.txt";
+     $file_name = "/shared_volume/important/general_send_agent.txt";
 
       if(file_exists($file_name)){
         $handle = fopen($file_name, "r");

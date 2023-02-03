@@ -1,5 +1,5 @@
 !initial_print.
-@pteste3[atomic]
+@pfunction3[atomic]
 +!initial_print : true
 <-
 	/* .print("Hello there. I'm a checker agent"); */

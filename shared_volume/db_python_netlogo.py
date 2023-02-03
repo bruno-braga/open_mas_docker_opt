@@ -20,7 +20,7 @@ host = os.environ['host']
 port = "5000"
 
 
-def teste_exception(error):
+def testing_exception(error):
   raise Exception(error)
 
 def solicita_cartorio(model, min, max):
@@ -146,9 +146,9 @@ def send_agent_to_router(agent_id, data, path):
   print("End time send_agent_to_router: "+str(end - start))
   return retorno
 
-def teste_recebimento(modelo):
+def testing_receiving(modelo):
   start = time.time()
-  print("Start time teste_recebimento: "+str(start))
+  print("Start time testing_receiving: "+str(start))
   str1 = ''
   return_list = []
   retorno = False
@@ -184,7 +184,7 @@ def teste_recebimento(modelo):
   # return str1
   print("Left loop")
   end = time.time()
-  print("End time teste_recebimento: "+str(end - start))
+  print("End time testing_receiving: "+str(end - start))
   return return_list
 
 # def send_function(string_to_send):
@@ -260,7 +260,7 @@ def process_agents_on_router():
       print("Rolling back ...")
       print(e)
       db.rollback()  # rollback changes
-      teste_exception(err)
+      testing_exception(err)
     # except errors.Error as e:
     #   print("Rolling back ...")
     #   print(e)
@@ -320,7 +320,7 @@ def backup_funcional_process_agents_on_router():
         print("Rolling back ...")
         print(e)
         db.rollback()  # rollback changes
-        teste_exception(err)
+        testing_exception(err)
       # except errors.Error as e:
       #   print("Rolling back ...")
       #   print(e)
@@ -473,7 +473,7 @@ def print_send_agent_to_router(agent_id, data, path):
   cnx.close()
   return retorno
 
-def print_teste_recebimento(modelo):
+def print_testing_receiving(modelo):
 
   return_list = []
   to_update = []
@@ -624,7 +624,7 @@ def print_process_agents_on_router():
 
 
 ## BACKUP, FUNCIONA, ANTES DE ACESSAR API
-# def teste_exception(error):
+# def testing_exception(error):
 #   raise Exception(error)
 
 # def solicita_cartorio(model, min, max):
@@ -663,7 +663,7 @@ def print_process_agents_on_router():
 #     # except mysql.connector.ProgrammingError as err:
 #     except mysql.connector.Error as err:
 #         print("Failed inserting on database: {}".format(err))
-#         teste_exception(err)
+#         testing_exception(err)
 #         retorno = False
 #     finally:
 #         cursor.close()
@@ -674,7 +674,7 @@ def print_process_agents_on_router():
 #   cnx.close()
 #   return retorno
 
-# def teste_envio(agent_id, data, path):
+# def testing_sending(agent_id, data, path):
 
 #   cnx = mysql.connector.connect(user='root', password='root',
 #                                  host='db',
@@ -710,7 +710,7 @@ def print_process_agents_on_router():
 #   # except mysql.connector.ProgrammingError as err:
 #   except mysql.connector.Error as err:
 #     print("Failed inserting on database: {}".format(err))
-#     teste_exception(err)
+#     testing_exception(err)
 #     retorno = False
 
 #   # if (cursor.execute(add_employee, data_employee)):
@@ -725,7 +725,7 @@ def print_process_agents_on_router():
 #   cnx.close()
 #   return retorno
 
-# def teste_recebimento(modelo):
+# def testing_receiving(modelo):
 
 #   return_list = []
 #   to_update = []
@@ -765,7 +765,7 @@ def print_process_agents_on_router():
 #     # except mysql.connector.ProgrammingError as err:
 #     except mysql.connector.Error as err:
 #       print("Failed inserting on database: {}".format(err))
-#       teste_exception(err)
+#       testing_exception(err)
 #     finally:
 #       cursor.close()
 
@@ -831,7 +831,7 @@ def print_process_agents_on_router():
 #         print("Rolling back ...")
 #         print(e)
 #         db.rollback()  # rollback changes
-#         teste_exception(err)
+#         testing_exception(err)
 #       # except errors.Error as e:
 #       #   print("Rolling back ...")
 #       #   print(e)
@@ -935,7 +935,7 @@ def print_process_agents_on_router():
 #   cnx.close()
 #   return retorno
 
-# def print_teste_envio(agent_id, data, path):
+# def print_testing_sending(agent_id, data, path):
 
 #   cnx = mysql.connector.connect(user='root', password='root',
 #                                  host='db',
@@ -984,7 +984,7 @@ def print_process_agents_on_router():
 #   cnx.close()
 #   return retorno
 
-# def print_teste_recebimento(modelo):
+# def print_testing_receiving(modelo):
 
 #   return_list = []
 #   to_update = []
@@ -1232,7 +1232,7 @@ def print_process_agents_on_router():
 # # print("2")
 # #host="db", user="root", passwd="root", db="MYSQL_DATABASE"
 
-# def teste_envio(string_recebida):
+# def testing_sending(string_recebida):
 
 #   cnx = mysql.connector.connect(user='root', password='root',
 #                                  host='db',
@@ -1271,7 +1271,7 @@ def print_process_agents_on_router():
 #   print("string recebida: "+string_recebida)
 #   return retorno
 
-# def teste_recebimento(modelo):
+# def testing_receiving(modelo):
 
 #   return_list = []
 

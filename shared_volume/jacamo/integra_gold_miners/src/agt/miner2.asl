@@ -1,6 +1,4 @@
 // miner agent
-// MINER2 (MINER1 COM FUNÇÕES PRA RECEBER E ENVIAR AGENTES) COM FILA
-// MINER3 SÓ VAI MATAR QUANDO ENTREGAR O GOLD
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 
@@ -15,11 +13,10 @@ last_dir(null). // the last movement I did
 free.
 score(0).
 
-/* initial_print1. */
-@pteste2[atomic]
+initial_print1.
 +initial_print1 : true
 <- 
-  .print("Hello there. I'm saving myself to leave the simulation");
+  .print("Hello there. I'm a saver agent");
 
   ?agent_id(V0);
   ?path(V1);
@@ -28,9 +25,9 @@ score(0).
   
   .random(R);
 
-  +teste(R);
+  +my_testing(R);
 
-  ?teste(R);
+  ?my_testing(R);
 
   .print("R: ", R);
 
@@ -221,22 +218,7 @@ score(0).
      !!handle(Gold). // must use !! to perform "handle" as not atomic
 
 /* new plan for event +!handle(_) */
-@pteste[atomic]
-+!handle(gold(X,Y))
-  :  not free
-  <- .print("Handling ",gold(X,Y)," now.");
-     !pos(X,Y);
-     !ensure(pick,gold(X,Y));
-     ?depot(_,DX,DY);
-     !pos(DX,DY);
-     !ensure(drop, 0);
-     .print("Finish handling ",gold(X,Y));
-     ?score(S);
-     -+score(S+1);
-     .send(leader,tell,dropped);
-     +initial_print1.
 
-/*
 +!handle(gold(X,Y))
   :  not free
   <- .print("Handling ",gold(X,Y)," now.");
@@ -250,7 +232,7 @@ score(0).
      -+score(S+1);
      .send(leader,tell,dropped);
      !choose_gold.
-*/
+
 // if ensure(pick/drop) failed, pursue another gold
 -!handle(G) : G
   <- .print("failed to catch gold ",G);

@@ -17,9 +17,9 @@ initial_print1.
 	
 	.random(R);
 
-	+teste(R);
+	+my_testing(R);
 
-	?teste(R);
+	?my_testing(R);
 
 	.print("R: ", R);
 	
@@ -70,9 +70,9 @@ initial_print4.
 	/*
 	.random(R);
 
-	+teste(R);
+	+my_testing(R);
 
-	?teste(R);
+	?my_testing(R);
 
 	.print("R: ", R);
 	*/
@@ -143,9 +143,9 @@ initial_print6.
 	/*
 	.random(R);
 
-	+teste(R);
+	+my_testing(R);
 
-	?teste(R);
+	?my_testing(R);
 
 	.print("R: ", R);
 	*/

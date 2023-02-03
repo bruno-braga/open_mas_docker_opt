@@ -30,8 +30,8 @@ except requests.exceptions.RequestException as err:
     print(err)
 
 
-#from db_python_netlogo import teste_envio
-#teste_envio('" (agent_id) "', '" tupla "', '" (updated_historic) "')
+#from db_python_netlogo import testing_send
+#testing_send('" (agent_id) "', '" tupla "', '" (updated_historic) "')
 #agent_id, data, path
 try:
 	#solicita_cartorio('" ("m1") "'" "," (1) ", " (400) ")
@@ -49,8 +49,8 @@ except requests.exceptions.Timeout as errt:
 except requests.exceptions.RequestException as err:
     print(err)
 
-#from db_python_netlogo import teste_recebimento
-#teste_recebimento('" ("m1") "')
+#from db_python_netlogo import testing_receiving
+#testing_receiving('" ("m1") "')
 try:
 	#solicita_cartorio('" ("m1") "'" "," (1) ", " (400) ")
     response = requests.get('http://localhost:5000/api/v1/resources/check_new_agents', params={"model":"m1"}, timeout=5)

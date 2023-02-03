@@ -77,7 +77,7 @@ import java.util.Scanner;
 
 import java.util.stream.Stream;
 
-public class teste extends DefaultInternalAction {
+public class testing extends DefaultInternalAction {
 
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {

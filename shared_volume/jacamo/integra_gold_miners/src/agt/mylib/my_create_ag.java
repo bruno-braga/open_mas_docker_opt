@@ -141,7 +141,7 @@ public class my_create_ag extends DefaultInternalAction {
         //     has_df = true
         // }
 
-        //30.05.22 - Teste, funciona, testando se da pra não se importar com o df
+        //30.05.22 - Testando, funciona, testando se da pra não se importar com o df
         //if (!has_df && names.size() == 3) {
         if ((!has_df && names.size() == 3) || (has_df && names.size() == 4)) {
             System.out.println("3 agents and no df, checking if there is a new agent on API to be created...");
@@ -587,23 +587,23 @@ public class my_create_ag extends DefaultInternalAction {
 
 //         System.out.println("Executing JAVA custom code - create");
 
-//         if (Files.exists(Paths.get("/teste/important/send_agent3.txt")) && Files.size(Paths.get("/teste/important/send_agent3.txt")) >= 0 ) {
+//         if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/important/send_agent3.txt")) >= 0 ) {
 //             System.out.println("existe e não vazio");
 //         }
 //         else {
 //             System.out.println("não existe ou vazio");
 //         }
 
-//         if (Files.exists(Paths.get("/teste/important/data0.txt"))) {
-//             System.out.println("/teste/important/data0.txt não existe");
+//         if (Files.exists(Paths.get("/shared_volume/important/data0.txt"))) {
+//             System.out.println("/shared_volume/important/data0.txt não existe");
 //         }
 //         else {
-//             if (Files.exists(Paths.get("/teste/important/send_agent3.txt"))) {
+//             if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt"))) {
 
 //                 // RuntimeServices provides services to create agents in the current platform (Local, JADE, JaCaMo, ...)
 //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
-//                 String fileName = "/teste/important/send_agent3.txt";
+//                 String fileName = "/shared_volume/important/send_agent3.txt";
 //                 File file = new File(fileName);
 
 //                 try (Stream linesStream = Files.lines(file.toPath())) {
@@ -633,11 +633,11 @@ public class my_create_ag extends DefaultInternalAction {
 //                 }
 
 //                 // System.out.println("! Deleting After creating agents !");
-//                 // Files.delete(Paths.get("/teste/important/send_agent3.txt"));
+//                 // Files.delete(Paths.get("/shared_volume/important/send_agent3.txt"));
 //                 // System.out.println("! Deleted !");
 //             }
 //             else {
-//                 System.out.println("/teste/important/send_agent3.txt não existe");
+//                 System.out.println("/shared_volume/important/send_agent3.txt não existe");
 //             }
 //         }
 
@@ -700,18 +700,18 @@ public class my_create_ag extends DefaultInternalAction {
 
 //         System.out.println("Executing JAVA custom code");
 
-//         if (Files.exists(Paths.get("/teste/important/send_agent3.txt")) && Files.size(Paths.get("/teste/important/send_agent3.txt")) >= 0 ) {
+//         if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/important/send_agent3.txt")) >= 0 ) {
 //             System.out.println("existe e não vazio");
 //         }
 //         else {
 //             System.out.println("não existe ou vazio");
 //         }
 
-//         if (Files.exists(Paths.get("/teste/important/data0.txt"))) {
-//             System.out.println("/teste/important/data0.txt não existe");
+//         if (Files.exists(Paths.get("/shared_volume/important/data0.txt"))) {
+//             System.out.println("/shared_volume/important/data0.txt não existe");
 //         }
 //         else {
-//             if (Files.exists(Paths.get("/teste/important/send_agent3.txt"))) {
+//             if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt"))) {
 //                 // use Settings to add initial beliefs and goals for the new agent
 //                 // (as used in the .mas2j project file)
 //                 // Settings s = new Settings();
@@ -722,7 +722,7 @@ public class my_create_ag extends DefaultInternalAction {
 //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
 //                 int line = 1;
-//                 String read_line = Files.readAllLines(Paths.get("/teste/important/send_agent3.txt")).get(line - 1);
+//                 String read_line = Files.readAllLines(Paths.get("/shared_volume/important/send_agent3.txt")).get(line - 1);
 //                 System.out.println(read_line);
 
 //                 String name = read_line;
@@ -744,7 +744,7 @@ public class my_create_ag extends DefaultInternalAction {
 //                 System.out.println("Agent created by custom file");
 //             }
 //             else {
-//                 System.out.println("/teste/important/send_agent3.txt não existe");
+//                 System.out.println("/shared_volume/important/send_agent3.txt não existe");
 //             }
 //         }
 
@@ -807,18 +807,18 @@ public class my_create_ag extends DefaultInternalAction {
 
 //         System.out.println("Executing JAVA custom code");
 
-//         if (Files.exists(Paths.get("/teste/important/send_agent3.txt")) && Files.size(Paths.get("/teste/important/send_agent3.txt")) >= 0 ) {
+//         if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/important/send_agent3.txt")) >= 0 ) {
 //             System.out.println("existe e vazio");
 //         }
 //         else {
 //             System.out.println("não existe ou não vazio");
 //         }
 
-//         if (Files.exists(Paths.get("/teste/important/data0.txt"))) {
-//             System.out.println("/teste/important/data0.txt não existe");
+//         if (Files.exists(Paths.get("/shared_volume/important/data0.txt"))) {
+//             System.out.println("/shared_volume/important/data0.txt não existe");
 //         }
 //         else {
-//             if (Files.exists(Paths.get("/teste/important/send_agent3.txt"))) {
+//             if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt"))) {
 //                 // use Settings to add initial beliefs and goals for the new agent
 //                 // (as used in the .mas2j project file)
 //                 Settings s = new Settings();
@@ -829,7 +829,7 @@ public class my_create_ag extends DefaultInternalAction {
 //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
 //                 int line = 1;
-//                 String read_line = Files.readAllLines(Paths.get("/teste/important/send_agent3.txt")).get(line - 1);
+//                 String read_line = Files.readAllLines(Paths.get("/shared_volume/important/send_agent3.txt")).get(line - 1);
 //                 System.out.println(read_line);
 
 //                 String name = read_line;
@@ -840,7 +840,7 @@ public class my_create_ag extends DefaultInternalAction {
 //                 System.out.println("Agent created by custom file");
 //             }
 //             else {
-//                 System.out.println("/teste/important/send_agent3.txt não existe");
+//                 System.out.println("/shared_volume/important/send_agent3.txt não existe");
 //             }
 //         }
 
@@ -1075,9 +1075,9 @@ public class my_create_ag extends DefaultInternalAction {
 //         String path = "";
 
 //         if (using_docker){
-//             path = "/teste/important/receive_agent3.txt";
+//             path = "/shared_volume/important/receive_agent3.txt";
 //         } else {
-//             path = "teste/important/receive_agent3.txt";
+//             path = "shared_volume/important/receive_agent3.txt";
 //         }
 
 //         System.out.println("Executing JAVA custom code - create");
@@ -1120,7 +1120,7 @@ public class my_create_ag extends DefaultInternalAction {
 //             }
 
 //             // System.out.println("! Deleting After creating agents !");
-//             // Files.delete(Paths.get("/teste/important/send_agent3.txt"));
+//             // Files.delete(Paths.get("/shared_volume/important/send_agent3.txt"));
 //             // System.out.println("! Deleted !");
 //         }
 //         else {
@@ -1188,23 +1188,23 @@ public class my_create_ag extends DefaultInternalAction {
 
 // //         System.out.println("Executing JAVA custom code - create");
 
-// //         if (Files.exists(Paths.get("/teste/important/send_agent3.txt")) && Files.size(Paths.get("/teste/important/send_agent3.txt")) >= 0 ) {
+// //         if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/important/send_agent3.txt")) >= 0 ) {
 // //             System.out.println("existe e não vazio");
 // //         }
 // //         else {
 // //             System.out.println("não existe ou vazio");
 // //         }
 
-// //         if (Files.exists(Paths.get("/teste/important/data0.txt"))) {
-// //             System.out.println("/teste/important/data0.txt não existe");
+// //         if (Files.exists(Paths.get("/shared_volume/important/data0.txt"))) {
+// //             System.out.println("/shared_volume/important/data0.txt não existe");
 // //         }
 // //         else {
-// //             if (Files.exists(Paths.get("/teste/important/send_agent3.txt"))) {
+// //             if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt"))) {
 
 // //                 // RuntimeServices provides services to create agents in the current platform (Local, JADE, JaCaMo, ...)
 // //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
-// //                 String fileName = "/teste/important/send_agent3.txt";
+// //                 String fileName = "/shared_volume/important/send_agent3.txt";
 // //                 File file = new File(fileName);
 
 // //                 try (Stream linesStream = Files.lines(file.toPath())) {
@@ -1234,11 +1234,11 @@ public class my_create_ag extends DefaultInternalAction {
 // //                 }
 
 // //                 // System.out.println("! Deleting After creating agents !");
-// //                 // Files.delete(Paths.get("/teste/important/send_agent3.txt"));
+// //                 // Files.delete(Paths.get("/shared_volume/important/send_agent3.txt"));
 // //                 // System.out.println("! Deleted !");
 // //             }
 // //             else {
-// //                 System.out.println("/teste/important/send_agent3.txt não existe");
+// //                 System.out.println("/shared_volume/important/send_agent3.txt não existe");
 // //             }
 // //         }
 
@@ -1301,18 +1301,18 @@ public class my_create_ag extends DefaultInternalAction {
 
 // //         System.out.println("Executing JAVA custom code");
 
-// //         if (Files.exists(Paths.get("/teste/important/send_agent3.txt")) && Files.size(Paths.get("/teste/important/send_agent3.txt")) >= 0 ) {
+// //         if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/important/send_agent3.txt")) >= 0 ) {
 // //             System.out.println("existe e não vazio");
 // //         }
 // //         else {
 // //             System.out.println("não existe ou vazio");
 // //         }
 
-// //         if (Files.exists(Paths.get("/teste/important/data0.txt"))) {
-// //             System.out.println("/teste/important/data0.txt não existe");
+// //         if (Files.exists(Paths.get("/shared_volume/important/data0.txt"))) {
+// //             System.out.println("/shared_volume/important/data0.txt não existe");
 // //         }
 // //         else {
-// //             if (Files.exists(Paths.get("/teste/important/send_agent3.txt"))) {
+// //             if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt"))) {
 // //                 // use Settings to add initial beliefs and goals for the new agent
 // //                 // (as used in the .mas2j project file)
 // //                 // Settings s = new Settings();
@@ -1323,7 +1323,7 @@ public class my_create_ag extends DefaultInternalAction {
 // //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
 // //                 int line = 1;
-// //                 String read_line = Files.readAllLines(Paths.get("/teste/important/send_agent3.txt")).get(line - 1);
+// //                 String read_line = Files.readAllLines(Paths.get("/shared_volume/important/send_agent3.txt")).get(line - 1);
 // //                 System.out.println(read_line);
 
 // //                 String name = read_line;
@@ -1345,7 +1345,7 @@ public class my_create_ag extends DefaultInternalAction {
 // //                 System.out.println("Agent created by custom file");
 // //             }
 // //             else {
-// //                 System.out.println("/teste/important/send_agent3.txt não existe");
+// //                 System.out.println("/shared_volume/important/send_agent3.txt não existe");
 // //             }
 // //         }
 
@@ -1408,18 +1408,18 @@ public class my_create_ag extends DefaultInternalAction {
 
 // //         System.out.println("Executing JAVA custom code");
 
-// //         if (Files.exists(Paths.get("/teste/important/send_agent3.txt")) && Files.size(Paths.get("/teste/important/send_agent3.txt")) >= 0 ) {
+// //         if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/important/send_agent3.txt")) >= 0 ) {
 // //             System.out.println("existe e vazio");
 // //         }
 // //         else {
 // //             System.out.println("não existe ou não vazio");
 // //         }
 
-// //         if (Files.exists(Paths.get("/teste/important/data0.txt"))) {
-// //             System.out.println("/teste/important/data0.txt não existe");
+// //         if (Files.exists(Paths.get("/shared_volume/important/data0.txt"))) {
+// //             System.out.println("/shared_volume/important/data0.txt não existe");
 // //         }
 // //         else {
-// //             if (Files.exists(Paths.get("/teste/important/send_agent3.txt"))) {
+// //             if (Files.exists(Paths.get("/shared_volume/important/send_agent3.txt"))) {
 // //                 // use Settings to add initial beliefs and goals for the new agent
 // //                 // (as used in the .mas2j project file)
 // //                 Settings s = new Settings();
@@ -1430,7 +1430,7 @@ public class my_create_ag extends DefaultInternalAction {
 // //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
 // //                 int line = 1;
-// //                 String read_line = Files.readAllLines(Paths.get("/teste/important/send_agent3.txt")).get(line - 1);
+// //                 String read_line = Files.readAllLines(Paths.get("/shared_volume/important/send_agent3.txt")).get(line - 1);
 // //                 System.out.println(read_line);
 
 // //                 String name = read_line;
@@ -1441,7 +1441,7 @@ public class my_create_ag extends DefaultInternalAction {
 // //                 System.out.println("Agent created by custom file");
 // //             }
 // //             else {
-// //                 System.out.println("/teste/important/send_agent3.txt não existe");
+// //                 System.out.println("/shared_volume/important/send_agent3.txt não existe");
 // //             }
 // //         }
 
