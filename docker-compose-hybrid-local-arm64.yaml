@@ -157,7 +157,7 @@ services:
     environment:
     - PYTHONUNBUFFERED=1
     - my_hostname=modelo_1
-    - model_file=/teste/m1_varios_arquivos.nlogo
+    - model_file=/teste/open_sugarscape_m1.nlogo
     - experiment=experiment1
     - auto_run=True
     - host=144.22.197.41
@@ -180,7 +180,7 @@ services:
     environment:
     - PYTHONUNBUFFERED=1
     - my_hostname=modelo_2
-    - model_file=/teste/m2_varios_arquivos.nlogo
+    - model_file=/teste/open_sugarscape_m2.nlogo
     - experiment=experiment1
     - auto_run=True
     - host=144.22.197.41
@@ -334,7 +334,7 @@ services:
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - my_hostname=modelo_1
-#     - model_file=/teste/m1_varios_arquivos.nlogo
+#     - model_file=/teste/open_sugarscape_m1.nlogo
 #     - experiment=experiment1
 #     - auto_run=True
 #     volumes:
@@ -356,7 +356,7 @@ services:
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - my_hostname=modelo_2
-#     - model_file=/teste/m2_varios_arquivos.nlogo
+#     - model_file=/teste/open_sugarscape_m2.nlogo
 #     - experiment=experiment1
 #     - auto_run=True
 #     volumes:
@@ -529,7 +529,7 @@ services:
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - my_hostname=modelo_1
-#     - model_file=/teste/m1_varios_arquivos.nlogo
+#     - model_file=/teste/open_sugarscape_m1.nlogo
 #     - experiment=experiment1
 #     - auto_run=True
 #     volumes:
@@ -550,7 +550,7 @@ services:
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - my_hostname=modelo_2
-#     - model_file=/teste/m2_varios_arquivos.nlogo
+#     - model_file=/teste/open_sugarscape_m2.nlogo
 #     - experiment=experiment1
 #     - auto_run=True
 #     volumes:
