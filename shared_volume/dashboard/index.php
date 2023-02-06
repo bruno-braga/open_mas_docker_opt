@@ -1,11 +1,3 @@
-<!-- CSS only -->
-<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-<!-- JavaScript Bundle with Popper -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
--->
-
-
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
@@ -51,9 +43,9 @@ function CallAPI($method, $url, $data = false)
       $url = sprintf("%s?%s", $url, http_build_query($data));
   }
 
-      // Optional Authentication:
-      // curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-      // curl_setopt($curl, CURLOPT_USERPWD, "username:password");
+  // Optional Authentication:
+  // curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+  // curl_setopt($curl, CURLOPT_USERPWD, "username:password");
 
   curl_setopt($curl, CURLOPT_URL, $url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -66,7 +58,6 @@ function CallAPI($method, $url, $data = false)
 }
 
 $host = getenv("host");
-  // echo "host: ".$host;
 $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m1");
 $response = json_decode($response);
 
@@ -89,12 +80,6 @@ echo '
 
 foreach ($response as $value) {
   echo "<tr>";
-     // $c++;
-     // $line = explode(" ", $lines);
-
-     // $line = str_replace(']', ' ', $line);
-
-     // echo '<td class="ids">'.$line[1].'</td>';
   $agent_id = $value[0];
   $data = str_replace("[", "", $value[1]);
   $data = str_replace("]", "", $data);
@@ -109,8 +94,7 @@ foreach ($response as $value) {
   echo '<td>'.$metabolism.'</td>';
   echo '<td class="vision">'.$vision.'</td>';
   echo '<td>'.$processed.'</td>';
-  if (in_array(($agent_id), $out)) { 
-      //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
+  if (in_array(($agent_id), $out)) {
     echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
   }
   else
@@ -157,12 +141,6 @@ echo '
 
 foreach ($response as $value) {
   echo "<tr>";
-     // $c++;
-     // $line = explode(" ", $lines);
-
-     // $line = str_replace(']', ' ', $line);
-
-     // echo '<td class="ids">'.$line[1].'</td>';
   $agent_id = $value[0];
   $data = str_replace("[", "", $value[1]);
   $data = str_replace("]", "", $data);
@@ -177,8 +155,7 @@ foreach ($response as $value) {
   echo '<td>'.$metabolism.'</td>';
   echo '<td class="vision">'.$vision.'</td>';
   echo '<td>'.$processed.'</td>';
-  if (in_array(($agent_id), $out)) { 
-      //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
+  if (in_array(($agent_id), $out)) {
     echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
   }
   else
@@ -225,12 +202,7 @@ echo '
 
 foreach ($response as $value) {
   echo "<tr>";
-     // $c++;
-     // $line = explode(" ", $lines);
 
-     // $line = str_replace(']', ' ', $line);
-
-     // echo '<td class="ids">'.$line[1].'</td>';
   $agent_id = $value[0];
   $data = str_replace("[", "", $value[1]);
   $data = str_replace("]", "", $data);
@@ -245,8 +217,7 @@ foreach ($response as $value) {
   echo '<td>'.$metabolism.'</td>';
   echo '<td class="vision">'.$vision.'</td>';
   echo '<td>'.$processed.'</td>';
-  if (in_array(($agent_id), $out)) { 
-      //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
+  if (in_array(($agent_id), $out)) {
     echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
   }
   else
@@ -293,12 +264,6 @@ echo '
 
 foreach ($response as $value) {
   echo "<tr>";
-     // $c++;
-     // $line = explode(" ", $lines);
-
-     // $line = str_replace(']', ' ', $line);
-
-     // echo '<td class="ids">'.$line[1].'</td>';
   $agent_id = $value[0];
   $data = str_replace("[", "", $value[1]);
   $data = str_replace("]", "", $data);
@@ -313,8 +278,7 @@ foreach ($response as $value) {
   echo '<td>'.$metabolism.'</td>';
   echo '<td class="vision">'.$vision.'</td>';
   echo '<td>'.$processed.'</td>';
-  if (in_array(($agent_id), $out)) { 
-      //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
+  if (in_array(($agent_id), $out)) {
     echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
   }
   else
@@ -347,18 +311,6 @@ echo "<center><h3 id='biggest_path'></h3></center>";
 <center><h1>Conteúdo de Arquivo</h1></center>
 <pre id="contents" class="normal">Content of file will be load here when you press the button</pre>
 
-  <!-- <script type="text/javascript">
-    function populatePre(url) {
-      var xhr = new XMLHttpRequest();
-      xhr.onload = function () {
-        document.getElementById('contents').textContent = this.responseText;
-      };
-      xhr.open('GET', url);
-      xhr.send();
-    }
-    populatePre('../jacamo/src/src/agt/list/1.asl');
-  </script> -->
-
   <style>
     tfoot input {
       width: 100%;
@@ -381,21 +333,10 @@ echo "<center><h3 id='biggest_path'></h3></center>";
     var vision = [];
     var final_array = [];
 
-	// $(document).ready( function () {
-	//     $('#example').DataTable();
-	// } );
-
   $(document).ready(function() {
-    //alert(files.includes('800'));
-    // console.log(files);
     $(".buttonSubmit").click(function() {
       var fired_button = $(this).html();
-      //alert("value: "+fired_button);
-
-      //'../jacamo/INTEGRANDO COM API/gradle-docker/fff/src/agt/list/*.asl'
-      //var url = '../jacamo/INTEGRANDO COM API/gradle-docker/fff/src/agt/list/'+fired_button+'.asl';
       var url = '../jacamo/jacamo_model/src/agt/list/'+fired_button+'.asl';
-      // var url = '../jacamo/INTEGRANDO COM API/eee/src/agt/list/'+fired_button+'.asl';
       var xhr = new XMLHttpRequest();
       xhr.onload = function () {
         document.getElementById('contents').textContent = this.responseText;
@@ -405,25 +346,6 @@ echo "<center><h3 id='biggest_path'></h3></center>";
     });
 
     $('#files_table').DataTable();
-    // $(".btnSubmit").click(function(){
-    //   var button = $(this).html();
-    //   alert(button);
-
-    //   var url = '../jacamo/src/src/agt/list/'+button+'.asl';
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.onload = function () {
-    //     document.getElementById('contents').textContent = this.responseText;
-    //   };
-    //   xhr.open('GET', url);
-    //   xhr.send();
-    // });
-
-
-    // Setup - add a text input to each footer cell
-    // $('#example tfoot th').each( function () {
-    //   var title = $(this).text();
-    //   $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-    // } );
 
     $('#example1 tfoot th').each( function () {
       var title = $(this).text();
@@ -520,39 +442,12 @@ echo "<center><h3 id='biggest_path'></h3></center>";
   } );
 
 $('#example .ids').each(function() {
-    // alert($(this).html());
     ids.push($(this).html())
   });
-
-  // $('#example .vision').each(function() {
-  //   // alert($(this).html());
-  //   vision.push($(this).html())
-  // });
 
   for(var i=0; i<vision.length; i++) {
     final_array.push({x: ids[i].replace(/\D/g, ""), y: vision[i].replace(/\D/g, "")});
   }
-
-  // for(var i=0; i<final_array.length; i++) {
-  //   console.log(final_array[i]);
-  // }
-
-
-  // FUNCIONA, MAS TA PEGANDO NO FILE
-  // var maxlen=0;
-  // var tdLongest;
-  // $('table td').each(function(){
-  //   if($(this).text().length > maxlen)
-  //   {
-  //     maxlen = $(this).text().length;
-  //     tdLongest = $(this);
-  //   }
-  // });
-
-  // // console.log(tdLongest.text());
-  // // console.log(maxlen);
-
-  // $('#biggest_path').text(tdLongest.text());
 
   var maxlen=0;
   var tdLongest;
@@ -564,51 +459,5 @@ $('#example .ids').each(function() {
     }
   });
 
-  // console.log(tdLongest.text());
-  // console.log(maxlen);
-
   $('#biggest_path').text(tdLongest.text());
-
-  //tdLongest.closest('tr').css('background-color','#A52A2A');
-
-//   const data = {
-//     datasets: [{
-//       label: 'ID x Vision',
-//       data: final_array,
-//     // data: [{
-//     //   x: -10,
-//     //   y: 0
-//     // }, {
-//     //   x: 0,
-//     //   y: 10
-//     // }, {
-//     //   x: 10,
-//     //   y: 5
-//     // }, {
-//     //   x: 0.5,
-//     //   y: 5.5
-//     // }],
-//     backgroundColor: 'rgb(255, 99, 132)'
-//   }],
-// };
-
-// const config = {
-//   type: 'scatter',
-//   data: data,
-//   options: {
-//     scales: {
-//       x: {
-//         type: 'linear',
-//         position: 'bottom',
-//         display: true,
-//         label: 'ID'
-//       },
-//       y: {
-//         display: true,
-//         label: 'Vision'
-//       }
-//     }
-//   }
-// };
 </script>
-
