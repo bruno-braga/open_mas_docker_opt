@@ -82,7 +82,7 @@
   <tbody>
   ';
 
-//$file_name = "important/output.txt";
+//$file_name = "netlogo_output/output.txt";
   $file_name =str_replace(["[","]", "\""],"", $_ENV["output_agents"]);
 
   if(file_exists($file_name)){
@@ -140,7 +140,7 @@
      }
 
      fclose($handle);
-     $file_name = "/shared_volume/important/general_send_agent.txt";
+     $file_name = "/shared_volume/netlogo_output/general_send_agent.txt";
 
       if(file_exists($file_name)){
         $handle = fopen($file_name, "r");

@@ -511,7 +511,7 @@ def sanity_test():
   if docker_debugger: print("m2_alive:")
   if docker_debugger: print(m2_alive)
 
-  # fname = "/shared_volume/important/m1_alive.txt"
+  # fname = "/shared_volume/netlogo_output/m1_alive.txt"
   # if(os.path.isfile(fname)):
   #   f = open(fname, "r")
   #   text = f.read()
@@ -522,7 +522,7 @@ def sanity_test():
   # if docker_debugger: print("m1_alive:")
   # if docker_debugger: print(m1_alive)
 
-  # fname = "/shared_volume/important/m2_alive.txt"
+  # fname = "/shared_volume/netlogo_output/m2_alive.txt"
   # if(os.path.isfile(fname)):
   #   f = open(fname, "r")
   #   text = f.read()
@@ -611,7 +611,7 @@ def sanity_test():
 
   cnx.close()
 
-  # file_path = "/shared_volume/important/tests/errors.txt"
+  # file_path = "/shared_volume/netlogo_output/tests/errors.txt"
   # with open(file_path,"a+") as f:
   #   f.write("aaa"+"\n")
 

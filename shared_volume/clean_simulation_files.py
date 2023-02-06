@@ -4,10 +4,10 @@ import time
 
 if __name__ == '__main__':
     files_to_delete = [
-        "/teste/important/m1_output.txt",
-        "/teste/important/m1_alive.txt",
-        "/teste/important/m2_output.txt",
-        "/teste/important/m2_alive.txt"
+        "/teste/netlogo_output/m1_output.txt",
+        "/teste/netlogo_output/m1_alive.txt",
+        "/teste/netlogo_output/m2_output.txt",
+        "/teste/netlogo_output/m2_alive.txt"
     ]
 
     file_path = "/teste/jacamo/integra_gold_miners/src/agt/list/"
@@ -23,28 +23,28 @@ if __name__ == '__main__':
         else:
             print(filename + " does not exists")
 
-    # filename = "/teste/important/m1_output.txt"
+    # filename = "/teste/netlogo_output/m1_output.txt"
     # if os.path.exists(filename):
     #     print("Deleting file: "+filename)
     #     os.remove(filename)
     # else:
     #     print(filename + " does not exists")
 
-    # filename = "/teste/important/m1_alive.txt"
+    # filename = "/teste/netlogo_output/m1_alive.txt"
     # if os.path.exists(filename):
     #     print("Deleting file: "+filename)
     #     os.remove(filename)
     # else:
     #     print(filename + " does not exists")
 
-    # filename = "/teste/important/m2_output.txt"
+    # filename = "/teste/netlogo_output/m2_output.txt"
     # if os.path.exists(filename):
     #     print("Deleting file: "+filename)
     #     os.remove(filename)
     # else:
     #     print(filename + " does not exists")
 
-    # filename = "/teste/important/m2_alive.txt"
+    # filename = "/teste/netlogo_output/m2_alive.txt"
     # if os.path.exists(filename):
     #     print("Deleting file: "+filename)
     #     os.remove(filename)
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     #     print(filename + " does not exists")
 
 
-    # filename = "/teste/important/errors.txt"
+    # filename = "/teste/netlogo_output/errors.txt"
     # if os.path.exists(filename):
     #     print("Deleting file: "+filename)
     #     os.remove(filename)

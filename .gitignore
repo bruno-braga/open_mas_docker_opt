@@ -12,18 +12,18 @@ shared_volume/jacamo/integra_gold_miners/src/agt/list/**
 # exception to the rule
 !shared_volume/jacamo/integra_gold_miners/src/agt/list/.gitkeep
 
-shared_volume/important/m1_alive.txt
-shared_volume/important/m1_output.txt
-shared_volume/important/m2_alive.txt
-shared_volume/important/m2_output.txt
+shared_volume/netlogo_output/m1_alive.txt
+shared_volume/netlogo_output/m1_output.txt
+shared_volume/netlogo_output/m2_alive.txt
+shared_volume/netlogo_output/m2_output.txt
 shared_volume/jacamo/integra_gold_miners/mas.log
 shared_volume/jacamo/integra_gold_miners/mas.log.lck
 
-shared_volume/important/tests/**
+shared_volume/netlogo_output/tests/**
 # exception to the rule
-!shared_volume/important/tests/modelo.html
+!shared_volume/netlogo_output/tests/modelo.html
 
 
-#shared_volume/important/**
+#shared_volume/netlogo_output/**
 # exception to the rule
-#!shared_volume/important/.gitkeep
+#!shared_volume/netlogo_output/.gitkeep

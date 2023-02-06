@@ -40,7 +40,7 @@ echo "<center><h1>List of agents</h1></center>";
       <tbody>
     ';
 
-//$file_name = "important/output.txt";
+//$file_name = "netlogo_output/output.txt";
 $file_name =str_replace(["[","]", "\""],"", $_ENV["output_agents"]);
 
 if(file_exists($file_name)){

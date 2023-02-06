@@ -65,7 +65,7 @@ to new_solicita_cartorio
 end
 
 to solicita_cartorio
-  let path2 "important/request_new_agent.txt"
+  let path2 "netlogo_output/request_new_agent.txt"
   file-open path2
   file-print (word "" 1 " " initial-population)
   file-close
@@ -183,8 +183,8 @@ end
 to send_agent_to_model
   if (send_agents)
   [
-    ;let path2 "important/send_agent.txt"
-    let path2 (word "important/2/out" (agent_id) ".txt")
+    ;let path2 "netlogo_output/send_agent.txt"
+    let path2 (word "netlogo_output/2/out" (agent_id) ".txt")
     file-open path2
     ;file-write (word "id:" random 3 ",action:" random 100)
     ;breed [test_agents test_agent]
@@ -212,7 +212,7 @@ to send_agent_to_model
     ;  ]
     file-close
 
-    set path2 "important/general_send_agent.txt"
+    set path2 "netlogo_output/general_send_agent.txt"
     file-open path2
     ;file-write (word "id:" random 3 ",action:" random 100)
     ;breed [test_agents test_agent]
@@ -366,7 +366,7 @@ end
 
 to check_new_agent
   file-close-all
-  let original_file "important/list_of_agents_2.txt"
+  let original_file "netlogo_output/list_of_agents_2.txt"
   let to_delete []
   let files_to_check []
   if (file-exists? original_file)
@@ -509,7 +509,7 @@ to check_new_agent
 ;    ;file-write (word "a")
 ;  ]
 ;  file-close-all
-;  let original_file "important/list_of_agents.txt"
+;  let original_file "netlogo_output/list_of_agents.txt"
 ;  let to_delete []
 ;  if (file-exists? original_file)
 ;  [
@@ -584,7 +584,7 @@ end
 
 
 to print_alive_agents
-  let file_path "important/m2_alive.txt"
+  let file_path "netlogo_output/m2_alive.txt"
   file-open file_path
   let alive_agents ""
   foreach sort-on [agent_id] turtles
@@ -619,7 +619,7 @@ to print_alive_agents
 end
 
 to print_alive_agents_single
-  let file_path "important/m2_alive.txt"
+  let file_path "netlogo_output/m2_alive.txt"
   file-open file_path
   foreach sort-on [agent_id] turtles
   [
@@ -642,7 +642,7 @@ to print_alive_agents_single
 end
 
 to load-config-from-file2
-  file-open "important/input_file.txt"
+  file-open "netlogo_output/input_file.txt"
   while [not file-at-end?]
   [
     let line file-read
@@ -729,12 +729,12 @@ to export_output_to_File
 
   print("NL: AGENTES VIVOS: ")
   print_alive_agents
-;  export-output "important/m2.txt"
+;  export-output "netlogo_output/m2.txt"
   print("NL: ---------- FIM!")
 end
 
 to print_agent_random
-  let path2 "important/output_file.txt"
+  let path2 "netlogo_output/output_file.txt"
   file-open path2
   ;file-write (word "id:" random 3 ",action:" random 100)
   ;breed [test_agents test_agent]
