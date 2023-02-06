@@ -9,6 +9,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<center><h1>List of agents: m1</h1></center>
+<table id="example1" class="display" style="width:100%">
+<thead>
+<tr>
+<th>ID</th>
+<th>Sugar</th>
+<th>Metabolism</th>
+<th>Vision</th>
+<th>Processed</th>
+<th>File</th>
+<th>Traveling Path</th>
+</tr>
+</thead>
+<tbody>
+
 <?php
 $out = array();
 foreach (glob('../jacamo/jacamo_model/src/agt/list/*.asl') as $filename) {
@@ -20,8 +35,8 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-  // Method: POST, PUT, GET etc
-  // Data: array("param" => "value") ==> index.php?param=value
+// Method: POST, PUT, GET etc
+// Data: array("param" => "value") ==> index.php?param=value
 
 function CallAPI($method, $url, $data = false)
 {
@@ -61,23 +76,6 @@ $host = getenv("host");
 $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m1");
 $response = json_decode($response);
 
-echo "<center><h1>List of agents: m1</h1></center>";
-echo '
-<table id="example1" class="display" style="width:100%">
-<thead>
-<tr>
-<th>ID</th>
-<th>Sugar</th>
-<th>Metabolism</th>
-<th>Vision</th>
-<th>Processed</th>
-<th>File</th>
-<th>Traveling Path</th>
-</tr>
-</thead>
-<tbody>
-';
-
 foreach ($response as $value) {
   echo "<tr>";
   $agent_id = $value[0];
@@ -103,8 +101,8 @@ foreach ($response as $value) {
   echo '<td class ="path">'.$path.'</td>';
   echo "</tr>";
 }
+?>
 
-echo "
 </tbody>
 <tfoot>
 <tr>
@@ -117,13 +115,9 @@ echo "
 <th>Traveling Path</th>
 </tr>
 </tfoot>
-</table>";
+</table>
 
-$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m2");
-$response = json_decode($response);
-
-echo "<center><h1>List of agents: m2</h1></center>";
-echo '
+<center><h1>List of agents: m2</h1></center>
 <table id="example2" class="display" style="width:100%">
 <thead>
 <tr>
@@ -137,7 +131,11 @@ echo '
 </tr>
 </thead>
 <tbody>
-';
+
+<?php
+
+$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m2");
+$response = json_decode($response);
 
 foreach ($response as $value) {
   echo "<tr>";
@@ -165,7 +163,8 @@ foreach ($response as $value) {
   echo "</tr>";
 }
 
-echo "
+?>
+
 </tbody>
 <tfoot>
 <tr>
@@ -178,13 +177,9 @@ echo "
 <th>Traveling Path</th>
 </tr>
 </tfoot>
-</table>";
+</table>
 
-$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m3");
-$response = json_decode($response);
-
-echo "<center><h1>List of agents: m3</h1></center>";
-echo '
+<center><h1>List of agents: m3</h1></center>
 <table id="example3" class="display" style="width:100%">
 <thead>
 <tr>
@@ -198,7 +193,11 @@ echo '
 </tr>
 </thead>
 <tbody>
-';
+
+<?php
+
+$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m3");
+$response = json_decode($response);
 
 foreach ($response as $value) {
   echo "<tr>";
@@ -227,7 +226,8 @@ foreach ($response as $value) {
   echo "</tr>";
 }
 
-echo "
+?>
+
 </tbody>
 <tfoot>
 <tr>
@@ -240,13 +240,8 @@ echo "
 <th>Traveling Path</th>
 </tr>
 </tfoot>
-</table>";
 
-$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=router");
-$response = json_decode($response);
-
-echo "<center><h1>List of agents: router</h1></center>";
-echo '
+<center><h1>List of agents: router</h1></center>
 <table id="example4" class="display" style="width:100%">
 <thead>
 <tr>
@@ -260,7 +255,11 @@ echo '
 </tr>
 </thead>
 <tbody>
-';
+
+<?php
+
+$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=router");
+$response = json_decode($response);
 
 foreach ($response as $value) {
   echo "<tr>";
@@ -288,7 +287,8 @@ foreach ($response as $value) {
   echo "</tr>";
 }
 
-echo "
+?>
+
 </tbody>
 <tfoot>
 <tr>
@@ -301,11 +301,10 @@ echo "
 <th>Traveling Path</th>
 </tr>
 </tfoot>
-</table>";
+</table>
 
-echo "<center><h1>Biggest Path:</h1></center>";
-echo "<center><h3 id='biggest_path'></h3></center>";
-?>
+<center><h1>Biggest Path:</h1></center>
+<center><h3 id='biggest_path'></h3></center>
 
 <br> <br>
 <center><h1>Conteúdo de Arquivo</h1></center>
