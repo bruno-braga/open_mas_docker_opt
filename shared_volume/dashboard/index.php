@@ -66,7 +66,7 @@
   }
 
   $host = getenv("host");
-  echo "host: ".$host;
+  // echo "host: ".$host;
   $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m1");
   $response = json_decode($response);
 
@@ -79,7 +79,7 @@
   <th>Sugar</th>
   <th>Metabolism</th>
   <th>Vision</th>
-  <th>processed</th>
+  <th>Processed</th>
   <th>File</th>
   <th>Traveling Path</th>
   </tr>
@@ -128,7 +128,7 @@
      <th>Sugar</th>
      <th>Metabolism</th>
      <th>Vision</th>
-     <th>processed</th>
+     <th>Processed</th>
      <th>File</th>
      <th>Traveling Path</th>
      </tr>
@@ -147,7 +147,7 @@
   <th>Sugar</th>
   <th>Metabolism</th>
   <th>Vision</th>
-  <th>processed</th>
+  <th>Processed</th>
   <th>File</th>
   <th>Traveling Path</th>
   </tr>
@@ -196,7 +196,7 @@
      <th>Sugar</th>
      <th>Metabolism</th>
      <th>Vision</th>
-     <th>processed</th>
+     <th>Processed</th>
      <th>File</th>
      <th>Traveling Path</th>
      </tr>
@@ -215,7 +215,7 @@
   <th>Sugar</th>
   <th>Metabolism</th>
   <th>Vision</th>
-  <th>processed</th>
+  <th>Processed</th>
   <th>File</th>
   <th>Traveling Path</th>
   </tr>
@@ -264,7 +264,7 @@
      <th>Sugar</th>
      <th>Metabolism</th>
      <th>Vision</th>
-     <th>processed</th>
+     <th>Processed</th>
      <th>File</th>
      <th>Traveling Path</th>
      </tr>
@@ -283,7 +283,7 @@
   <th>Sugar</th>
   <th>Metabolism</th>
   <th>Vision</th>
-  <th>processed</th>
+  <th>Processed</th>
   <th>File</th>
   <th>Traveling Path</th>
   </tr>
@@ -332,7 +332,7 @@
      <th>Sugar</th>
      <th>Metabolism</th>
      <th>Vision</th>
-     <th>processed</th>
+     <th>Processed</th>
      <th>File</th>
      <th>Traveling Path</th>
      </tr>
