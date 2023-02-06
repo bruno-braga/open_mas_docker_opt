@@ -10,7 +10,7 @@ if __name__ == '__main__':
         "/teste/netlogo_output/m2_alive.txt"
     ]
 
-    file_path = "/teste/jacamo/integra_gold_miners/src/agt/list/"
+    file_path = "/teste/jacamo/jacamo_model/src/agt/list/"
     
     for clean_up in glob.glob(file_path+'*.*'):
         if not clean_up.endswith('.gitkeep'):
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     #     print(filename + " does not exists")
 
 
-    # file_path = "/teste/jacamo/integra_gold_miners/src/agt/list/"
+    # file_path = "/teste/jacamo/jacamo_model/src/agt/list/"
     # for clean_up in glob.glob(file_path+'*.*'):
     #     #print(clean_up)
     #     if not clean_up.endswith('.gitkeep'):

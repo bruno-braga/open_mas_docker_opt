@@ -2,22 +2,22 @@
 
 shared_volume/__pycache__/**
 
-shared_volume/jacamo/integra_gold_miners/.gradle/**
-shared_volume/jacamo/integra_gold_miners/build/**
+shared_volume/jacamo/jacamo_model/.gradle/**
+shared_volume/jacamo/jacamo_model/build/**
 
-shared_volume/jacamo/integra_gold_miners/mas.log
-shared_volume/jacamo/integra_gold_miners/mas.log.lck
+shared_volume/jacamo/jacamo_model/mas.log
+shared_volume/jacamo/jacamo_model/mas.log.lck
 
-shared_volume/jacamo/integra_gold_miners/src/agt/list/**
+shared_volume/jacamo/jacamo_model/src/agt/list/**
 # exception to the rule
-!shared_volume/jacamo/integra_gold_miners/src/agt/list/.gitkeep
+!shared_volume/jacamo/jacamo_model/src/agt/list/.gitkeep
 
 shared_volume/netlogo_output/m1_alive.txt
 shared_volume/netlogo_output/m1_output.txt
 shared_volume/netlogo_output/m2_alive.txt
 shared_volume/netlogo_output/m2_output.txt
-shared_volume/jacamo/integra_gold_miners/mas.log
-shared_volume/jacamo/integra_gold_miners/mas.log.lck
+shared_volume/jacamo/jacamo_model/mas.log
+shared_volume/jacamo/jacamo_model/mas.log.lck
 
 shared_volume/netlogo_output/tests/**
 # exception to the rule

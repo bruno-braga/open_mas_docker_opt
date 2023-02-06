@@ -602,7 +602,7 @@ def sanity_test():
   m3_alive_agent = m3_alive[0]
 
   for agent_id in m3_processed_agents:
-    fname = "/shared_volume/jacamo/integra_gold_miners/src/agt/list/"+str(agent_id)+".asl"
+    fname = "/shared_volume/jacamo/jacamo_model/src/agt/list/"+str(agent_id)+".asl"
     if(not os.path.isfile(fname)):
       if(agent_id != m3_alive_agent):
         if docker_debugger: print("**Error** "+str(agent_id)+ " asl file does not exists")

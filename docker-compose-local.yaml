@@ -14,7 +14,7 @@ services:
       - "3273:3273"
     volumes:
       - ./shared_volume:/shared_volume
-      - ./shared_volume/jacamo/integra_gold_miners:/home/gradle/project
+      - ./shared_volume/jacamo/jacamo_model:/home/gradle/project
     environment:
       - host=api
     networks:
@@ -208,7 +208,7 @@ services:
 #       - "3273:3273"
 #     volumes:
 #       - ./shared_volume:/shared_volume
-#       - ./shared_volume/jacamo/integra_gold_miners:/home/gradle/project
+#       - ./shared_volume/jacamo/jacamo_model:/home/gradle/project
 #     networks:
 #       - my_network
 #     depends_on:
