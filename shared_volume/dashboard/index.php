@@ -17,335 +17,335 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <?php
-  $out = array();
-  foreach (glob('../jacamo/jacamo_model/src/agt/list/*.asl') as $filename) {
-    $p = pathinfo($filename);
-    $out[] = $p['filename'];
-  }
+<?php
+$out = array();
+foreach (glob('../jacamo/jacamo_model/src/agt/list/*.asl') as $filename) {
+  $p = pathinfo($filename);
+  $out[] = $p['filename'];
+}
 
-  ini_set('display_errors', '1');
-  ini_set('display_startup_errors', '1');
-  error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
   // Method: POST, PUT, GET etc
   // Data: array("param" => "value") ==> index.php?param=value
 
-  function CallAPI($method, $url, $data = false)
+function CallAPI($method, $url, $data = false)
+{
+  $curl = curl_init();
+
+  switch ($method)
   {
-      $curl = curl_init();
+    case "POST":
+    curl_setopt($curl, CURLOPT_POST, 1);
 
-      switch ($method)
-      {
-          case "POST":
-              curl_setopt($curl, CURLOPT_POST, 1);
-
-              if ($data)
-                  curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-              break;
-          case "PUT":
-              curl_setopt($curl, CURLOPT_PUT, 1);
-              break;
-          default:
-              if ($data)
-                  $url = sprintf("%s?%s", $url, http_build_query($data));
-      }
+    if ($data)
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    break;
+    case "PUT":
+    curl_setopt($curl, CURLOPT_PUT, 1);
+    break;
+    default:
+    if ($data)
+      $url = sprintf("%s?%s", $url, http_build_query($data));
+  }
 
       // Optional Authentication:
       // curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
       // curl_setopt($curl, CURLOPT_USERPWD, "username:password");
 
-      curl_setopt($curl, CURLOPT_URL, $url);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
-      $result = curl_exec($curl);
+  $result = curl_exec($curl);
 
-      curl_close($curl);
+  curl_close($curl);
 
-      return $result;
-  }
+  return $result;
+}
 
-  $host = getenv("host");
+$host = getenv("host");
   // echo "host: ".$host;
-  $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m1");
-  $response = json_decode($response);
+$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m1");
+$response = json_decode($response);
 
-  echo "<center><h1>List of agents: m1</h1></center>";
-  echo '
-  <table id="example1" class="display" style="width:100%">
-  <thead>
-  <tr>
-  <th>ID</th>
-  <th>Sugar</th>
-  <th>Metabolism</th>
-  <th>Vision</th>
-  <th>Processed</th>
-  <th>File</th>
-  <th>Traveling Path</th>
-  </tr>
-  </thead>
-  <tbody>
-  ';
+echo "<center><h1>List of agents: m1</h1></center>";
+echo '
+<table id="example1" class="display" style="width:100%">
+<thead>
+<tr>
+<th>ID</th>
+<th>Sugar</th>
+<th>Metabolism</th>
+<th>Vision</th>
+<th>Processed</th>
+<th>File</th>
+<th>Traveling Path</th>
+</tr>
+</thead>
+<tbody>
+';
 
-  foreach ($response as $value) {
-    echo "<tr>";
+foreach ($response as $value) {
+  echo "<tr>";
      // $c++;
      // $line = explode(" ", $lines);
 
      // $line = str_replace(']', ' ', $line);
 
      // echo '<td class="ids">'.$line[1].'</td>';
-    $agent_id = $value[0];
-    $data = str_replace("[", "", $value[1]);
-    $data = str_replace("]", "", $data);
-    $data = explode(" ", $data);
-    $sugar = $data[0];
-    $metabolism = $data[1];
-    $vision = $data[2];
-    $path = $value[2];
-    $processed = $value[3];
-    echo '<td class="ids">'.$agent_id.'</td>';
-    echo '<td>'.$sugar.'</td>';
-    echo '<td>'.$metabolism.'</td>';
-    echo '<td class="vision">'.$vision.'</td>';
-    echo '<td>'.$processed.'</td>';
-    if (in_array(($agent_id), $out)) { 
+  $agent_id = $value[0];
+  $data = str_replace("[", "", $value[1]);
+  $data = str_replace("]", "", $data);
+  $data = explode(" ", $data);
+  $sugar = $data[0];
+  $metabolism = $data[1];
+  $vision = $data[2];
+  $path = $value[2];
+  $processed = $value[3];
+  echo '<td class="ids">'.$agent_id.'</td>';
+  echo '<td>'.$sugar.'</td>';
+  echo '<td>'.$metabolism.'</td>';
+  echo '<td class="vision">'.$vision.'</td>';
+  echo '<td>'.$processed.'</td>';
+  if (in_array(($agent_id), $out)) { 
       //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
-      echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
-    }
-    else
-      echo '<td><button>'."No File".'</button></td>';
-
-    echo '<td class ="path">'.$path.'</td>';
-    echo "</tr>";
+    echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
   }
+  else
+    echo '<td><button>'."No File".'</button></td>';
 
-     echo "
-     </tbody>
-     <tfoot>
-     <tr>
-     <th>ID</th>
-     <th>Sugar</th>
-     <th>Metabolism</th>
-     <th>Vision</th>
-     <th>Processed</th>
-     <th>File</th>
-     <th>Traveling Path</th>
-     </tr>
-     </tfoot>
-     </table>";
+  echo '<td class ="path">'.$path.'</td>';
+  echo "</tr>";
+}
 
-  $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m2");
-  $response = json_decode($response);
+echo "
+</tbody>
+<tfoot>
+<tr>
+<th>ID</th>
+<th>Sugar</th>
+<th>Metabolism</th>
+<th>Vision</th>
+<th>Processed</th>
+<th>File</th>
+<th>Traveling Path</th>
+</tr>
+</tfoot>
+</table>";
 
-  echo "<center><h1>List of agents: m2</h1></center>";
-  echo '
-  <table id="example2" class="display" style="width:100%">
-  <thead>
-  <tr>
-  <th>ID</th>
-  <th>Sugar</th>
-  <th>Metabolism</th>
-  <th>Vision</th>
-  <th>Processed</th>
-  <th>File</th>
-  <th>Traveling Path</th>
-  </tr>
-  </thead>
-  <tbody>
-  ';
+$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m2");
+$response = json_decode($response);
 
-  foreach ($response as $value) {
-    echo "<tr>";
+echo "<center><h1>List of agents: m2</h1></center>";
+echo '
+<table id="example2" class="display" style="width:100%">
+<thead>
+<tr>
+<th>ID</th>
+<th>Sugar</th>
+<th>Metabolism</th>
+<th>Vision</th>
+<th>Processed</th>
+<th>File</th>
+<th>Traveling Path</th>
+</tr>
+</thead>
+<tbody>
+';
+
+foreach ($response as $value) {
+  echo "<tr>";
      // $c++;
      // $line = explode(" ", $lines);
 
      // $line = str_replace(']', ' ', $line);
 
      // echo '<td class="ids">'.$line[1].'</td>';
-    $agent_id = $value[0];
-    $data = str_replace("[", "", $value[1]);
-    $data = str_replace("]", "", $data);
-    $data = explode(" ", $data);
-    $sugar = $data[0];
-    $metabolism = $data[1];
-    $vision = $data[2];
-    $path = $value[2];
-    $processed = $value[3];
-    echo '<td class="ids">'.$agent_id.'</td>';
-    echo '<td>'.$sugar.'</td>';
-    echo '<td>'.$metabolism.'</td>';
-    echo '<td class="vision">'.$vision.'</td>';
-    echo '<td>'.$processed.'</td>';
-    if (in_array(($agent_id), $out)) { 
+  $agent_id = $value[0];
+  $data = str_replace("[", "", $value[1]);
+  $data = str_replace("]", "", $data);
+  $data = explode(" ", $data);
+  $sugar = $data[0];
+  $metabolism = $data[1];
+  $vision = $data[2];
+  $path = $value[2];
+  $processed = $value[3];
+  echo '<td class="ids">'.$agent_id.'</td>';
+  echo '<td>'.$sugar.'</td>';
+  echo '<td>'.$metabolism.'</td>';
+  echo '<td class="vision">'.$vision.'</td>';
+  echo '<td>'.$processed.'</td>';
+  if (in_array(($agent_id), $out)) { 
       //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
-      echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
-    }
-    else
-      echo '<td><button>'."No File".'</button></td>';
-
-    echo '<td>'.$path.'</td>';
-    echo "</tr>";
+    echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
   }
+  else
+    echo '<td><button>'."No File".'</button></td>';
 
-     echo "
-     </tbody>
-     <tfoot>
-     <tr>
-     <th>ID</th>
-     <th>Sugar</th>
-     <th>Metabolism</th>
-     <th>Vision</th>
-     <th>Processed</th>
-     <th>File</th>
-     <th>Traveling Path</th>
-     </tr>
-     </tfoot>
-     </table>";
+  echo '<td>'.$path.'</td>';
+  echo "</tr>";
+}
 
-  $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m3");
-  $response = json_decode($response);
+echo "
+</tbody>
+<tfoot>
+<tr>
+<th>ID</th>
+<th>Sugar</th>
+<th>Metabolism</th>
+<th>Vision</th>
+<th>Processed</th>
+<th>File</th>
+<th>Traveling Path</th>
+</tr>
+</tfoot>
+</table>";
 
-  echo "<center><h1>List of agents: m3</h1></center>";
-  echo '
-  <table id="example3" class="display" style="width:100%">
-  <thead>
-  <tr>
-  <th>ID</th>
-  <th>Sugar</th>
-  <th>Metabolism</th>
-  <th>Vision</th>
-  <th>Processed</th>
-  <th>File</th>
-  <th>Traveling Path</th>
-  </tr>
-  </thead>
-  <tbody>
-  ';
+$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=m3");
+$response = json_decode($response);
 
-  foreach ($response as $value) {
-    echo "<tr>";
+echo "<center><h1>List of agents: m3</h1></center>";
+echo '
+<table id="example3" class="display" style="width:100%">
+<thead>
+<tr>
+<th>ID</th>
+<th>Sugar</th>
+<th>Metabolism</th>
+<th>Vision</th>
+<th>Processed</th>
+<th>File</th>
+<th>Traveling Path</th>
+</tr>
+</thead>
+<tbody>
+';
+
+foreach ($response as $value) {
+  echo "<tr>";
      // $c++;
      // $line = explode(" ", $lines);
 
      // $line = str_replace(']', ' ', $line);
 
      // echo '<td class="ids">'.$line[1].'</td>';
-    $agent_id = $value[0];
-    $data = str_replace("[", "", $value[1]);
-    $data = str_replace("]", "", $data);
-    $data = explode(" ", $data);
-    $sugar = $data[0];
-    $metabolism = $data[1];
-    $vision = $data[2];
-    $path = $value[2];
-    $processed = $value[3];
-    echo '<td class="ids">'.$agent_id.'</td>';
-    echo '<td>'.$sugar.'</td>';
-    echo '<td>'.$metabolism.'</td>';
-    echo '<td class="vision">'.$vision.'</td>';
-    echo '<td>'.$processed.'</td>';
-    if (in_array(($agent_id), $out)) { 
+  $agent_id = $value[0];
+  $data = str_replace("[", "", $value[1]);
+  $data = str_replace("]", "", $data);
+  $data = explode(" ", $data);
+  $sugar = $data[0];
+  $metabolism = $data[1];
+  $vision = $data[2];
+  $path = $value[2];
+  $processed = $value[3];
+  echo '<td class="ids">'.$agent_id.'</td>';
+  echo '<td>'.$sugar.'</td>';
+  echo '<td>'.$metabolism.'</td>';
+  echo '<td class="vision">'.$vision.'</td>';
+  echo '<td>'.$processed.'</td>';
+  if (in_array(($agent_id), $out)) { 
       //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
-      echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
-    }
-    else
-      echo '<td><button>'."No File".'</button></td>';
-
-    echo '<td>'.$path.'</td>';
-    echo "</tr>";
+    echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
   }
+  else
+    echo '<td><button>'."No File".'</button></td>';
 
-     echo "
-     </tbody>
-     <tfoot>
-     <tr>
-     <th>ID</th>
-     <th>Sugar</th>
-     <th>Metabolism</th>
-     <th>Vision</th>
-     <th>Processed</th>
-     <th>File</th>
-     <th>Traveling Path</th>
-     </tr>
-     </tfoot>
-     </table>";
+  echo '<td>'.$path.'</td>';
+  echo "</tr>";
+}
 
-     $response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=router");
-  $response = json_decode($response);
+echo "
+</tbody>
+<tfoot>
+<tr>
+<th>ID</th>
+<th>Sugar</th>
+<th>Metabolism</th>
+<th>Vision</th>
+<th>Processed</th>
+<th>File</th>
+<th>Traveling Path</th>
+</tr>
+</tfoot>
+</table>";
 
-  echo "<center><h1>List of agents: router</h1></center>";
-  echo '
-  <table id="example4" class="display" style="width:100%">
-  <thead>
-  <tr>
-  <th>ID</th>
-  <th>Sugar</th>
-  <th>Metabolism</th>
-  <th>Vision</th>
-  <th>Processed</th>
-  <th>File</th>
-  <th>Traveling Path</th>
-  </tr>
-  </thead>
-  <tbody>
-  ';
+$response = CallAPI("GET", "http://".$host.":5000/api/v1/resources/output_php?model=router");
+$response = json_decode($response);
 
-  foreach ($response as $value) {
-    echo "<tr>";
+echo "<center><h1>List of agents: router</h1></center>";
+echo '
+<table id="example4" class="display" style="width:100%">
+<thead>
+<tr>
+<th>ID</th>
+<th>Sugar</th>
+<th>Metabolism</th>
+<th>Vision</th>
+<th>Processed</th>
+<th>File</th>
+<th>Traveling Path</th>
+</tr>
+</thead>
+<tbody>
+';
+
+foreach ($response as $value) {
+  echo "<tr>";
      // $c++;
      // $line = explode(" ", $lines);
 
      // $line = str_replace(']', ' ', $line);
 
      // echo '<td class="ids">'.$line[1].'</td>';
-    $agent_id = $value[0];
-    $data = str_replace("[", "", $value[1]);
-    $data = str_replace("]", "", $data);
-    $data = explode(" ", $data);
-    $sugar = $data[0];
-    $metabolism = $data[1];
-    $vision = $data[2];
-    $path = $value[2];
-    $processed = $value[3];
-    echo '<td class="ids">'.$agent_id.'</td>';
-    echo '<td>'.$sugar.'</td>';
-    echo '<td>'.$metabolism.'</td>';
-    echo '<td class="vision">'.$vision.'</td>';
-    echo '<td>'.$processed.'</td>';
-    if (in_array(($agent_id), $out)) { 
+  $agent_id = $value[0];
+  $data = str_replace("[", "", $value[1]);
+  $data = str_replace("]", "", $data);
+  $data = explode(" ", $data);
+  $sugar = $data[0];
+  $metabolism = $data[1];
+  $vision = $data[2];
+  $path = $value[2];
+  $processed = $value[3];
+  echo '<td class="ids">'.$agent_id.'</td>';
+  echo '<td>'.$sugar.'</td>';
+  echo '<td>'.$metabolism.'</td>';
+  echo '<td class="vision">'.$vision.'</td>';
+  echo '<td>'.$processed.'</td>';
+  if (in_array(($agent_id), $out)) { 
       //echo '<td>'."<button value='".$line[1]."' class='btnSubmit buttonSubmit' type='button'>".$line[1]."</button>".'</td>';
-      echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
-    }
-    else
-      echo '<td><button>'."No File".'</button></td>';
-
-    echo '<td>'.$path.'</td>';
-    echo "</tr>";
+    echo '<td>'."<button value='".$agent_id."' class='btnSubmit buttonSubmit' type='button'>".$agent_id."</button>".'</td>';
   }
+  else
+    echo '<td><button>'."No File".'</button></td>';
 
-     echo "
-     </tbody>
-     <tfoot>
-     <tr>
-     <th>ID</th>
-     <th>Sugar</th>
-     <th>Metabolism</th>
-     <th>Vision</th>
-     <th>Processed</th>
-     <th>File</th>
-     <th>Traveling Path</th>
-     </tr>
-     </tfoot>
-     </table>";
+  echo '<td>'.$path.'</td>';
+  echo "</tr>";
+}
 
-     echo "<center><h1>Biggest Path:</h1></center>";
-     echo "<center><h3 id='biggest_path'></h3></center>";
- ?>
+echo "
+</tbody>
+<tfoot>
+<tr>
+<th>ID</th>
+<th>Sugar</th>
+<th>Metabolism</th>
+<th>Vision</th>
+<th>Processed</th>
+<th>File</th>
+<th>Traveling Path</th>
+</tr>
+</tfoot>
+</table>";
 
- <br> <br>
- <center><h1>Conteúdo de Arquivo</h1></center>
-  <pre id="contents" class="normal">Content of file will be load here when you press the button</pre>
+echo "<center><h1>Biggest Path:</h1></center>";
+echo "<center><h3 id='biggest_path'></h3></center>";
+?>
+
+<br> <br>
+<center><h1>Conteúdo de Arquivo</h1></center>
+<pre id="contents" class="normal">Content of file will be load here when you press the button</pre>
 
   <!-- <script type="text/javascript">
     function populatePre(url) {
@@ -359,27 +359,27 @@
     populatePre('../jacamo/src/src/agt/list/1.asl');
   </script> -->
 
- <style>
-  tfoot input {
-    width: 100%;
-    padding: 3px;
-    box-sizing: border-box;
-  }
+  <style>
+    tfoot input {
+      width: 100%;
+      padding: 3px;
+      box-sizing: border-box;
+    }
 
-  pre {
-    white-space: pre-wrap;       /* Since CSS 2.1 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;       /* Internet Explorer 5.5+ */
-  }
-</style>
+    pre {
+      white-space: pre-wrap;       /* Since CSS 2.1 */
+      white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+      white-space: -pre-wrap;      /* Opera 4-6 */
+      white-space: -o-pre-wrap;    /* Opera 7 */
+      word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    }
+  </style>
 
 
-<script type="text/javascript">
-  var ids = [];
-  var vision = [];
-  var final_array = [];
+  <script type="text/javascript">
+    var ids = [];
+    var vision = [];
+    var final_array = [];
 
 	// $(document).ready( function () {
 	//     $('#example').DataTable();
@@ -519,7 +519,7 @@
 
   } );
 
-  $('#example .ids').each(function() {
+$('#example .ids').each(function() {
     // alert($(this).html());
     ids.push($(this).html())
   });
