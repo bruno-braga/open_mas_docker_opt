@@ -7,14 +7,14 @@ services:
   #     #dockerfile: Dockerfile_JACAMO
   #     dockerfile: Dockerfile_GRADLE
   #   tty: true           # Container alive
-  #   #command: "/bin/sh -c 'gradle >> /teste/netlogo_output/gradle_output.txt'"
+  #   #command: "/bin/sh -c 'gradle >> /shared_volume/netlogo_output/gradle_output.txt'"
   #   ports:
   #     - "3271:3271"
   #     - "3272:3272"
   #     - "3273:3273"
   #   volumes:
-  #     - ./teste:/teste
-  #     - ./teste/jacamo/jacamo_model:/home/gradle/project
+  #     - ./shared_volume:/shared_volume
+  #     - ./shared_volume/jacamo/jacamo_model:/home/gradle/project
   #   environment:
   #     - host=api
   #   networks:
@@ -32,7 +32,7 @@ services:
   #     context: .
   #     dockerfile: Dockerfile_PYTHON
   #   tty: true           # Container alive
-  #   command: "python3 /teste/api.py"
+  #   command: "python3 /shared_volume/api.py"
   #   environment:
   #   - PYTHONUNBUFFERED=1
   #   # - request_input_file=${request_input_file}
@@ -41,7 +41,7 @@ services:
   #   ports:
   #       - "5000:5000"
   #   volumes:
-  #     - ./teste:/teste
+  #     - ./shared_volume:/shared_volume
   #   networks:
   #     - my_network
   #   depends_on:
@@ -56,14 +56,14 @@ services:
   #     context: .
   #     dockerfile: Dockerfile_PYTHON
   #   tty: true           # Container alive
-  #   command: "python3 /teste/router.py"
+  #   command: "python3 /shared_volume/router.py"
   #   environment:
   #   - PYTHONUNBUFFERED=1
   #   # - request_input_file=${request_input_file}
   #   # - dead_agents_file=${dead_agents_file}
   #   # - model_input_file=${model_input_file}
   #   volumes:
-  #     - ./teste:/teste
+  #     - ./shared_volume:/shared_volume
   #   networks:
   #     - my_network
   #   depends_on:
@@ -87,8 +87,8 @@ services:
   #   healthcheck:
   #     test:  mysql --user=root --password=root -e 'select * from MYSQL_DATABASE.m1' MYSQL_DATABASE
   #   volumes:
-  #     - ./teste:/teste
-  #     - ./teste/db_file:/docker-entrypoint-initdb.d
+  #     - ./shared_volume:/shared_volume
+  #     - ./shared_volume/db_file:/docker-entrypoint-initdb.d
   #   ports:
   #       - "9906:3306"
   #   networks:
@@ -102,11 +102,11 @@ services:
       context: .
       dockerfile: Dockerfile_PYTHON
     tty: true           # Container alive
-    command: "python3 /teste/clean_simulation_files.py"
+    command: "python3 /shared_volume/clean_simulation_files.py"
     environment:
     - PYTHONUNBUFFERED=1
     volumes:
-      - ./teste:/teste
+      - ./shared_volume:/shared_volume
     networks:
       - my_network
   
@@ -137,8 +137,8 @@ services:
   #   ports:
   #     - "80:80"
   #   volumes:
-  #     - ./teste:/var/www/html
-  #     - ./teste:/teste
+  #     - ./shared_volume:/var/www/html
+  #     - ./shared_volume:/shared_volume
   #   depends_on:
   #         # - "db"
   #         db:
@@ -153,16 +153,16 @@ services:
       context: .
       dockerfile: Dockerfile_NETLOGO
     tty: true           # Container alive
-    command: "/bin/sh -c 'python3 /teste/python_execute_netlogo.py >> /teste/netlogo_output/m1_output.txt'"
+    command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m1_output.txt'"
     environment:
     - PYTHONUNBUFFERED=1
     - my_hostname=modelo_1
-    - model_file=/teste/open_sugarscape_m1.nlogo
+    - model_file=/shared_volume/open_sugarscape_m1.nlogo
     - experiment=experiment1
     - auto_run=True
     - host=144.22.197.41
     volumes:
-      - ./teste:/teste
+      - ./shared_volume:/shared_volume
     networks:
       - my_network
     depends_on:
@@ -176,16 +176,16 @@ services:
       context: .
       dockerfile: Dockerfile_NETLOGO
     tty: true           # Container alive
-    command: "/bin/sh -c 'python3 /teste/python_execute_netlogo.py >> /teste/netlogo_output/m2_output.txt'"
+    command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m2_output.txt'"
     environment:
     - PYTHONUNBUFFERED=1
     - my_hostname=modelo_2
-    - model_file=/teste/open_sugarscape_m2.nlogo
+    - model_file=/shared_volume/open_sugarscape_m2.nlogo
     - experiment=experiment1
     - auto_run=True
     - host=144.22.197.41
     volumes:
-      - ./teste:/teste
+      - ./shared_volume:/shared_volume
     networks:
       - my_network
     depends_on:
@@ -193,7 +193,7 @@ services:
       # - "api"
       - "clear_files"
 
-# 17.08.22 - Backup, funciona 100% no lab com teste API, melhorando a ordem dos containers acima
+# 17.08.22 - Backup, funciona 100% no lab com validação da API, melhorando a ordem dos containers acima
 # version: "3.8"
 # services:
 #   jacamo:
@@ -203,14 +203,14 @@ services:
 #       #dockerfile: Dockerfile_JACAMO
 #       dockerfile: Dockerfile_GRADLE
 #     tty: true           # Container alive
-#     #command: "/bin/sh -c 'gradle >> /teste/netlogo_output/gradle_output.txt'"
+#     #command: "/bin/sh -c 'gradle >> /shared_volume/netlogo_output/gradle_output.txt'"
 #     ports:
 #       - "3271:3271"
 #       - "3272:3272"
 #       - "3273:3273"
 #     volumes:
-#       - ./teste:/teste
-#       - ./teste/jacamo/jacamo_model:/home/gradle/project
+#       - ./shared_volume:/shared_volume
+#       - ./shared_volume/jacamo/jacamo_model:/home/gradle/project
 #     networks:
 #       - my_network
 #     depends_on:
@@ -222,15 +222,15 @@ services:
 #   #     context: .
 #   #     dockerfile: Dockerfile_PYTHON
 #   #   tty: true           # Container alive
-#   #   #command: "python3 /teste/cartorio.py"
-#   #   command: "python3 /teste/initialize_db.py"
+#   #   #command: "python3 /shared_volume/cartorio.py"
+#   #   command: "python3 /shared_volume/initialize_db.py"
 #   #   environment:
 #   #   - PYTHONUNBUFFERED=1
 #   #   - request_input_file=${request_input_file}
 #   #   - dead_agents_file=${dead_agents_file}
 #   #   - model_input_file=${model_input_file}
 #   #   volumes:
-#   #     - ./teste:/teste
+#   #     - ./shared_volume:/shared_volume
 #   #   networks:
 #   #     - my_network
 #   #   depends_on:
@@ -241,7 +241,7 @@ services:
 #       context: .
 #       dockerfile: Dockerfile_PYTHON
 #     tty: true           # Container alive
-#     command: "python3 /teste/api.py"
+#     command: "python3 /shared_volume/api.py"
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - request_input_file=${request_input_file}
@@ -250,7 +250,7 @@ services:
 #     ports:
 #         - "5000:5000"
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 #     depends_on:
@@ -264,14 +264,14 @@ services:
 #       context: .
 #       dockerfile: Dockerfile_PYTHON
 #     tty: true           # Container alive
-#     command: "python3 /teste/router.py"
+#     command: "python3 /shared_volume/router.py"
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - request_input_file=${request_input_file}
 #     - dead_agents_file=${dead_agents_file}
 #     - model_input_file=${model_input_file}
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 #     # depends_on:
@@ -290,8 +290,8 @@ services:
 #         # MYSQL_USER: MYSQL_USER
 #         # MYSQL_PASSWORD: MYSQL_PASSWORD
 #     volumes:
-#       - ./teste:/teste
-#       - ./teste/db_file:/docker-entrypoint-initdb.d
+#       - ./shared_volume:/shared_volume
+#       - ./shared_volume/db_file:/docker-entrypoint-initdb.d
 #     ports:
 #         - "9906:3306"
 #     networks:
@@ -319,8 +319,8 @@ services:
 #     ports:
 #       - "80:80"
 #     volumes:
-#       - ./teste:/var/www/html
-#       - ./teste:/teste
+#       - ./shared_volume:/var/www/html
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 
@@ -330,15 +330,15 @@ services:
 #       context: .
 #       dockerfile: Dockerfile_NETLOGO
 #     tty: true           # Container alive
-#     command: "/bin/sh -c 'python3 /teste/python_execute_netlogo.py >> /teste/netlogo_output/m1_output.txt'"
+#     command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m1_output.txt'"
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - my_hostname=modelo_1
-#     - model_file=/teste/open_sugarscape_m1.nlogo
+#     - model_file=/shared_volume/open_sugarscape_m1.nlogo
 #     - experiment=experiment1
 #     - auto_run=True
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 #     depends_on:
@@ -352,15 +352,15 @@ services:
 #       context: .
 #       dockerfile: Dockerfile_NETLOGO
 #     tty: true           # Container alive
-#     command: "/bin/sh -c 'python3 /teste/python_execute_netlogo.py >> /teste/netlogo_output/m2_output.txt'"
+#     command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m2_output.txt'"
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - my_hostname=modelo_2
-#     - model_file=/teste/open_sugarscape_m2.nlogo
+#     - model_file=/shared_volume/open_sugarscape_m2.nlogo
 #     - experiment=experiment1
 #     - auto_run=True
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 #     depends_on:
@@ -378,14 +378,14 @@ services:
 #       #dockerfile: Dockerfile_JACAMO
 #       dockerfile: Dockerfile_GRADLE
 #     tty: true           # Container alive
-#     command: "/bin/sh -c 'gradle >> /teste/netlogo_output/gradle_output.txt'"
+#     command: "/bin/sh -c 'gradle >> /shared_volume/netlogo_output/gradle_output.txt'"
 #     ports:
 #       - "3271:3271"
 #       - "3272:3272"
 #       - "3273:3273"
 #     volumes:
-#       - ./teste:/teste
-#       - ./teste/jacamo/INTEGRANDO COM API/teste-gradle-docker/fff:/home/gradle/project
+#       - ./shared_volume:/shared_volume
+#       - ./shared_volume/jacamo/INTEGRANDO COM API/shared_volume-gradle-docker/fff:/home/gradle/project
 #     networks:
 #       - my_network
 #     depends_on:
@@ -397,15 +397,15 @@ services:
 #       context: .
 #       dockerfile: Dockerfile_PYTHON
 #     tty: true           # Container alive
-#     #command: "python3 /teste/cartorio.py"
-#     command: "python3 /teste/initialize_db.py"
+#     #command: "python3 /shared_volume/cartorio.py"
+#     command: "python3 /shared_volume/initialize_db.py"
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - request_input_file=${request_input_file}
 #     - dead_agents_file=${dead_agents_file}
 #     - model_input_file=${model_input_file}
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 #     depends_on:
@@ -418,7 +418,7 @@ services:
 #       context: .
 #       dockerfile: Dockerfile_PYTHON
 #     tty: true           # Container alive
-#     command: "python3 /teste/api.py"
+#     command: "python3 /shared_volume/api.py"
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - request_input_file=${request_input_file}
@@ -427,7 +427,7 @@ services:
 #     ports:
 #         - "5000:5000"
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 #     depends_on:
@@ -440,14 +440,14 @@ services:
 #       context: .
 #       dockerfile: Dockerfile_PYTHON
 #     tty: true           # Container alive
-#     command: "python3 /teste/router.py"
+#     command: "python3 /shared_volume/router.py"
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - request_input_file=${request_input_file}
 #     - dead_agents_file=${dead_agents_file}
 #     - model_input_file=${model_input_file}
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 #     depends_on:
@@ -465,7 +465,7 @@ services:
 #         MYSQL_USER: MYSQL_USER
 #         MYSQL_PASSWORD: MYSQL_PASSWORD
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     ports:
 #         - "9906:3306"
 #     networks:
@@ -514,8 +514,8 @@ services:
 #     ports:
 #       - "80:80"
 #     volumes:
-#       - ./teste:/var/www/html
-#       - ./teste:/teste
+#       - ./shared_volume:/var/www/html
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 
@@ -525,15 +525,15 @@ services:
 #       context: .
 #       dockerfile: Dockerfile_NETLOGO
 #     tty: true           # Container alive
-#     command: "/bin/sh -c 'python3 /teste/python_execute_netlogo.py >> /teste/netlogo_output/m1_output.txt'"
+#     command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m1_output.txt'"
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - my_hostname=modelo_1
-#     - model_file=/teste/open_sugarscape_m1.nlogo
+#     - model_file=/shared_volume/open_sugarscape_m1.nlogo
 #     - experiment=experiment1
 #     - auto_run=True
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 #     depends_on:
@@ -546,15 +546,15 @@ services:
 #       context: .
 #       dockerfile: Dockerfile_NETLOGO
 #     tty: true           # Container alive
-#     command: "/bin/sh -c 'python3 /teste/python_execute_netlogo.py >> /teste/netlogo_output/m2_output.txt'"
+#     command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m2_output.txt'"
 #     environment:
 #     - PYTHONUNBUFFERED=1
 #     - my_hostname=modelo_2
-#     - model_file=/teste/open_sugarscape_m2.nlogo
+#     - model_file=/shared_volume/open_sugarscape_m2.nlogo
 #     - experiment=experiment1
 #     - auto_run=True
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 #     depends_on:
@@ -572,14 +572,14 @@ networks:
 #       context: .
 #       dockerfile: Dockerfile_JACAMO
 #     tty: true           # Container alive
-#     # command: "jacamo /teste/jacamo/src/juntando_jason_jacamo.jcm"
+#     # command: "jacamo /shared_volume/jacamo/src/juntando_jason_jacamo.jcm"
 #     command: "jacamo ${jacamo_file}"
 #     ports:
 #       - "3271:3271"
 #       - "3272:3272"
 #       - "3273:3273"
 #     volumes:
-#       - ./teste:/teste
+#       - ./shared_volume:/shared_volume
 #     networks:
 #       - my_network
 
@@ -588,14 +588,14 @@ networks:
 #   #     context: .
 #   #     dockerfile: Dockerfile_NETLOGO
 #   #   tty: true           # Container alive
-#   #   command: "python3 /teste/cartorio.py"
+#   #   command: "python3 /shared_volume/cartorio.py"
 #   #   environment:
 #   #   - PYTHONUNBUFFERED=1
-#   #   - request_input_file=["/teste/netlogo_output/request_new_agent.txt", "/teste/netlogo_output/request_new_agent2.txt"]
-#   #   - dead_agents_file=["/teste/netlogo_output/send_agent.txt", "/teste/netlogo_output/send_agent2.txt"]
-#   #   - model_input_file=["/teste/netlogo_output/receive_agent.txt", "/teste/netlogo_output/receive_agent2.txt"]
+#   #   - request_input_file=["/shared_volume/netlogo_output/request_new_agent.txt", "/shared_volume/netlogo_output/request_new_agent2.txt"]
+#   #   - dead_agents_file=["/shared_volume/netlogo_output/send_agent.txt", "/shared_volume/netlogo_output/send_agent2.txt"]
+#   #   - model_input_file=["/shared_volume/netlogo_output/receive_agent.txt", "/shared_volume/netlogo_output/receive_agent2.txt"]
 #   #   volumes:
-#   #     - ./teste:/teste
+#   #     - ./shared_volume:/shared_volume
 #   #   networks:
 #   #     - my_network
 
@@ -607,7 +607,7 @@ networks:
 #   #   ports:
 #   #     - "80:80"
 #   #   volumes:
-#   #     - ./teste:/var/www/html
+#   #     - ./shared_volume:/var/www/html
 #   #   networks:
 #   #     - my_network
 
@@ -616,17 +616,17 @@ networks:
 #   #     context: .
 #   #     dockerfile: Dockerfile_NETLOGO
 #   #   tty: true           # Container alive
-#   #   command: "python3 /teste/python_execute_netlogo.py"
+#   #   command: "python3 /shared_volume/python_execute_netlogo.py"
 #   #   environment:
 #   #   - PYTHONUNBUFFERED=1
 #   #   - my_hostname=modelo_1
-#   #   - model_file=/teste/5-Open_Sugarscape_2_Constant_Growback.nlogo
+#   #   - model_file=/shared_volume/5-Open_Sugarscape_2_Constant_Growback.nlogo
 #   #   - experiment=experiment1
-#   #   - export_file=/teste/netlogo_output/output_file.txt
-#   #   - config_file=/teste/netlogo_output/input_file.txt
+#   #   - export_file=/shared_volume/netlogo_output/output_file.txt
+#   #   - config_file=/shared_volume/netlogo_output/input_file.txt
 #   #   - auto_run=True
 #   #   volumes:
-#   #     - ./teste:/teste
+#   #     - ./shared_volume:/shared_volume
 #   #   networks:
 #   #     - my_network
 #   #   depends_on:
@@ -638,17 +638,17 @@ networks:
 #   #     context: .
 #   #     dockerfile: Dockerfile_NETLOGO
 #   #   tty: true           # Container alive
-#   #   command: "python3 /teste/python_execute_netlogo.py"
+#   #   command: "python3 /shared_volume/python_execute_netlogo.py"
 #   #   environment:
 #   #   - PYTHONUNBUFFERED = 1
 #   #   - my_hostname=modelo_2
-#   #   - model_file=/teste/6-Open_Sugarscape_2_Constant_Growback.nlogo
+#   #   - model_file=/shared_volume/6-Open_Sugarscape_2_Constant_Growback.nlogo
 #   #   - experiment=experiment1
-#   #   - export_file=/teste/netlogo_output/output_file.txt
-#   #   - config_file=/teste/netlogo_output/input_file.txt
+#   #   - export_file=/shared_volume/netlogo_output/output_file.txt
+#   #   - config_file=/shared_volume/netlogo_output/input_file.txt
 #   #   - auto_run=True
 #   #   volumes:
-#   #     - ./teste:/teste
+#   #     - ./shared_volume:/shared_volume
 #   #   networks:
 #   #     - my_network
 #   #   depends_on:
@@ -661,17 +661,17 @@ networks:
 #   #     context: .
 #   #     dockerfile: Dockerfile_NETLOGO
 #   #   tty: true           # Container alive
-#   #   command: "python3 /teste/router.py"
+#   #   command: "python3 /shared_volume/router.py"
 #   #   environment:
 #   #   - PYTHONUNBUFFERED = 1
 #   #   - my_hostname=router
-#   #   - output_agents=["/teste/netlogo_output/output.txt"]
-#   #   - general_dead_agents_file=["/teste/netlogo_output/general_send_agent.txt"]
-#   #   - dead_agents_file=["/teste/netlogo_output/send_agent.txt", "/teste/netlogo_output/send_agent2.txt"]
-#   #   - model_input_file=["/teste/netlogo_output/receive_agent.txt", "/teste/netlogo_output/receive_agent2.txt"]
+#   #   - output_agents=["/shared_volume/netlogo_output/output.txt"]
+#   #   - general_dead_agents_file=["/shared_volume/netlogo_output/general_send_agent.txt"]
+#   #   - dead_agents_file=["/shared_volume/netlogo_output/send_agent.txt", "/shared_volume/netlogo_output/send_agent2.txt"]
+#   #   - model_input_file=["/shared_volume/netlogo_output/receive_agent.txt", "/shared_volume/netlogo_output/receive_agent2.txt"]
 #   #   - router_type=random
 #   #   volumes:
-#   #     - ./teste:/teste
+#   #     - ./shared_volume:/shared_volume
 #   #   networks:
 #   #     - my_network
 #   #   depends_on:

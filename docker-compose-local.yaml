@@ -191,7 +191,7 @@ services:
       - "api"
       - "clear_files"
 
-# 17.08.22 - Backup, funciona 100% no lab com teste API, melhorando a ordem dos containers acima
+# 17.08.22 - Backup, funciona 100% no lab com validação da API, melhorando a ordem dos containers acima
 # version: "3.8"
 # services:
 #   jacamo:

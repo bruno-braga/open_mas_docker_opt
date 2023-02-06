@@ -209,23 +209,23 @@ public class my_delete_ag extends DefaultInternalAction {
     //                     // String agent_string = "["+"\""+"agent"+"\""+" "+str+" 1 2 3 "+"\""+"3"+"\""+"]"+"\n";
     //                     //String agent_string = "["+"\""+"agent"+"\""+" 999999999 1 2 3 "+"\""+"1-2"+"\""+"]"+"\n";
     //                     System.out.println(agent_string);
-    //                     if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt"))){
+    //                     if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"))){
     //                         System.out.println("Adicionando...");
-    //                         Files.write(Paths.get("/teste/netlogo_output/send_agent3.txt"),agent_string.getBytes(), StandardOpenOption.APPEND);
+    //                         Files.write(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"),agent_string.getBytes(), StandardOpenOption.APPEND);
     //                     }
     //                     else{
     //                         System.out.println("Criando...");
-    //                         Files.write(Paths.get("/teste/netlogo_output/send_agent3.txt"),agent_string.getBytes(), StandardOpenOption.CREATE);
+    //                         Files.write(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"),agent_string.getBytes(), StandardOpenOption.CREATE);
     //                     }
 
 
-    //                     if (Files.exists(Paths.get("/teste/netlogo_output/general_send_agent.txt"))){
+    //                     if (Files.exists(Paths.get("/shared_volume/netlogo_output/general_send_agent.txt"))){
     //                         System.out.println("Adicionando...");
-    //                         Files.write(Paths.get("/teste/netlogo_output/general_send_agent.txt"),agent_string.getBytes(), StandardOpenOption.APPEND);
+    //                         Files.write(Paths.get("/shared_volume/netlogo_output/general_send_agent.txt"),agent_string.getBytes(), StandardOpenOption.APPEND);
     //                     }
     //                     else{
     //                         System.out.println("Criando...");
-    //                         Files.write(Paths.get("/teste/netlogo_output/general_send_agent.txt"),agent_string.getBytes(), StandardOpenOption.CREATE);
+    //                         Files.write(Paths.get("/shared_volume/netlogo_output/general_send_agent.txt"),agent_string.getBytes(), StandardOpenOption.CREATE);
     //                     }
 
 
@@ -270,23 +270,23 @@ public class my_delete_ag extends DefaultInternalAction {
 
 
 
-    //     // if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/teste/netlogo_output/send_agent3.txt")) >= 0 ) {
+    //     // if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) >= 0 ) {
     //     //     System.out.println("existe e não vazio");
     //     // }
     //     // else {
     //     //     System.out.println("não existe ou vazio");
     //     // }
 
-    //     // if (Files.exists(Paths.get("/teste/netlogo_output/data0.txt"))) {
-    //     //     System.out.println("/teste/netlogo_output/data0.txt não existe");
+    //     // if (Files.exists(Paths.get("/shared_volume/netlogo_output/data0.txt"))) {
+    //     //     System.out.println("/shared_volume/netlogo_output/data0.txt não existe");
     //     // }
     //     // else {
-    //     //     if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt"))) {
+    //     //     if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"))) {
                 
     //     //         // RuntimeServices provides services to create agents in the current platform (Local, JADE, JaCaMo, ...)
     //     //         RuntimeServices rs = RuntimeServicesFactory.get();
 
-    //     //         String fileName = "/teste/netlogo_output/send_agent3.txt";
+    //     //         String fileName = "/shared_volume/netlogo_output/send_agent3.txt";
     //     //         File file = new File(fileName);
 
     //     //         try (Stream linesStream = Files.lines(file.toPath())) {
@@ -316,11 +316,11 @@ public class my_delete_ag extends DefaultInternalAction {
     //     //         }
 
     //     //         System.out.println("! Deleting After creating agents !");
-    //     //         Files.delete(Paths.get("/teste/netlogo_output/send_agent3.txt"));
+    //     //         Files.delete(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"));
     //     //         System.out.println("! Deleted !");
     //     //     }
     //     //     else {
-    //     //         System.out.println("/teste/netlogo_output/send_agent3.txt não existe");
+    //     //         System.out.println("/shared_volume/netlogo_output/send_agent3.txt não existe");
     //     //     }
     //     // }
 
@@ -383,18 +383,18 @@ public class my_delete_ag extends DefaultInternalAction {
 
 //         System.out.println("Executing JAVA custom code");
 
-//         if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/teste/netlogo_output/send_agent3.txt")) >= 0 ) {
+//         if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) >= 0 ) {
 //             System.out.println("existe e não vazio");
 //         }
 //         else {
 //             System.out.println("não existe ou vazio");
 //         }
 
-//         if (Files.exists(Paths.get("/teste/netlogo_output/data0.txt"))) {
-//             System.out.println("/teste/netlogo_output/data0.txt não existe");
+//         if (Files.exists(Paths.get("/shared_volume/netlogo_output/data0.txt"))) {
+//             System.out.println("/shared_volume/netlogo_output/data0.txt não existe");
 //         }
 //         else {
-//             if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt"))) {
+//             if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"))) {
 //                 // use Settings to add initial beliefs and goals for the new agent
 //                 // (as used in the .mas2j project file)
 //                 // Settings s = new Settings();
@@ -405,7 +405,7 @@ public class my_delete_ag extends DefaultInternalAction {
 //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
 //                 int line = 1;
-//                 String read_line = Files.readAllLines(Paths.get("/teste/netlogo_output/send_agent3.txt")).get(line - 1);
+//                 String read_line = Files.readAllLines(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")).get(line - 1);
 //                 System.out.println(read_line);
                 
 //                 String name = read_line;
@@ -427,7 +427,7 @@ public class my_delete_ag extends DefaultInternalAction {
 //                 System.out.println("Agent created by custom file");
 //             }
 //             else {
-//                 System.out.println("/teste/netlogo_output/send_agent3.txt não existe");
+//                 System.out.println("/shared_volume/netlogo_output/send_agent3.txt não existe");
 //             }
 //         }
 
@@ -490,18 +490,18 @@ public class my_delete_ag extends DefaultInternalAction {
 
 //         System.out.println("Executing JAVA custom code");
 
-//         if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/teste/netlogo_output/send_agent3.txt")) >= 0 ) {
+//         if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) >= 0 ) {
 //             System.out.println("existe e vazio");
 //         }
 //         else {
 //             System.out.println("não existe ou não vazio");
 //         }
 
-//         if (Files.exists(Paths.get("/teste/netlogo_output/data0.txt"))) {
-//             System.out.println("/teste/netlogo_output/data0.txt não existe");
+//         if (Files.exists(Paths.get("/shared_volume/netlogo_output/data0.txt"))) {
+//             System.out.println("/shared_volume/netlogo_output/data0.txt não existe");
 //         }
 //         else {
-//             if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt"))) {
+//             if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"))) {
 //                 // use Settings to add initial beliefs and goals for the new agent
 //                 // (as used in the .mas2j project file)
 //                 Settings s = new Settings();
@@ -512,7 +512,7 @@ public class my_delete_ag extends DefaultInternalAction {
 //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
 //                 int line = 1;
-//                 String read_line = Files.readAllLines(Paths.get("/teste/netlogo_output/send_agent3.txt")).get(line - 1);
+//                 String read_line = Files.readAllLines(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")).get(line - 1);
 //                 System.out.println(read_line);
                 
 //                 String name = read_line;
@@ -523,7 +523,7 @@ public class my_delete_ag extends DefaultInternalAction {
 //                 System.out.println("Agent created by custom file");
 //             }
 //             else {
-//                 System.out.println("/teste/netlogo_output/send_agent3.txt não existe");
+//                 System.out.println("/shared_volume/netlogo_output/send_agent3.txt não existe");
 //             }
 //         }
 
@@ -850,23 +850,23 @@ public class my_delete_ag extends DefaultInternalAction {
 //                         // String agent_string = "["+"\""+"agent"+"\""+" "+str+" 1 2 3 "+"\""+"3"+"\""+"]"+"\n";
 //                         //String agent_string = "["+"\""+"agent"+"\""+" 999999999 1 2 3 "+"\""+"1-2"+"\""+"]"+"\n";
 //                         System.out.println(agent_string);
-//                         if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt"))){
+//                         if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"))){
 //                             System.out.println("Adicionando...");
-//                             Files.write(Paths.get("/teste/netlogo_output/send_agent3.txt"),agent_string.getBytes(), StandardOpenOption.APPEND);
+//                             Files.write(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"),agent_string.getBytes(), StandardOpenOption.APPEND);
 //                         }
 //                         else{
 //                             System.out.println("Criando...");
-//                             Files.write(Paths.get("/teste/netlogo_output/send_agent3.txt"),agent_string.getBytes(), StandardOpenOption.CREATE);
+//                             Files.write(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"),agent_string.getBytes(), StandardOpenOption.CREATE);
 //                         }
 
 
-//                         if (Files.exists(Paths.get("/teste/netlogo_output/general_send_agent.txt"))){
+//                         if (Files.exists(Paths.get("/shared_volume/netlogo_output/general_send_agent.txt"))){
 //                             System.out.println("Adicionando...");
-//                             Files.write(Paths.get("/teste/netlogo_output/general_send_agent.txt"),agent_string.getBytes(), StandardOpenOption.APPEND);
+//                             Files.write(Paths.get("/shared_volume/netlogo_output/general_send_agent.txt"),agent_string.getBytes(), StandardOpenOption.APPEND);
 //                         }
 //                         else{
 //                             System.out.println("Criando...");
-//                             Files.write(Paths.get("/teste/netlogo_output/general_send_agent.txt"),agent_string.getBytes(), StandardOpenOption.CREATE);
+//                             Files.write(Paths.get("/shared_volume/netlogo_output/general_send_agent.txt"),agent_string.getBytes(), StandardOpenOption.CREATE);
 //                         }
 
 
@@ -911,23 +911,23 @@ public class my_delete_ag extends DefaultInternalAction {
 
 
 
-//         // if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/teste/netlogo_output/send_agent3.txt")) >= 0 ) {
+//         // if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) >= 0 ) {
 //         //     System.out.println("existe e não vazio");
 //         // }
 //         // else {
 //         //     System.out.println("não existe ou vazio");
 //         // }
 
-//         // if (Files.exists(Paths.get("/teste/netlogo_output/data0.txt"))) {
-//         //     System.out.println("/teste/netlogo_output/data0.txt não existe");
+//         // if (Files.exists(Paths.get("/shared_volume/netlogo_output/data0.txt"))) {
+//         //     System.out.println("/shared_volume/netlogo_output/data0.txt não existe");
 //         // }
 //         // else {
-//         //     if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt"))) {
+//         //     if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"))) {
                 
 //         //         // RuntimeServices provides services to create agents in the current platform (Local, JADE, JaCaMo, ...)
 //         //         RuntimeServices rs = RuntimeServicesFactory.get();
 
-//         //         String fileName = "/teste/netlogo_output/send_agent3.txt";
+//         //         String fileName = "/shared_volume/netlogo_output/send_agent3.txt";
 //         //         File file = new File(fileName);
 
 //         //         try (Stream linesStream = Files.lines(file.toPath())) {
@@ -957,11 +957,11 @@ public class my_delete_ag extends DefaultInternalAction {
 //         //         }
 
 //         //         System.out.println("! Deleting After creating agents !");
-//         //         Files.delete(Paths.get("/teste/netlogo_output/send_agent3.txt"));
+//         //         Files.delete(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"));
 //         //         System.out.println("! Deleted !");
 //         //     }
 //         //     else {
-//         //         System.out.println("/teste/netlogo_output/send_agent3.txt não existe");
+//         //         System.out.println("/shared_volume/netlogo_output/send_agent3.txt não existe");
 //         //     }
 //         // }
 
@@ -1024,18 +1024,18 @@ public class my_delete_ag extends DefaultInternalAction {
 
 // //         System.out.println("Executing JAVA custom code");
 
-// //         if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/teste/netlogo_output/send_agent3.txt")) >= 0 ) {
+// //         if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) >= 0 ) {
 // //             System.out.println("existe e não vazio");
 // //         }
 // //         else {
 // //             System.out.println("não existe ou vazio");
 // //         }
 
-// //         if (Files.exists(Paths.get("/teste/netlogo_output/data0.txt"))) {
-// //             System.out.println("/teste/netlogo_output/data0.txt não existe");
+// //         if (Files.exists(Paths.get("/shared_volume/netlogo_output/data0.txt"))) {
+// //             System.out.println("/shared_volume/netlogo_output/data0.txt não existe");
 // //         }
 // //         else {
-// //             if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt"))) {
+// //             if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"))) {
 // //                 // use Settings to add initial beliefs and goals for the new agent
 // //                 // (as used in the .mas2j project file)
 // //                 // Settings s = new Settings();
@@ -1046,7 +1046,7 @@ public class my_delete_ag extends DefaultInternalAction {
 // //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
 // //                 int line = 1;
-// //                 String read_line = Files.readAllLines(Paths.get("/teste/netlogo_output/send_agent3.txt")).get(line - 1);
+// //                 String read_line = Files.readAllLines(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")).get(line - 1);
 // //                 System.out.println(read_line);
                 
 // //                 String name = read_line;
@@ -1068,7 +1068,7 @@ public class my_delete_ag extends DefaultInternalAction {
 // //                 System.out.println("Agent created by custom file");
 // //             }
 // //             else {
-// //                 System.out.println("/teste/netlogo_output/send_agent3.txt não existe");
+// //                 System.out.println("/shared_volume/netlogo_output/send_agent3.txt não existe");
 // //             }
 // //         }
 
@@ -1131,18 +1131,18 @@ public class my_delete_ag extends DefaultInternalAction {
 
 // //         System.out.println("Executing JAVA custom code");
 
-// //         if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/teste/netlogo_output/send_agent3.txt")) >= 0 ) {
+// //         if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) && Files.size(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")) >= 0 ) {
 // //             System.out.println("existe e vazio");
 // //         }
 // //         else {
 // //             System.out.println("não existe ou não vazio");
 // //         }
 
-// //         if (Files.exists(Paths.get("/teste/netlogo_output/data0.txt"))) {
-// //             System.out.println("/teste/netlogo_output/data0.txt não existe");
+// //         if (Files.exists(Paths.get("/shared_volume/netlogo_output/data0.txt"))) {
+// //             System.out.println("/shared_volume/netlogo_output/data0.txt não existe");
 // //         }
 // //         else {
-// //             if (Files.exists(Paths.get("/teste/netlogo_output/send_agent3.txt"))) {
+// //             if (Files.exists(Paths.get("/shared_volume/netlogo_output/send_agent3.txt"))) {
 // //                 // use Settings to add initial beliefs and goals for the new agent
 // //                 // (as used in the .mas2j project file)
 // //                 Settings s = new Settings();
@@ -1153,7 +1153,7 @@ public class my_delete_ag extends DefaultInternalAction {
 // //                 RuntimeServices rs = RuntimeServicesFactory.get();
 
 // //                 int line = 1;
-// //                 String read_line = Files.readAllLines(Paths.get("/teste/netlogo_output/send_agent3.txt")).get(line - 1);
+// //                 String read_line = Files.readAllLines(Paths.get("/shared_volume/netlogo_output/send_agent3.txt")).get(line - 1);
 // //                 System.out.println(read_line);
                 
 // //                 String name = read_line;
@@ -1164,7 +1164,7 @@ public class my_delete_ag extends DefaultInternalAction {
 // //                 System.out.println("Agent created by custom file");
 // //             }
 // //             else {
-// //                 System.out.println("/teste/netlogo_output/send_agent3.txt não existe");
+// //                 System.out.println("/shared_volume/netlogo_output/send_agent3.txt não existe");
 // //             }
 // //         }
 
