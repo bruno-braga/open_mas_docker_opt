@@ -2,44 +2,6 @@
 
 
 
-initial.
-+initial : true
-<- 
-	.print("Hello there. I'm a regular agent");
-	?agent_id(AGENTID);
-	?path(PATH);
-	
-	/* Algo que é carregado entre as simulações */	
-	.random(R);
-	+my_testing(R);
-	?my_testing(R);
-	.print("R: ", R);
-
-	.abolish(agent_id(_));
-	.abolish(path(_));
-
-	?sugar(SUGAR);
-	?metabolism(METABOLISM);
-	?vision(VISION);
-
-	.print("Sugar ", SUGAR);
-	.print("Metabolism ", METABOLISM);
-	.print("Vision ", VISION);
-	
-	.abolish(sugar(_));
-	.abolish(metabolism(_));
-	.abolish(vision(_));
-
-	.my_name(MYNAME);
-	.concat("src/agt/list/",MYNAME,".asl",NAME)
-	/* É possível salvar o agente já adicionando crenças, como o exemplo do say(hello) */	
-	.save_agent(NAME,[start,say(hello)]);
-	.print("Saved my information on file. Sending message to remove agent from simulation");
-
-	.send(killer_agent, tell, kill(AGENTID, PATH, MYNAME, SUGAR, METABOLISM, VISION));
-	.send(killer_agent, untell, kill(AGENTID, PATH, MYNAME, SUGAR, METABOLISM, VISION)).
-
-/*
 initial_print1.
 +initial_print1 : true
 <- 
@@ -90,7 +52,8 @@ initial_print1.
 
 	.send(killer_agent, tell, kill(V0, V1, X, B0, B1, B2));
 	.send(killer_agent, untell, kill(V0, V1, X, B0, B1, B2)).
-*/
+
+
 
 
 
