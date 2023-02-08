@@ -240,6 +240,7 @@ foreach ($response as $value) {
 <th>Traveling Path</th>
 </tr>
 </tfoot>
+</table>
 
 <center><h1>List of agents: router</h1></center>
 <table id="example4" class="display" style="width:100%">
