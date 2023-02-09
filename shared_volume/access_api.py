@@ -14,8 +14,8 @@ import requests
 
 
 try:
-	#solicita_cartorio('" ("m1") "'" "," (1) ", " (400) ")
-    response = requests.post('http://localhost:5000/api/v1/resources/solicita_cartorio', json = {"model":"m1", "min":1, "max":400}, timeout=5)
+	#solicita_register('" ("m1") "'" "," (1) ", " (400) ")
+    response = requests.post('http://localhost:5000/api/v1/resources/solicita_register', json = {"model":"m1", "min":1, "max":400}, timeout=5)
     response.raise_for_status()
 
     print(response)
@@ -34,7 +34,7 @@ except requests.exceptions.RequestException as err:
 #testing_send('" (agent_id) "', '" tupla "', '" (updated_historic) "')
 #agent_id, data, path
 try:
-	#solicita_cartorio('" ("m1") "'" "," (1) ", " (400) ")
+	#solicita_register('" ("m1") "'" "," (1) ", " (400) ")
     response = requests.post('http://localhost:5000/api/v1/resources/model_to_router', json = {"agent_id":"12", "data":"[1 2 3]", "path":"1-1"}, timeout=5)
     response.raise_for_status()
 
@@ -52,7 +52,7 @@ except requests.exceptions.RequestException as err:
 #from db_python_netlogo import receiving_agents
 #receiving_agents('" ("m1") "')
 try:
-	#solicita_cartorio('" ("m1") "'" "," (1) ", " (400) ")
+	#solicita_register('" ("m1") "'" "," (1) ", " (400) ")
     response = requests.get('http://localhost:5000/api/v1/resources/check_new_agents', params={"model":"m1"}, timeout=5)
     response.raise_for_status()
     

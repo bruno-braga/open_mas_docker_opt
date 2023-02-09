@@ -23,9 +23,9 @@ port = "5000"
 def testing_exception(error):
   raise Exception(error)
 
-def solicita_cartorio(model, min, max):
+def solicita_register(model, min, max):
   start = time.time()
-  print("Start time solicita_cartorio: "+str(start))
+  print("Start time solicita_register: "+str(start))
   print("Host: "+host)
   # start = time.time()
   # print("hello")
@@ -34,11 +34,11 @@ def solicita_cartorio(model, min, max):
   retorno = False
   while retorno == False:
     try:
-      # response = requests.post('http://localhost:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max}, timeout=5)
-      # response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max}, timeout=120)
+      # response = requests.post('http://localhost:5000/api/v1/resources/solicita_register', json = {"model":model, "min":min, "max":max}, timeout=5)
+      # response = requests.post('http://api:5000/api/v1/resources/solicita_register', json = {"model":model, "min":min, "max":max}, timeout=120)
       
 
-      # response = requests.post('http://api:5000/api/v1/resources/solicita_cartorio', json = {"model":model, "min":min, "max":max})
+      # response = requests.post('http://api:5000/api/v1/resources/solicita_register', json = {"model":model, "min":min, "max":max})
       
       #response = requests.post('http://api:5000/api/v1/resources/register_agents_on_platform', json = {"model":model, "min":min, "max":max})
       response = requests.post('http://'+host+':'+port+'/api/v1/resources/register_agents_on_platform', json = {"model":model, "min":min, "max":max}, timeout=120)
@@ -67,7 +67,7 @@ def solicita_cartorio(model, min, max):
 
   print("Left loop")
   end = time.time()
-  print("End time solicita_cartorio: "+str(end - start))
+  print("End time solicita_register: "+str(end - start))
   return retorno
 
 def send_agent_to_alive(agent_id, model):
@@ -380,7 +380,7 @@ def backup_funcional_process_agents_on_router():
   #       cnx.close()
 
 
-def print_solicita_cartorio(model, qtd):
+def print_solicita_register(model, qtd):
 
   cnx = mysql.connector.connect(user='root', password='root',
                                  host='db',
@@ -627,7 +627,7 @@ def print_process_agents_on_router():
 # def testing_exception(error):
 #   raise Exception(error)
 
-# def solicita_cartorio(model, min, max):
+# def solicita_register(model, min, max):
 
 #   cnx = mysql.connector.connect(user='root', password='root',
 #                                  host='db',
@@ -891,7 +891,7 @@ def print_process_agents_on_router():
 #   #       cnx.close()
 
 
-# def print_solicita_cartorio(model, qtd):
+# def print_solicita_register(model, qtd):
 
 #   cnx = mysql.connector.connect(user='root', password='root',
 #                                  host='db',

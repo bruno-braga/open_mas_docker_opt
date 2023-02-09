@@ -214,13 +214,13 @@ services:
 #     depends_on:
 #       - "modelo_2"
 
-#   # cartorio:
-#   #   container_name: cartorio
+#   # register:
+#   #   container_name: register
 #   #   build:
 #   #     context: .
 #   #     dockerfile: Dockerfile_PYTHON
 #   #   tty: true           # Container alive
-#   #   #command: "python3 /shared_volume/cartorio.py"
+#   #   #command: "python3 /shared_volume/register.py"
 #   #   command: "python3 /shared_volume/initialize_db.py"
 #   #   environment:
 #   #   - PYTHONUNBUFFERED=1
@@ -252,7 +252,7 @@ services:
 #     networks:
 #       - my_network
 #     depends_on:
-#         # - cartorio
+#         # - register
 #         - db
 
 
@@ -273,7 +273,7 @@ services:
 #     networks:
 #       - my_network
 #     # depends_on:
-#     #     - cartorio
+#     #     - register
 
 #   db:
 #     container_name: db
@@ -389,13 +389,13 @@ services:
 #     depends_on:
 #         - modelo_2
 
-#   cartorio:
-#     container_name: cartorio
+#   register:
+#     container_name: register
 #     build:
 #       context: .
 #       dockerfile: Dockerfile_PYTHON
 #     tty: true           # Container alive
-#     #command: "python3 /shared_volume/cartorio.py"
+#     #command: "python3 /shared_volume/register.py"
 #     command: "python3 /shared_volume/initialize_db.py"
 #     environment:
 #     - PYTHONUNBUFFERED=1
@@ -429,7 +429,7 @@ services:
 #     networks:
 #       - my_network
 #     depends_on:
-#         - cartorio
+#         - register
 
 
 #   router:
@@ -449,7 +449,7 @@ services:
 #     networks:
 #       - my_network
 #     depends_on:
-#         - cartorio
+#         - register
 
 #   db:
 #     container_name: db
@@ -581,12 +581,12 @@ networks:
 #     networks:
 #       - my_network
 
-#   # cartorio:
+#   # register:
 #   #   build:
 #   #     context: .
 #   #     dockerfile: Dockerfile_NETLOGO
 #   #   tty: true           # Container alive
-#   #   command: "python3 /shared_volume/cartorio.py"
+#   #   command: "python3 /shared_volume/register.py"
 #   #   environment:
 #   #   - PYTHONUNBUFFERED=1
 #   #   - request_input_file=["/shared_volume/netlogo_output/request_new_agent.txt", "/shared_volume/netlogo_output/request_new_agent2.txt"]
@@ -629,7 +629,7 @@ networks:
 #   #     - my_network
 #   #   depends_on:
 #   #     - "php"
-#   #     - "cartorio"
+#   #     - "register"
 
 #   # modelo_2:
 #   #   build:
@@ -651,7 +651,7 @@ networks:
 #   #     - my_network
 #   #   depends_on:
 #   #     - "php"
-#   #     - "cartorio"
+#   #     - "register"
 #   #     - "modelo_1"
 
 #   # router:
@@ -674,7 +674,7 @@ networks:
 #   #     - my_network
 #   #   depends_on:
 #   #     - "php"
-#   #     - "cartorio"
+#   #     - "register"
 #   #     - "modelo_1"
 #   #     - "modelo_2"
 

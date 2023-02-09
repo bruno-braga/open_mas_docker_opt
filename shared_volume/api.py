@@ -701,7 +701,7 @@ def sanity_test_agent_path_history():
 def register_agents_on_platform():
   seed = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
   start = time.time()
-  if docker_debugger: print("Start time solicita_cartorio: "+str(start) +" with seed: "+seed)
+  if docker_debugger: print("Start time solicita_register: "+str(start) +" with seed: "+seed)
   json_data = request.get_json()
   if docker_debugger: print(json_data)
   model = json_data['model']
@@ -754,17 +754,17 @@ def register_agents_on_platform():
   cnx.close()
 
   end = time.time()
-  if docker_debugger: print("End time solicita_cartorio: "+str(end - start) +" with seed: "+seed)
+  if docker_debugger: print("End time solicita_register: "+str(end - start) +" with seed: "+seed)
   if(retorno):
     return 'true'
   else:
     return 'false'
 
-@app.route('/api/v1/resources/solicita_cartorio', methods=['POST'])
-def solicita_cartorio():
+@app.route('/api/v1/resources/solicita_register', methods=['POST'])
+def solicita_register():
   seed = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
   start = time.time()
-  if docker_debugger: print("Start time solicita_cartorio: "+str(start) +" with seed: "+seed)
+  if docker_debugger: print("Start time solicita_register: "+str(start) +" with seed: "+seed)
   json_data = request.get_json()
   if docker_debugger: print(json_data)
   model = json_data['model']
@@ -809,7 +809,7 @@ def solicita_cartorio():
   cnx.close()
 
   end = time.time()
-  if docker_debugger: print("End time solicita_cartorio: "+str(end - start) +" with seed: "+seed)
+  if docker_debugger: print("End time solicita_register: "+str(end - start) +" with seed: "+seed)
   if(retorno):
     return 'true'
   else:

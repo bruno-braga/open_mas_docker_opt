@@ -10,7 +10,7 @@ import random
 
 import time
 
-def solicita_cartorio(model, qtd):
+def solicita_register(model, qtd):
 
   cnx = mysql.connector.connect(user='MYSQL_USER', password='MYSQL_PASSWORD',
                                  host='db',

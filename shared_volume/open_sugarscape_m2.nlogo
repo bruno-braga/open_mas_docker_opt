@@ -38,7 +38,7 @@ to setup
   set dead_agents []
   ;;MODIFICATION;;
   ;;create-turtles initial-population [ turtle-setup ]
-  new_solicita_cartorio
+  new_solicita_register
   ;new_setup
   setup-patches
   set qtd_received_agents 0
@@ -50,21 +50,21 @@ to new_setup
   load-config-from-file2
 end
 
-to new_solicita_cartorio
-  print("NL: funcao python new_solicita_cartorio")
-  print("NL: no netlogo, tempo inicial do solicita_cartorio")
+to new_solicita_register
+  print("NL: funcao python new_solicita_register")
+  print("NL: no netlogo, tempo inicial do solicita_register")
   print(date-and-time)
   py:setup py:python
-  print("NL: iniciando cartorio: ")
-  py:run "from db_python_netlogo import solicita_cartorio"
-  let result py:runresult (word "solicita_cartorio('" ("m2") "'" "," (400) ", " (800) ")")
-  print("NL: retorno cartorio: ")
+  print("NL: iniciando register: ")
+  py:run "from db_python_netlogo import solicita_register"
+  let result py:runresult (word "solicita_register('" ("m2") "'" "," (400) ", " (800) ")")
+  print("NL: retorno register: ")
   print(result)
-  print("NL: no netlogo, tempo final do solicita_cartorio")
+  print("NL: no netlogo, tempo final do solicita_register")
   print(date-and-time)
 end
 
-to solicita_cartorio
+to solicita_register
   let path2 "netlogo_output/request_new_agent.txt"
   file-open path2
   file-print (word "" 1 " " initial-population)
@@ -1126,7 +1126,7 @@ BUTTON
 137
 333
 NIL
-solicita_cartorio
+solicita_register
 NIL
 1
 T
