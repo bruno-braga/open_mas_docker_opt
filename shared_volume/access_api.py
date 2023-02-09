@@ -49,8 +49,8 @@ except requests.exceptions.Timeout as errt:
 except requests.exceptions.RequestException as err:
     print(err)
 
-#from db_python_netlogo import testing_receiving
-#testing_receiving('" ("m1") "')
+#from db_python_netlogo import receiving_agents
+#receiving_agents('" ("m1") "')
 try:
 	#solicita_cartorio('" ("m1") "'" "," (1) ", " (400) ")
     response = requests.get('http://localhost:5000/api/v1/resources/check_new_agents', params={"model":"m1"}, timeout=5)

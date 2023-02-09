@@ -177,7 +177,7 @@ to new_send_agent_to_model
 ;  [
 ;    print ("banco vazio")
 ;  ]
-;  print("NL: fim testing_receiving: -----------")
+;  print("NL: fim receiving_agents: -----------")
 end
 
 to send_agent_to_model
@@ -250,9 +250,9 @@ to new_check_new_agent
   print("NL: no netlogo, tempo inicial do new_check_new_agent")
   print(date-and-time)
   py:setup py:python
-  py:run "from db_python_netlogo import testing_receiving"
-  let result py:runresult (word "testing_receiving('" ("m2") "')")
-  print("NL: testing_receiving: -----------")
+  py:run "from db_python_netlogo import receiving_agents"
+  let result py:runresult (word "receiving_agents('" ("m2") "')")
+  print("NL: receiving_agents: -----------")
   print("NL: Todos os agentes para processar:")
   print(result)
   print("NL: separados:")
@@ -314,7 +314,7 @@ to new_check_new_agent
   ]
   print("NL: no netlogo, tempo final do new_check_new_agent")
   print(date-and-time)
-  print("NL: fim testing_receiving: -----------")
+  print("NL: fim receiving_agents: -----------")
 end
 
 to testing_python
@@ -322,9 +322,9 @@ print("NL: funcao python testing_python")
   py:setup py:python
 ;  py:run "from db_python_netlogo import testing_send"
 ;  let result py:runresult (word "testing_send('" "[" "\"" "agent" "\"" " " ("agent_id") " " ("sugar") " " ("metabolism") " " ("vision") " " (word "\"" (ticks) "-1" "\"") "]" "')")
-py:run "from db_python_netlogo import testing_receiving"
-  let result py:runresult (word "testing_receiving('" ("m2") "')")
-  print("NL: testing_receiving: -----------")
+py:run "from db_python_netlogo import receiving_agents"
+  let result py:runresult (word "receiving_agents('" ("m2") "')")
+  print("NL: receiving_agents: -----------")
   print("NL: Todos os agentes para processar:")
   print(result)
   print("NL: separados:")
@@ -360,7 +360,7 @@ py:run "from db_python_netlogo import testing_receiving"
   [
     print ("banco vazio")
   ]
-  print("NL: fim testing_receiving: -----------")
+  print("NL: fim receiving_agents: -----------")
 
 end
 
@@ -710,8 +710,8 @@ to export_output_to_File
   print("NL: ---------- FIM DA SIMULACAO...")
 ;  print("NL: AGENTES QUE ENTRARIAM NA SIMULACAO: ")
 ;  py:setup py:python
-;  py:run "from db_python_netlogo import testing_receiving"
-;  let result py:runresult (word "testing_receiving('" ("m2") "')")
+;  py:run "from db_python_netlogo import receiving_agents"
+;  let result py:runresult (word "receiving_agents('" ("m2") "')")
 ;  ifelse(length result > 0)
 ;  [
 ;    print("NL: entra primeiro if")

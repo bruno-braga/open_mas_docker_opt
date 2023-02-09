@@ -146,9 +146,9 @@ def send_agent_to_router(agent_id, data, path):
   print("End time send_agent_to_router: "+str(end - start))
   return retorno
 
-def testing_receiving(modelo):
+def receiving_agents(modelo):
   start = time.time()
-  print("Start time testing_receiving: "+str(start))
+  print("Start time receiving_agents: "+str(start))
   str1 = ''
   return_list = []
   retorno = False
@@ -184,7 +184,7 @@ def testing_receiving(modelo):
   # return str1
   print("Left loop")
   end = time.time()
-  print("End time testing_receiving: "+str(end - start))
+  print("End time receiving_agents: "+str(end - start))
   return return_list
 
 # def send_function(string_to_send):
@@ -473,7 +473,7 @@ def print_send_agent_to_router(agent_id, data, path):
   cnx.close()
   return retorno
 
-def print_testing_receiving(modelo):
+def print_receiving_agents(modelo):
 
   return_list = []
   to_update = []
@@ -725,7 +725,7 @@ def print_process_agents_on_router():
 #   cnx.close()
 #   return retorno
 
-# def testing_receiving(modelo):
+# def receiving_agents(modelo):
 
 #   return_list = []
 #   to_update = []
@@ -984,7 +984,7 @@ def print_process_agents_on_router():
 #   cnx.close()
 #   return retorno
 
-# def print_testing_receiving(modelo):
+# def print_receiving_agents(modelo):
 
 #   return_list = []
 #   to_update = []
@@ -1271,7 +1271,7 @@ def print_process_agents_on_router():
 #   print("string recebida: "+string_recebida)
 #   return retorno
 
-# def testing_receiving(modelo):
+# def receiving_agents(modelo):
 
 #   return_list = []
 
