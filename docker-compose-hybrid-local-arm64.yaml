@@ -73,11 +73,11 @@ services:
   #           # condition: service_completed_successfully
 
   # db:
-  #   container_name: db
-  #   restart: always
+  # #   container_name: db
   #   build:
-  #       context: ./db
-  #       dockerfile: Dockerfile
+  #     context: .
+  #     dockerfile: Dockerfile_MYSQL
+  #   restart: always
   #   environment:
   #       MYSQL_ROOT_PASSWORD: root
   #       MYSQL_ROOT_HOST: '%'
@@ -111,8 +111,10 @@ services:
       - my_network
   
   # phpmyadmin:
-  #     image: phpmyadmin/phpmyadmin
   #     container_name: phpmyadmin
+      # build:
+      #   context: .
+      #   dockerfile: Dockerfile_PHPMYADMIN_arm64
   #     networks:
   #       - my_network
   #     ports:
@@ -279,10 +281,10 @@ services:
 
 #   db:
 #     container_name: db
-#     restart: always
-#     build:
-#         context: ./db
-#         dockerfile: Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile_MYSQL_arm64
+    # restart: always
 #     environment:
 #         MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
 #         MYSQL_ROOT_HOST: '%'

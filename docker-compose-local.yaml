@@ -74,8 +74,10 @@ services:
 
   db:
     container_name: db
+    build:
+      context: .
+      dockerfile: Dockerfile_MYSQL
     restart: always
-    image: mysql/mysql-server:5.7
     environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_ROOT_HOST: '%'
@@ -109,8 +111,10 @@ services:
       - my_network
   
   phpmyadmin:
-      image: phpmyadmin/phpmyadmin
       container_name: phpmyadmin
+      build:
+        context: .
+        dockerfile: Dockerfile_PHPMYADMIN
       networks:
         - my_network
       ports:
