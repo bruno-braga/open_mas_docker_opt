@@ -11,6 +11,7 @@
 */
 
 /*
+Referências:
 http://jacamo.sourceforge.net/tutorial/gold-miners/
 https://github.com/jacamo-lang/jacamo/blob/master/doc/tutorials/gold-miners/readme.adoc
 http://jacamo.sourceforge.net/tutorial/gold-miners/aop-altissimo-14.pdf
@@ -24,20 +25,6 @@ mas gold_miners {
     agent killer_agent
 
     agent leader
-    /*
-    agent miner1 : miner1.asl  {
-        focus: mining.m1view
-    }
-    agent miner2 : miner1.asl {
-        focus: mining.m2view
-    }
-    agent miner3 : miner1.asl  {
-        focus: mining.m3view
-    }
-    agent miner4 : miner1.asl  {
-        focus: mining.m4view
-    }
-    */
 
     /* FILA, 1 AGENTE SÓ */
     workspace mining {
@@ -46,83 +33,8 @@ mas gold_miners {
         // second parameter is the id of the agent in the scenario
 
         artifact m2view: mining.MiningPlanet(7,1)
-        /*
-        artifact m1view: mining.MiningPlanet(4,0)
-        artifact m2view: mining.MiningPlanet(4,1)
-        artifact m3view: mining.MiningPlanet(4,2)
-        artifact m4view: mining.MiningPlanet(4,3)
-        */
     }
-
-    /*
-    workspace mining {
-        // each agent has its own artifact to interface with the Mining Planet scenario
-        // first parameter is the id of the scenario
-        // second parameter is the id of the agent in the scenario
-        artifact m1view: mining.MiningPlanet(4,0)
-        artifact m2view: mining.MiningPlanet(4,1)
-        artifact m3view: mining.MiningPlanet(4,2)
-        artifact m4view: mining.MiningPlanet(4,3)
-    }
-    */
-
-    /* ANTES DE FAZER A FILA */ 
-    /*
-    agent check_file_agent
-    agent killer_agent
-
-    agent leader
-    agent miner1 : miner1.asl  {
-        focus: mining.m1view
-    }
-    agent miner2 : miner1.asl {
-        focus: mining.m2view
-    }
-    agent miner3 : miner1.asl  {
-        focus: mining.m3view
-    }
-    agent miner4 : miner1.asl  {
-        focus: mining.m4view
-    }
-
-    workspace mining {
-        // each agent has its own artifact to interface with the Mining Planet scenario
-        // first parameter is the id of the scenario
-        // second parameter is the id of the agent in the scenario
-        artifact m1view: mining.MiningPlanet(4,0)
-        artifact m2view: mining.MiningPlanet(4,1)
-        artifact m3view: mining.MiningPlanet(4,2)
-        artifact m4view: mining.MiningPlanet(4,3)
-    }
-    */
 
     class-path: lib                      // java class path
-
-    /* exemplo 1
-    agent leader
-    agent miner1 : miner.asl  {
-        focus: mining.m1view
-    }
-    agent miner2 : dummy.asl {
-        focus: mining.m2view
-    }
-    agent miner3 : dummy.asl  {
-        focus: mining.m3view
-    }
-    agent miner4 : dummy.asl  {
-        focus: mining.m4view
-    }
-
-    workspace mining {
-        // each agent has its own artifact to interface with the Mining Planet scenario
-        // first parameter is the id of the scenario
-        // second parameter is the id of the agent in the scenario
-        artifact m1view: mining.MiningPlanet(1,0)
-        artifact m2view: mining.MiningPlanet(1,1)
-        artifact m3view: mining.MiningPlanet(1,2)
-        artifact m4view: mining.MiningPlanet(1,3)
-    }
-
-    */
 }
 

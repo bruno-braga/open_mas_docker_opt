@@ -1,4 +1,6 @@
 // miner agent
+// MINER2 (MINER1 COM FUNÇÕES PRA RECEBER E ENVIAR AGENTES) COM FILA
+// MINER3 SÓ VAI MATAR QUANDO ENTREGAR O GOLD
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 
@@ -13,15 +15,51 @@ last_dir(null). // the last movement I did
 free.
 score(0).
 
-initial_print1.
+/* initial_print1. */
+@pfunction2[atomic]
 +initial_print1 : true
 <- 
-  .print("Hello there. I'm a saver agent");
+  .print("Hello there. I'm a regular agent");
+  ?agent_id(AGENTID);
+  ?path(PATH);
+  
+  /* Algo que é carregado entre as simulações */  
+  .random(R);
+  +my_testing(R);
+  ?my_testing(R);
+  .print("R: ", R);
+
+  .abolish(agent_id(_));
+  .abolish(path(_));
+
+  ?sugar(SUGAR);
+  ?metabolism(METABOLISM);
+  ?vision(VISION);
+
+  .print("Sugar ", SUGAR);
+  .print("Metabolism ", METABOLISM);
+  .print("Vision ", VISION);
+  
+  .abolish(sugar(_));
+  .abolish(metabolism(_));
+  .abolish(vision(_));
+
+  .my_name(MYNAME);
+  .concat("src/agt/list/",MYNAME,".asl",NAME)
+  /* É possível salvar o agente já adicionando crenças, como o exemplo do say(hello) */ 
+  .save_agent(NAME,[start,say(hello)]);
+  .print("Saved my information on file. Sending message to remove agent from simulation");
+
+  .send(killer_agent, tell, kill(AGENTID, PATH, MYNAME, SUGAR, METABOLISM, VISION));
+  .send(killer_agent, untell, kill(AGENTID, PATH, MYNAME, SUGAR, METABOLISM, VISION)).
+
+/*
++initial_print1 : true
+<-
+  .print("Hello there. I'm saving myself to leave the simulation");
 
   ?agent_id(V0);
   ?path(V1);
-  
-  /* Algo que é carregado entre as simulações */
   
   .random(R);
 
@@ -31,7 +69,6 @@ initial_print1.
 
   .print("R: ", R);
 
-  /* Começa processo para tirar */
   .abolish(agent_id(_));
   .abolish(path(_));
 
@@ -56,6 +93,7 @@ initial_print1.
 
   .send(killer_agent, tell, kill(V0, V1, X, B0, B1, B2));
   .send(killer_agent, untell, kill(V0, V1, X, B0, B1, B2)).
+*/
 
 /* rules */
 /* this agent program doesn't have any rules */
@@ -218,7 +256,22 @@ initial_print1.
      !!handle(Gold). // must use !! to perform "handle" as not atomic
 
 /* new plan for event +!handle(_) */
+@pfunction[atomic]
++!handle(gold(X,Y))
+  :  not free
+  <- .print("Handling ",gold(X,Y)," now.");
+     !pos(X,Y);
+     !ensure(pick,gold(X,Y));
+     ?depot(_,DX,DY);
+     !pos(DX,DY);
+     !ensure(drop, 0);
+     .print("Finish handling ",gold(X,Y));
+     ?score(S);
+     -+score(S+1);
+     .send(leader,tell,dropped);
+     +initial_print1.
 
+/*
 +!handle(gold(X,Y))
   :  not free
   <- .print("Handling ",gold(X,Y)," now.");
@@ -232,7 +285,7 @@ initial_print1.
      -+score(S+1);
      .send(leader,tell,dropped);
      !choose_gold.
-
+*/
 // if ensure(pick/drop) failed, pursue another gold
 -!handle(G) : G
   <- .print("failed to catch gold ",G);

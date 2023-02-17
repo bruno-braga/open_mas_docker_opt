@@ -210,8 +210,7 @@ public class my_create_ag extends DefaultInternalAction {
                             String asl_file_name = "list/"+agent_id+".asl";
 
                             if (!Files.exists(Paths.get("src/agt/"+asl_file_name))){
-                                //asl_file_name = "regular_agent.asl";
-                                asl_file_name = "miner3.asl";
+                                asl_file_name = "default_agent.asl";
                             }
 
                             System.out.println("asl_file_name: "+asl_file_name);
