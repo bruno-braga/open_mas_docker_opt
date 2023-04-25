@@ -11,6 +11,7 @@ import random
 import time
 
 def request_to_register(model, qtd):
+  """ Python code that requests the register to insert a certain amount of new agents in the simulation """
 
   cnx = mysql.connector.connect(user='MYSQL_USER', password='MYSQL_PASSWORD',
                                  host='db',

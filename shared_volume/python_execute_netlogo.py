@@ -20,16 +20,10 @@ from types import SimpleNamespace
 
 from datetime import datetime
 
-my_hostname = os.environ['my_hostname']
-
-model_file = os.environ['model_file']
-experiment = os.environ['experiment']
-
-auto_run = os.environ['auto_run']
-
 # config_file = "testing_config.txt"
 
 def execute_model():
+    """ Function that executes the NetLogo model """
     now = datetime.now()
 
     current_time = now.strftime("%H:%M:%S")
@@ -45,11 +39,14 @@ def execute_model():
     current_time = now.strftime("%H:%M:%S")
     print("Model finished on: ", current_time)
 
-def delete_file(filename):
-    if os.path.exists(filename):
-        os.remove(filename)
-
 if __name__ == '__main__':
+
+    my_hostname = os.environ['my_hostname']
+
+    model_file = os.environ['model_file']
+    experiment = os.environ['experiment']
+
+    auto_run = os.environ['auto_run']
 
     if auto_run == "True":
         execute_model()
@@ -84,26 +81,4 @@ if __name__ == '__main__':
                 conf_parameters.append(temp_list)
                 print ("conf_parameters")
                 print(conf_parameters)
-
-            # with open("/shared_volume/config.txt", "w") as output:
-            with open(config_file, "w") as output:
-                for x in conf_parameters:
-
-                    x[0] = x[0].replace('"', '')
-
-                    x[0] = '"' + x[0] + '"'
-
-                    if(type(x[1]) is str):
-                        x[1] = str(x[1]).replace('"', '')
-                        x[1] = '"' + x[1] + '"'
-
-                    aaa = json.dumps(x)
-
-                    g = ' '.join(map(str,x))
-
-                    g = '[' + g + ']'
-
-                    #print (g)
-                    output.write("%s\n" % (g))
-
             execute_model()

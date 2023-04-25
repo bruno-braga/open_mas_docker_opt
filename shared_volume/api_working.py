@@ -963,16 +963,17 @@ def testing_sending():
     return 'false'
 
 
-# testing connection before enabling API
-cnx_test, cursor_test = connect_to_db()
-# connected = False
-# while (connected == False):
-#   try:
-#     cnx = mysql.connector.connect(user='root', password='root',
-#                                    host='db',
-#                                    database='MYSQL_DATABASE')
-#     connected = cnx.is_connected()
-#   except:
-#     if docker_debugger: print("**Error** Error connecting to the DB")
-#     time.sleep(3)
-app.run(host="0.0.0.0", port=5000)
+if __name__ == '__main__':
+  # testing connection before enabling API
+  cnx_test, cursor_test = connect_to_db()
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
+  app.run(host="0.0.0.0", port=5000)

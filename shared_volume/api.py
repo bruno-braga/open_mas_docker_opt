@@ -20,12 +20,34 @@ import requests
 
 #https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask
 
-app = flask.Flask(__name__)
+#app = flask.Flask(__name__)
+
+app = flask.Flask(__name__, static_url_path='/', static_folder='_build/html/')
+
+
+@app.route('/')
+@app.route('/<path:path>')
+def serve_sphinx_docs(path='index.html'):
+    return app.send_static_file(path)
+
+
+#app = flask.Flask(__name__, static_url_path='/shared_volume/docs/_build/html')
 app.config["DEBUG"] = True
 
 docker_debugger = True
 
+# @app.route('/docs', defaults = {'filename': 'index.html'})
+# @app.route('/docs/<path:filename>')
+# def web_docs(filename):
+#   print(filename)
+#   path = os.path.join('/shared_volume/docs/_build/html', filename)
+#   return flask.send_file(path)
+#   #path = os.path.join('/shared_volume/docs/_build/html', filename)
+#   #print(path)
+#   #print("file? "+str(os.path.isfile(path)))
+#   #return app.send_static_file(path)
 def connect_to_db():
+  """ Function used to let the API connect to DB """
   connected = False
   while (connected == False):
     try:
@@ -43,10 +65,13 @@ def connect_to_db():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return "<h1>404</h1><p>The resource could not be found.</p>", 404
+  """ Function that handles 404 requests to the API """
+  #test
+  return "<h1>404</h1><p>The resource could not be found.</p>", 404
 
 @app.route('/api/v1/resources/output_php', methods=['GET'])
 def output_php():
+  """ Function that sends to the PHP code the data to create the list of agents of the simulation """
   query_parameters = request.args
   model = query_parameters.get('model')
 
@@ -70,6 +95,7 @@ def output_php():
 
 @app.route('/api/v1/resources/check_new_agents_1', methods=['GET'])
 def check_new_agentss_1():
+  """ Checks if there is any new agent to insert in the simulation. Return a single agent """
 
   query_parameters = request.args
   model = query_parameters.get('model')
@@ -108,6 +134,7 @@ def check_new_agentss_1():
 
 @app.route('/api/v1/resources/process_agents_on_router', methods=['GET'])
 def process_agents_on_router():
+  """ Function used by the router, that removes an agent from router and inserts it in a simulation, accordingly to the router type """
 
   router_type = "sequential"
   if docker_debugger: print("Router type:"+router_type)
@@ -178,6 +205,7 @@ def process_agents_on_router():
 
 @app.route('/api/v1/resources/check_new_agents', methods=['GET'])
 def check_new_agentss():
+  """ Checks if there is any new agent to insert in the simulation. Return multiple agents (all available at the moment) """
 
   query_parameters = request.args
   model = query_parameters.get('model')
@@ -220,6 +248,16 @@ def check_new_agentss():
 
 @app.route('/api/v1/resources/sanity_test', methods=['GET'])
 def sanity_test():
+  """
+  Sanity test that tests if every agent (at the moment, from 1 to 799):
+  (i) appears in the following situations:
+  - all models table, where processed = 0
+  - alive agents table, from every model
+  - last one from m3 (current alive agent in JaCaMo)
+  - in router table (router queue)
+  (ii) appears in the previous scenario just once
+  (iii) if every agent from m3 (except for the alive) has a .asl file
+  """
 
   query_parameters = request.args
   model = query_parameters.get('model')
@@ -380,6 +418,7 @@ def sanity_test():
 
 @app.route('/api/v1/resources/sanity_test_agent_path_history', methods=['GET'])
 def sanity_test_agent_path_history():
+  """  Sanity test: tests the path from a single agent """
 
   query_parameters = request.args
   search_agent_id = query_parameters.get('agent_id')
@@ -424,6 +463,7 @@ def sanity_test_agent_path_history():
 
 @app.route('/api/v1/resources/sanity_test_recheck_agent_path', methods=['GET'])
 def sanity_test_recheck_agent_path():
+  """ Sanity test: for every agent in m1, m2 and m3, tests if the path has a continous cycle """
 
   query_parameters = request.args
   return_list = []
@@ -479,6 +519,7 @@ def sanity_test_recheck_agent_path():
 
 @app.route('/api/v1/resources/sanity_test_agent_to_jacamo_without_asl_file', methods=['GET'])
 def sanity_test_agent_to_jacamo_without_asl_file():
+  """ Sanity test: tests if every agent from router, already processed, has a .asl file """
 
   query_parameters = request.args
   #search_agent_id = query_parameters.get('model')
@@ -513,6 +554,7 @@ def sanity_test_agent_to_jacamo_without_asl_file():
 
 @app.route('/api/v1/resources/sanity_test_list', methods=['GET'])
 def sanity_test_list():
+  """ Sanity test: call all previous sanity test in a single route """
 
   return_list = []
   routes = [
@@ -577,6 +619,7 @@ def sanity_test_list():
 
 @app.route('/api/v1/resources/register_agents_on_platform', methods=['POST'])
 def register_agents_on_platform():
+  """ Route used to register agents on the platform (performed by register) """
   seed = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
   start = time.time()
   if docker_debugger: print("Start time request_to_register: "+str(start) +" with seed: "+seed)
@@ -625,6 +668,7 @@ def register_agents_on_platform():
 
 @app.route('/api/v1/resources/request_to_register', methods=['POST'])
 def request_to_register():
+  """ Route used to register agents on the platform (performed by register) """
   seed = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
   start = time.time()
   if docker_debugger: print("Start time request_to_register: "+str(start) +" with seed: "+seed)
@@ -668,6 +712,7 @@ def request_to_register():
 
 @app.route('/api/v1/resources/model_to_alive', methods=['POST'])
 def model_to_alive():
+  """ At the end of simulation, receives all agents from a model and inserts it into the alive_agent table """
   json_data = request.get_json()
   if docker_debugger: print(json_data)
   agent_id_list = json_data['agent_id']
@@ -706,6 +751,7 @@ def model_to_alive():
 
 @app.route('/api/v1/resources/model_to_alive_single', methods=['POST'])
 def model_to_alive_single():
+  """ At the end of simulation, receives a single agent from a model and inserts it into the alive_agent table """
   json_data = request.get_json()
   if docker_debugger: print(json_data)
   agent_id = json_data['agent_id']
@@ -738,6 +784,7 @@ def model_to_alive_single():
 
 @app.route('/api/v1/resources/model_to_router', methods=['POST'])
 def testing_sending():
+  """ Receive an agent, from a model, and inserts it into the router table """
   json_data = request.get_json()
   if docker_debugger: print(json_data)
   agent_id = json_data['agent_id']
@@ -768,6 +815,7 @@ def testing_sending():
     return 'false'
 
 
-# testing connection before enabling API
-cnx_test, cursor_test = connect_to_db()
-app.run(host="0.0.0.0", port=5000)
+if __name__ == '__main__':
+  # testing connection before enabling API
+  cnx_test, cursor_test = connect_to_db()
+  app.run(host="0.0.0.0", port=5000)
