@@ -1,6 +1,6 @@
 import flask
 from flask import request, jsonify
-#import sqlite3
+import sqlite3
 
 import mysql.connector
 from mysql.connector import errorcode
@@ -14,9 +14,6 @@ import json
 import string
 
 import time
-
-from re import search
-import requests
 
 #https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask
 
@@ -47,39 +44,66 @@ def page_not_found(e):
 
 @app.route('/api/v1/resources/output_php', methods=['GET'])
 def output_php():
+
+  if docker_debugger: print("ooo")
+
   query_parameters = request.args
-  model = query_parameters.get('model')
+  modelo = query_parameters.get('model')
 
   return_list = []
   to_update = []
 
   cnx, cursor = connect_to_db()
 
-  query = "SELECT MAX(id) AS id, agent_id, MAX(data) AS data, MAX(path) AS path, MAX(processed) AS processed FROM "+model+" GROUP BY agent_id ORDER BY agent_id ASC";
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
+
+  query = "SELECT MAX(id) AS id, agent_id, MAX(data) AS data, MAX(path) AS path, MAX(processed) AS processed FROM "+modelo+" GROUP BY agent_id ORDER BY agent_id ASC";
   cursor.execute(query)
 
   for (id, agent_id, data, path, processed) in cursor:
+    if docker_debugger: print("iii")
     return_list.append([agent_id, data, path, processed])
     to_update.append(id)
 
   cursor.close()
 
   cnx.close()
-  if docker_debugger: print("Sending: "+str(return_list))
+  if docker_debugger: print("enviando: "+str(return_list))
   return jsonify(return_list)
 
 @app.route('/api/v1/resources/check_new_agents_1', methods=['GET'])
 def check_new_agentss_1():
 
   query_parameters = request.args
-  model = query_parameters.get('model')
+  modelo = query_parameters.get('model')
 
   return_list = []
   to_update = []
 
   cnx, cursor = connect_to_db()
 
-  query = ("SELECT id, agent_id, data, path, processed FROM "+model+" "
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
+  query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
             "WHERE processed = 0 ORDER BY created_at ASC LIMIT 1")
 
   cursor.execute(query)
@@ -93,26 +117,38 @@ def check_new_agentss_1():
   for tupla in to_update:
     try:
       cursor = cnx.cursor()
-      temporary_query = "UPDATE "+model+" SET processed = 1 WHERE id = "+str(tupla)+"; "
+      temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id = "+str(tupla)+"; "
       query = (temporary_query)
       cursor.execute(temporary_query)
       cnx.commit()
     except mysql.connector.Error as err:
       if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
+      # testing_exception(err)
     finally:
       cursor.close()
 
   cnx.close()
-  if docker_debugger: print("Sending: "+str(return_list))
+  if docker_debugger: print("enviando: "+str(return_list))
   return jsonify(return_list)
 
 @app.route('/api/v1/resources/process_agents_on_router', methods=['GET'])
 def process_agents_on_router():
 
+  #router_type = "random"
   router_type = "sequential"
   if docker_debugger: print("Router type:"+router_type)
 
   cnx, cursor = connect_to_db()
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                              host='db',
+  #                              database='MYSQL_DATABASE')
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the database")
+  #     time.sleep(3)
   cursor = cnx.cursor()
 
   if(router_type == "random"):
@@ -122,7 +158,7 @@ def process_agents_on_router():
 
   query = ("SELECT id, agent_id, data, path, processed FROM router "
             "WHERE processed = 0 ORDER BY "+order)
-  models_list = ["m1", "m2", "m3"]
+  modelos_list = ["m1", "m2", "m3"]
   cursor.execute(query)
 
 
@@ -143,7 +179,7 @@ def process_agents_on_router():
       cnx, cursor = connect_to_db()
       cnx.start_transaction()
 
-      model_to_send = random.choice(models_list)
+      model_to_send = random.choice(modelos_list)
 
       agent_id = str(tupla[0])
       data = tupla[1]
@@ -174,57 +210,222 @@ def process_agents_on_router():
         cursor.close()
         cnx.close()
   return jsonify(return_list)
+# def process_agents_on_router():
+
+#   #router_type = "random"
+#   router_type = "sequential"
+#   print("Router type:"+router_type)
+#   connected = False
+#   while (connected == False):
+#     try:
+#       cnx = mysql.connector.connect(user='root', password='root',
+#                                host='db',
+#                                database='MYSQL_DATABASE')
+#       connected = cnx.is_connected()
+#     except:
+#       print("Error connecting to the database")
+#       time.sleep(3)
+#   cursor = cnx.cursor()
+
+#   if(router_type == "random"):
+#     order = "RAND()"
+#   elif(router_type == "sequential"):
+#     order = "created_at ASC"
+
+#   query = ("SELECT id, agent_id, data, path, processed FROM router "
+#             "WHERE processed = 0 ORDER BY "+order)
+#   modelos_list = ["m1", "m2", "m3"]
+#   cursor.execute(query)
+
+
+#   return_list = []
+#   delete_list = []
+
+#   for (id, agent_id, data, path, processed) in cursor:
+#     return_list.append([agent_id, data, path, id])
+
+#   cursor.close()
+
+#   cnx.close()
+
+#   for tupla in return_list:
+#     cnx = mysql.connector.connect(user='root', password='root',
+#                                host='db',
+#                                database='MYSQL_DATABASE')
+#     cursor = cnx.cursor()
+#     cnx.start_transaction()
+
+#     model_to_send = random.choice(modelos_list)
+
+#     agent_id = str(tupla[0])
+#     data = tupla[1]
+#     path = tupla[2]
+#     tupla_id = str(tupla[3])
+#     processed = str(0)
+
+#     return_list = []
+
+#     sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
+#     sql2 = "UPDATE router SET processed = 1 WHERE id = "+tupla_id+"; "
+#     try:
+#       cursor.execute(sql1)
+#       cursor.execute(sql2)
+#       # Make sure data is committed to the database
+#       cnx.commit()
+#       print("Agent_id: "+agent_id+" sended to model "+model_to_send)
+#       new_value = {'id': str(agent_id), 'model': model_to_send}
+#       return_list.append(new_value)
+#     except mysql.connector.Error as err:
+#       print("Failed inserting on database: {}".format(err))
+#       print("Rolling back ...")
+#       print(e)
+#       db.rollback()  # rollback changes
+#       new_value = {'id': str(agent_id), 'model': "ERROR"}
+#       return_list.append(new_value)
+#     finally:
+#       cursor.close()
+#       cnx.close()
+#   return jsonify(return_list)
 
 
 @app.route('/api/v1/resources/check_new_agents', methods=['GET'])
 def check_new_agentss():
 
   query_parameters = request.args
-  model = query_parameters.get('model')
+  modelo = query_parameters.get('model')
 
   return_list = []
-  #to_update = []
+  to_update = []
 
   cnx, cursor = connect_to_db()
-  query = ("SELECT id, agent_id, data, path, processed FROM "+model+" "
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(1)
+  query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
             "WHERE processed = 0")
 
   cursor.execute(query)
+
+  # records = cursor.fetchall()
+  # row_count = cursor.rowcount
+  # print("row_count: "+str(row_count))
+
+  # if row_count > 0:
+  # id_list = "("
   id_list = ""
   for (id, agent_id, data, path, processed) in cursor:
     return_list.append([agent_id, data, path])
+    # to_update.append(id)
     id_list += str(id)+"," 
   if(id_list != ""):
     id_list = id_list[:-1]
+  # id_list += ")"
 
   if docker_debugger: print("id_list: "+id_list)
 
   cursor.close()
 
+  # for tupla in to_update:
   if (id_list != ""):
     try:
       cursor = cnx.cursor()
-      temporary_query = "UPDATE "+model+" SET processed = 1 WHERE id IN ("+id_list+");"
+      temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id IN ("+id_list+");"
       if docker_debugger: print("temporary query: "+temporary_query)
       query = (temporary_query)
       cursor.execute(temporary_query)
       cnx.commit()
     except mysql.connector.Error as err:
       if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
+      # testing_exception(err)
     finally:
       cursor.close()
 
+  # for (id, agent_id, data, path, processed) in cursor:
+  #   return_list.append([agent_id, data, path])
+  #   to_update.append(id)
+
+  # cursor.close()
+
+  # for tupla in to_update:
+  #   try:
+  #     cursor = cnx.cursor()
+  #     temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id = "+str(tupla)+"; "
+  #     query = (temporary_query)
+  #     cursor.execute(temporary_query)
+  #     cnx.commit()
+  #   except mysql.connector.Error as err:
+  #     if docker_debugger: print("Failed inserting on database: {}".format(err))
+  #     testing_exception(err)
+  #   finally:
+  #     cursor.close()
+
   cnx.close()
-  if docker_debugger: print("Sending: "+str(return_list))
+  if docker_debugger: print("enviando: "+str(return_list))
   return jsonify(return_list)
+# def check_new_agentss():
+
+#   query_parameters = request.args
+#   modelo = query_parameters.get('model')
+
+#   return_list = []
+#   to_update = []
+
+#   connected = False
+#   while (connected == False):
+#     try:
+#       cnx = mysql.connector.connect(user='root', password='root',
+#                                      host='db',
+#                                      database='MYSQL_DATABASE')
+#       cursor = cnx.cursor()
+#       connected = cnx.is_connected()
+#     except:
+#       if docker_debugger: print("Error connecting to the DB")
+#       time.sleep(3)
+#   query = ("SELECT id, agent_id, data, path, processed FROM "+modelo+" "
+#             "WHERE processed = %s AND %s")
+
+#   cursor.execute(query, (0, "1=1"))
+
+#   for (id, agent_id, data, path, processed) in cursor:
+#     return_list.append([agent_id, data, path])
+#     to_update.append(id)
+
+#   cursor.close()
+
+#   for tupla in to_update:
+#     try:
+#       cursor = cnx.cursor()
+#       temporary_query = "UPDATE "+modelo+" SET processed = 1 WHERE id = "+str(tupla)+"; "
+#       query = (temporary_query)
+#       cursor.execute(temporary_query)
+#       cnx.commit()
+#     except mysql.connector.Error as err:
+#       if docker_debugger: print("Failed inserting on database: {}".format(err))
+#       testing_exception(err)
+#     finally:
+#       cursor.close()
+
+#   cnx.close()
+#   if docker_debugger: print("enviando: "+str(return_list))
+#   return jsonify(return_list)
 
 @app.route('/api/v1/resources/sanity_test', methods=['GET'])
 def sanity_test():
 
   query_parameters = request.args
-  model = query_parameters.get('model')
+  modelo = query_parameters.get('model')
 
   return_list = []
+  to_update = []
 
   m1_alive = []
   m2_alive = []
@@ -237,6 +438,18 @@ def sanity_test():
   on_router = []
 
   cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
 
   cursor = cnx.cursor()
   query = ("SELECT agent_id FROM m1 WHERE processed = 0 ORDER BY agent_id")
@@ -297,6 +510,28 @@ def sanity_test():
 
   if docker_debugger: print("m2_alive:")
   if docker_debugger: print(m2_alive)
+
+  # fname = "/shared_volume/netlogo_output/m1_alive.txt"
+  # if(os.path.isfile(fname)):
+  #   f = open(fname, "r")
+  #   text = f.read()
+  #   text = text[1:]
+  #   if docker_debugger: print(text)
+  #   m1_alive = [int(x) for x in text.split()]
+
+  # if docker_debugger: print("m1_alive:")
+  # if docker_debugger: print(m1_alive)
+
+  # fname = "/shared_volume/netlogo_output/m2_alive.txt"
+  # if(os.path.isfile(fname)):
+  #   f = open(fname, "r")
+  #   text = f.read()
+  #   text = text[1:]
+  #   if docker_debugger: print(text)
+  #   m2_alive = [int(x) for x in text.split()]
+
+  # if docker_debugger: print("m2_alive:")
+  # if docker_debugger: print(m2_alive)
 
   cursor = cnx.cursor()
   query = ("SELECT agent_id FROM m3 WHERE processed = 1 ORDER BY id DESC LIMIT 1")
@@ -376,6 +611,18 @@ def sanity_test():
 
   cnx.close()
 
+  # file_path = "/shared_volume/netlogo_output/tests/errors.txt"
+  # with open(file_path,"a+") as f:
+  #   f.write("aaa"+"\n")
+
+  # #open and read the file after the appending:
+  # f = open(file_path, "r")
+  # print(f.read())
+  
+#  if(len(return_list) == 0):
+#    new_value = {'id': str(0), 'error': "none"}
+#    return_list.append(new_value)
+
   return jsonify(return_list)
 
 @app.route('/api/v1/resources/sanity_test_agent_path_history', methods=['GET'])
@@ -384,23 +631,49 @@ def sanity_test_agent_path_history():
   query_parameters = request.args
   search_agent_id = query_parameters.get('agent_id')
 
-  if docker_debugger: print("search_agent_id: " + str(search_agent_id))
+  if docker_debugger: print("search_agent_id: " + search_agent_id)
 
   return_list = []
-  m1_on_db = []
 
   cnx, cursor = connect_to_db()
 
-  cursor = cnx.cursor()
-  # query = ("SELECT agent_id FROM m1 WHERE processed = 0 ORDER BY agent_id")
-  # cursor.execute(query)
-  # for agent_id in cursor:
-  #   string1 = str(agent_id)
-  #   agent_id_part = int(re.search(r'\d+', string1).group())
-  #   m1_on_db.append(agent_id_part)
-  # cursor.close()
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
 
-  # cursor = cnx.cursor()
+  cursor = cnx.cursor()
+  query = ("SELECT agent_id FROM m1 WHERE processed = 0 ORDER BY agent_id")
+  cursor.execute(query)
+  for agent_id in cursor:
+    string1 = str(agent_id)
+    agent_id_part = int(re.search(r'\d+', string1).group())
+    m1_on_db.append(agent_id_part)
+  cursor.close()
+
+  cursor = cnx.cursor()
+ 	# (SELECT * from m1 where agent_id = 1)
+	# UNION
+	# (SELECT * from m2 where agent_id = 1)
+	# UNION
+	# (SELECT * from m3 where agent_id = 1)
+  
+
+  # query = "";
+  # query += "(SELECT * from m1 where agent_id = " + str(585) + ")";
+  # query += " UNION ";
+  # query += "(SELECT * from m2 where agent_id = " + str(585) + ")"; 
+  # query += " UNION ";
+  # query += "(SELECT * from m3 where agent_id = " + str(585) + ")";
+
+  # SELECT LENGTH(path) AS path_length FROM m3 WHERE agent_id = 585 AND LENGTH(path) > 11;
 
   query = "SELECT * from router where agent_id = " + str(search_agent_id) + " ORDER BY LENGTH(path) ASC";
   if docker_debugger: print(query)
@@ -409,167 +682,16 @@ def sanity_test_agent_path_history():
   for id, agent_id, data, path, asl_file_path, processed, created_at, updated_at in cursor:
 
     if docker_debugger: print(agent_id)
+    # new_value = {'id': str(agent_id), 'path': path, 'data': data}
     new_value = {'path': path}
     return_list.append(new_value)
   cursor.close()
 
   cnx.close()
   
-  # if(len(return_list) == 0):
-  #   new_value = {}
-  #   return_list.append(new_value)
-
-  return jsonify(return_list)
-
-
-@app.route('/api/v1/resources/sanity_test_recheck_agent_path', methods=['GET'])
-def sanity_test_recheck_agent_path():
-
-  query_parameters = request.args
-  return_list = []
-
-  cnx, cursor = connect_to_db()
-
-  cursor = cnx.cursor()
-
-  query = "SELECT agent_id, path from m1 ORDER BY path ASC";
-  if docker_debugger: print(query)
-
-  prev_path = ""    
-  cursor.execute(query)
-  for agent_id, path in cursor:
-    if (prev_path == ""):
-      continue
-    if (not search(prev_path, path)):
-      new_value = {'agent_id': agent_id, 'path': path}
-      return_list.append(new_value)
-    prev_path = path
-
-  query = "SELECT agent_id, path from m2 ORDER BY path ASC";
-  if docker_debugger: print(query)
-
-  prev_path = ""    
-  cursor.execute(query)
-  for agent_id, path in cursor:
-    if (prev_path == ""):
-      continue
-    if (not search(prev_path, path)):
-      new_value = {'agent_id': agent_id, 'path': path}
-      return_list.append(new_value)
-    prev_path = path
-
-  query = "SELECT agent_id, path from m3 ORDER BY path ASC";
-  if docker_debugger: print(query)
-
-  prev_path = ""    
-  cursor.execute(query)
-  for agent_id, path in cursor:
-    if (prev_path == ""):
-      continue
-    if (not search(prev_path, path)):
-      new_value = {'agent_id': agent_id, 'path': path}
-      return_list.append(new_value)
-    prev_path = path
-  cursor.close()
-
-  cnx.close()
-
-  return jsonify(return_list)
-
-
-@app.route('/api/v1/resources/sanity_test_agent_to_jacamo_without_asl_file', methods=['GET'])
-def sanity_test_agent_to_jacamo_without_asl_file():
-
-  query_parameters = request.args
-  #search_agent_id = query_parameters.get('model')
-  model = "m3"
-
-  if docker_debugger: print("model: " + str(model))
-
-  return_list = []
-
-  cnx, cursor = connect_to_db()
-
-  query = "SELECT agent_id, path FROM router WHERE processed = 1 AND path LIKE '%3%' ORDER BY agent_id ASC";
-  print(query)
-  cursor.execute(query)
-
-  for (agent_id,path) in cursor:
-    fname = "/shared_volume/jacamo/jacamo_model/src/agt/list/"+str(agent_id)+".asl"
-    if(not os.path.isfile(fname)):
-      if docker_debugger: print("**Error** "+str(agent_id)+ " asl file does not exists")
-      new_value = {'id': str(agent_id), 'error': "asl file does not exists"}
-      return_list.append(new_value)
-
-  cursor.close()
-  cnx.close()
-  
-  # if(len(return_list) == 0):
-  #   new_value = {}
-  #   return_list.append(new_value)
-
-  return jsonify(return_list)
-
-
-@app.route('/api/v1/resources/sanity_test_list', methods=['GET'])
-def sanity_test_list():
-
-  return_list = []
-  routes = [
-        'http://api:5000/api/v1/resources/sanity_test',
-        'http://api:5000/api/v1/resources/sanity_test_recheck_agent_path',
-        'http://api:5000/api/v1/resources/sanity_test_agent_to_jacamo_without_asl_file'
-  ]
-
-  for route in routes:
-    print("route: "+route)
-    response = requests.get(route)
-    print('Response from API: ' + response.text)
-    if response.status_code == requests.codes.ok:
-      if(response.json() != []):
-        return_list.append(response.json())
-
-  # response = requests.get('http://api:5000/api/v1/resources/sanity_test')
-  # print('Response from API: ' + response.text)
-  # if response.status_code == requests.codes.ok:
-  #   if(response.json() != []):
-  #     return_list.append(response.json())
-
-  # # response = requests.get('http://api:5000/api/v1/resources/sanity_test_agent_path_history')
-  # # print('Response from API: ' + response.text)
-  # # if response.status_code == requests.codes.ok:
-  # #   return_list.append(response.json())
-
-  # response = requests.get('http://api:5000/api/v1/resources/sanity_test_recheck_agent_path')
-  # print('Response from API: ' + response.text)
-  # if response.status_code == requests.codes.ok:
-  #   if(response.json() != []):
-  #     return_list.append(response.json())
-
-  # response = requests.get('http://api:5000/api/v1/resources/sanity_test_agent_to_jacamo_without_asl_file')
-  # print('Response from API: ' + response.text)
-  # if response.status_code == requests.codes.ok:
-  #   if(response.json() != []):
-  #     return_list.append(response.json())
-
-  # print(type(str(sanity_test())))
-
-  # retorno = json.loads(sanity_test())
-  # print("retorno: "+str(retorno))
-  # #retorno = sanity_test_agent_path_history()
-  # #print("retorno: "+str(retorno))
-  # retorno = json.loads(sanity_test_recheck_agent_path())
-  # print("retorno: "+str(retorno))
-  # retorno = json.loads(sanity_test_agent_to_jacamo_without_asl_file())
-  # print("retorno: "+str(retorno))
-
-  # return_list.append(sanity_test())
-  # #return_list.append(sanity_test_agent_path_history())
-  # return_list.append(sanity_test_recheck_agent_path())
-  # return_list.append(sanity_test_agent_to_jacamo_without_asl_file())
-
-  # print("return_list: "+str(return_list))
-
+  if(len(return_list) == 0):
+    new_value = {}
+    return_list.append(new_value)
 
   return jsonify(return_list)
 
@@ -589,7 +711,18 @@ def register_agents_on_platform():
 
   cnx, cursor = connect_to_db()
 
-  return_value = False
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
+  retorno = False
 
   data = ""
   for agent_id in range(min, max):
@@ -607,18 +740,22 @@ def register_agents_on_platform():
     cursor.execute(sql1)
     # Make sure data is committed to the database
     cnx.commit()
-    return_value = True
+    retorno = True
   except mysql.connector.Error as err:
     if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-    return_value = False
+    # testing_exception(err)
+    retorno = False
   finally:
     cursor.close()
+
+  # if (retorno == False):
+  #   break
 
   cnx.close()
 
   end = time.time()
   if docker_debugger: print("End time request_to_register: "+str(end - start) +" with seed: "+seed)
-  if(return_value):
+  if(retorno):
     return 'true'
   else:
     return 'false'
@@ -637,7 +774,18 @@ def request_to_register():
 
   cnx, cursor = connect_to_db()
 
-  return_value = False
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
+  retorno = False
   for agent_id in range(min, max):
     cursor = cnx.cursor()
 
@@ -647,21 +795,22 @@ def request_to_register():
         cursor.execute(sql1)
         # Make sure data is committed to the database
         cnx.commit()
-        return_value = True
+        retorno = True
     except mysql.connector.Error as err:
         if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-        return_value = False
+        # testing_exception(err)
+        retorno = False
     finally:
         cursor.close()
 
-    if (return_value == False):
+    if (retorno == False):
         break
 
   cnx.close()
 
   end = time.time()
   if docker_debugger: print("End time request_to_register: "+str(end - start) +" with seed: "+seed)
-  if(return_value):
+  if(retorno):
     return 'true'
   else:
     return 'false'
@@ -674,6 +823,18 @@ def model_to_alive():
   model = json_data['model']
 
   cnx, cursor = connect_to_db()
+
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
 
   query = "INSERT INTO alive_agents (agent_id, model) VALUES "
   for agent_id in agent_id_list.split(","):
@@ -688,18 +849,26 @@ def model_to_alive():
   query += ";"
 
   if docker_debugger: print("Query: "+query)
+
+  # add_agent = ("INSERT INTO alive_agents "
+  #                "(agent_id, model) "
+  #                "VALUES (%s, %s)")
+
+  # data_agent = (agent_id, model)
   try:
+    #cursor.execute(add_agent, data_agent)
     cursor.execute(query)
     # Make sure data is committed to the database
     cnx.commit()
-    return_value = True
+    retorno = True
   except mysql.connector.Error as err:
     if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-    return_value = False
+    # testing_exception(err)
+    retorno = False
 
   cursor.close()
   cnx.close()
-  if(return_value):
+  if(retorno):
     return 'true'
   else:
     return 'false'
@@ -713,6 +882,18 @@ def model_to_alive_single():
 
   cnx, cursor = connect_to_db()
 
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
+
   add_agent = ("INSERT INTO alive_agents "
                  "(agent_id, model) "
                  "VALUES (%s, %s)")
@@ -722,14 +903,15 @@ def model_to_alive_single():
     cursor.execute(add_agent, data_agent)
     # Make sure data is committed to the database
     cnx.commit()
-    return_value = True
+    retorno = True
   except mysql.connector.Error as err:
     if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-    return_value = False
+    # testing_exception(err)
+    retorno = False
 
   cursor.close()
   cnx.close()
-  if(return_value):
+  if(retorno):
     return 'true'
   else:
     return 'false'
@@ -746,6 +928,18 @@ def testing_sending():
 
   cnx, cursor = connect_to_db()
 
+  # connected = False
+  # while (connected == False):
+  #   try:
+  #     cnx = mysql.connector.connect(user='root', password='root',
+  #                                    host='db',
+  #                                    database='MYSQL_DATABASE')
+  #     cursor = cnx.cursor()
+  #     connected = cnx.is_connected()
+  #   except:
+  #     if docker_debugger: print("**Error** Error connecting to the DB")
+  #     time.sleep(3)
+
   add_agent = ("INSERT INTO router "
                  "(agent_id, data, path) "
                  "VALUES (%s, %s, %s)")
@@ -755,14 +949,15 @@ def testing_sending():
     cursor.execute(add_agent, data_agent)
     # Make sure data is committed to the database
     cnx.commit()
-    return_value = True
+    retorno = True
   except mysql.connector.Error as err:
     if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-    return_value = False
+    # testing_exception(err)
+    retorno = False
 
   cursor.close()
   cnx.close()
-  if(return_value):
+  if(retorno):
     return 'true'
   else:
     return 'false'
@@ -770,4 +965,14 @@ def testing_sending():
 
 # testing connection before enabling API
 cnx_test, cursor_test = connect_to_db()
+# connected = False
+# while (connected == False):
+#   try:
+#     cnx = mysql.connector.connect(user='root', password='root',
+#                                    host='db',
+#                                    database='MYSQL_DATABASE')
+#     connected = cnx.is_connected()
+#   except:
+#     if docker_debugger: print("**Error** Error connecting to the DB")
+#     time.sleep(3)
 app.run(host="0.0.0.0", port=5000)
