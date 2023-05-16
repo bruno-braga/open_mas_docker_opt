@@ -46,11 +46,59 @@ You should use:
 docker-compose -f docker-compose-local-arm64.yaml  up -d
 ```
 
+## Project Structure
 
-
-## Video
+### Video
 
 The `videos` folder contains two study cases of the architecture.
 
 [Example without GUI](videos/GUI_OFF.mp4) <br />
 [Example using GUI](videos/GUI_ON.mp4)
+
+
+### Shared_Volume
+
+The `shared_volume` folder contains the most important important files of the architecture, besides the `docker-compose` files. Some files/folders to pay atention:
+
+#### Dashboard
+
+This folder is used by the `php` container. It is used to mount the output interface of the architecture, where the user can check real-time information about the simulation.
+
+#### DB_File
+
+This folder contains a `.sql` file used to build the DB that the architecture uses to register information about the agents.
+
+#### Jacamo
+
+This folder contains the structure used by the `jacamo` container. In the actual implementation, it has the `gold miners` model implemented.
+
+#### Netlogo_Output
+
+This folder contains some `.txt` files that comes from the NetLogo's simulation, providing information about real-time cycle, agents that ended the simulation alive and so on.
+
+#### Py:
+
+Files of the py extension, used by NetLogo, to use Python code within NetLogo. In architecture, it is used to run Python code that communicates with the architecture;
+#### Init.py
+Serves as a base for other Python codes used by the architecture;
+
+#### Access_api.py
+Intermediate between the Python code implemented in the NetLogo input/output and the API;
+#### Api.py
+Code used by the API container. Contains all API methods which are the core of the architecture;
+#### Clean_simulation_files.py
+File used by the clear_files container. Used to clear logs from previous simulations. The files that will be excluded can be chosen within this code;
+#### Db_python_netlogo.py
+File that NetLogo uses to access the API, through the py extension. NetLogo calls functions from this file, which in turn calls functions from access_api which ultimately communicates with the API;
+#### Initialize_db.py
+In case you don't use a structure ready for the DB, through the SQL file, the structure of the database can be assembled through this file. Must be run by the Register container;
+#### Open_sugarscape_m1.nlogo and open_sugarscape_m2.nlogo
+NetLogo file, which will be used by the model container;
+#### Python_execute_netlogo.py
+File used by optional trigger containers, which will condition the start of execution of model containers through some policy. Contains Python code to execute sockets that wait for the command to start executing the models;
+#### Register.py
+Code executed by the Register container, which contains functions to request the API to create the initial simulation agents;
+#### Router.py
+Code executed by the Router container. Contains a function in loop that calls the API in the method to process agents assigned to the Router. Contains routing policies. In this file, it is possible to determine a time between the processing of each agent, to allow the architecture to consume more resources and be able to process more agents per time interval, or to increase the time between processing, reducing machine overload;
+#### Sugar-map.txt
+File used by the other two NetLogo files, containing simulation information regarding the positions of the map containing sugar and its quantity.;
