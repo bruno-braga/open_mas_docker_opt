@@ -118,6 +118,8 @@ JaCaMo exposes by default some information about Jason and CArtAgO, which are, r
 #### Other Logs
 By default, you can check everything that is running inside any container from the architecture, just use `docker logs container_name` where `container_name` is the name of the container that you want to check. More information in docker logs [here](https://docs.docker.com/engine/reference/commandline/logs/)
 
+Also, you can redirect the system's print output by running a command when you run the Docker container and appending it to a file. For example, on the JaCaMo container, instead of letting the Gradle do the build and execute the model, you can use `command: "/bin/sh -c 'gradle >> /shared_volume/gradle_output.txt'" `. There is a commented example [here](docker-compose-local.yaml)
+
 ### Other Outputs
 
 Besides Logs and the main execution from the models, you can get extra information from the simulation by checking the exposed outputs from the `interface` and `phpmyadmin` (DBMS) containers, accessible via `localhost/dashboard` and `localhost:8080` on the host machine by default.
