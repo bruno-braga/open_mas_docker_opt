@@ -102,3 +102,31 @@ Code executed by the Register container, which contains functions to request the
 Code executed by the Router container. Contains a function in loop that calls the API in the method to process agents assigned to the Router. Contains routing policies. In this file, it is possible to determine a time between the processing of each agent, to allow the architecture to consume more resources and be able to process more agents per time interval, or to increase the time between processing, reducing machine overload;
 #### Sugar-map.txt
 File used by the other two NetLogo files, containing simulation information regarding the positions of the map containing sugar and its quantity.;
+
+## Outputs
+
+### Logs
+
+#### NetLogo
+By default, the main example (Sugarscape model) keeps some logs from the execution in files inside `shared_volume/netlogo_output`
+
+#### JaCaMo
+By default, the main example (Gold Miners model) keeps some logs from the execution of Jason in the file`shared_volume/jacamo/jacamo_model/mas.log`
+
+JaCaMo exposes by default some information about Jason and CArtAgO, which are, respectively, Jason Mind Inspector and CArtAgO's Web View. We forward this information from the container to the host machine. By default, you can access Jason Mind Inspector using `localhost:3272` and CArtAgO's Web View using `localhost:3273` on the host machine.
+
+#### Other Logs
+By default, you can check everything that is running inside any container from the architecture, just use ** docker logs container_name ** where container_name is the name of the container that you want to check. More information in docker logs[here](https://docs.docker.com/engine/reference/commandline/logs/)
+
+### Other Outputs
+
+Besides Logs and the main execution from the models, you can get extra information from the simulation checking the exposed outputs from the `interface` and `phpmyadmin` (dbms) containers, accessible via `localhost/dashboard` and `localhost:8080` on the host machine by default.
+
+
+## Extra Information
+
+### GUI on and OFF
+By default, the Docker container inside the architecture are made to run using just CLI. Even so, if you want to run models that uses GUI, the architecture is ready to comunicate with models running on the same host machine, outside Docker. For example, in order to run Gold Miners model outside Docker and it still communicate with the architecture, you need to ajust one parameter in 3 files:
+1. `shared_volume/jacamo/jacamo_model/src/agt/mylib/my_create_ag.java` - change the `using_docker` variable to `false` - check commentaries on the file [here](shared_volume/jacamo/jacamo_model/src/agt/mylib/my_create_ag.java)
+2. `shared_volume/jacamo/jacamo_model/src/agt/mylib/my_delete_ag.java` - change the `using_docker` variable to `false` - check commentaries on the file [here](shared_volume/jacamo/jacamo_model/src/agt/mylib/my_delete_ag.java)
+3. `shared_volume/jacamo/jacamo_model/src/env/mining/MiningPlanet.java` - change the `hasGUI` variable to `true` - check commentaries on the file [here](shared_volume/jacamo/jacamo_model/src/env/mining/MiningPlanet.java)
