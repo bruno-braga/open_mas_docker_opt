@@ -58,7 +58,7 @@ The `videos` folder contains two study cases of the architecture.
 
 ### Shared_Volume
 
-The `shared_volume` folder contains the most important important files of the architecture, besides the `docker-compose` files. Some files/folders to pay atention:
+The `shared_volume` folder contains the most important important files of the architecture, besides the `docker-compose` files. Some files/folders to pay attention to:
 
 #### Dashboard
 
@@ -74,7 +74,7 @@ This folder contains the structure used by the `jacamo` container. In the actual
 
 #### Netlogo_Output
 
-This folder contains some `.txt` files that comes from the NetLogo's simulation, providing information about real-time cycle, agents that ended the simulation alive and so on.
+This folder contains some `.txt` files that come from NetLogo's simulation, providing information about the real-time cycle, agents that ended the simulation alive, and so on.
 
 #### Py:
 
@@ -91,7 +91,7 @@ File used by the clear_files container. Used to clear logs from previous simulat
 #### Db_python_netlogo.py
 File that NetLogo uses to access the API, through the py extension. NetLogo calls functions from this file, which in turn calls functions from access_api which ultimately communicates with the API;
 #### Initialize_db.py
-In case you don't use a structure ready for the DB, through the SQL file, the structure of the database can be assembled through this file. Must be run by the Register container;
+In case you don't use a structure ready for the DB, the SQL file, the structure of the database can be assembled through this file. Must be run by the Register container;
 #### Open_sugarscape_m1.nlogo and open_sugarscape_m2.nlogo
 NetLogo file, which will be used by the model container;
 #### Python_execute_netlogo.py
@@ -99,7 +99,7 @@ File used by optional trigger containers, which will condition the start of exec
 #### Register.py
 Code executed by the Register container, which contains functions to request the API to create the initial simulation agents;
 #### Router.py
-Code executed by the Router container. Contains a function in loop that calls the API in the method to process agents assigned to the Router. Contains routing policies. In this file, it is possible to determine a time between the processing of each agent, to allow the architecture to consume more resources and be able to process more agents per time interval, or to increase the time between processing, reducing machine overload;
+Code executed by the Router container. Contains a function in a loop that calls the API in the method to process agents assigned to the Router. Contains routing policies. In this file, it is possible to determine a time between the processing of each agent, to allow the architecture to consume more resources and be able to process more agents per time interval, or to increase the time between processing, reducing machine overload;
 #### Sugar-map.txt
 File used by the other two NetLogo files, containing simulation information regarding the positions of the map containing sugar and its quantity.;
 
@@ -120,13 +120,17 @@ By default, you can check everything that is running inside any container from t
 
 ### Other Outputs
 
-Besides Logs and the main execution from the models, you can get extra information from the simulation checking the exposed outputs from the `interface` and `phpmyadmin` (dbms) containers, accessible via `localhost/dashboard` and `localhost:8080` on the host machine by default.
+Besides Logs and the main execution from the models, you can get extra information from the simulation by checking the exposed outputs from the `interface` and `phpmyadmin` (DBMS) containers, accessible via `localhost/dashboard` and `localhost:8080` on the host machine by default.
 
 
 ## Extra Information
 
 ### GUI on and OFF
-By default, the Docker container inside the architecture are made to run using just CLI. Even so, if you want to run models that uses GUI, the architecture is ready to comunicate with models running on the same host machine, outside Docker. For example, in order to run Gold Miners model outside Docker and it still communicate with the architecture, you need to ajust one parameter in 3 files:
+By default, the Docker container inside the architecture is made to run using just CLI. Even so, if you want to run models that use GUI, the architecture is ready to communicate with models running on the same host machine, outside Docker. For example, to run the Gold Miners model outside Docker and still communicate with the architecture, you need just one parameter in 3 files:
 1. `shared_volume/jacamo/jacamo_model/src/agt/mylib/my_create_ag.java` - change the `using_docker` variable to `false` - check commentaries on the file [here](shared_volume/jacamo/jacamo_model/src/agt/mylib/my_create_ag.java)
 2. `shared_volume/jacamo/jacamo_model/src/agt/mylib/my_delete_ag.java` - change the `using_docker` variable to `false` - check commentaries on the file [here](shared_volume/jacamo/jacamo_model/src/agt/mylib/my_delete_ag.java)
 3. `shared_volume/jacamo/jacamo_model/src/env/mining/MiningPlanet.java` - change the `hasGUI` variable to `true` - check commentaries on the file [here](shared_volume/jacamo/jacamo_model/src/env/mining/MiningPlanet.java)
+
+### Contact
+
+If you have any questions, feel free to contact me at gustavolameirao@gmail.com or gustavolameirao@inf.ufpel.edu.br
