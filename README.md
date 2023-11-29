@@ -116,7 +116,7 @@ By default, the main example (Gold Miners model) keeps some logs from the execut
 JaCaMo exposes by default some information about Jason and CArtAgO, which are, respectively, Jason Mind Inspector and CArtAgO's Web View. We forward this information from the container to the host machine. By default, you can access Jason Mind Inspector using `localhost:3272` and CArtAgO's Web View using `localhost:3273` on the host machine.
 
 #### Other Logs
-By default, you can check everything that is running inside any container from the architecture, just use ** docker logs container_name ** where container_name is the name of the container that you want to check. More information in docker logs [here](https://docs.docker.com/engine/reference/commandline/logs/)
+By default, you can check everything that is running inside any container from the architecture, just use `docker logs container_name ` where `container_name` is the name of the container that you want to check. More information in docker logs [here](https://docs.docker.com/engine/reference/commandline/logs/)
 
 ### Other Outputs
 
