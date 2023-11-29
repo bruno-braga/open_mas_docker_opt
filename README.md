@@ -52,8 +52,8 @@ docker-compose -f docker-compose-local-arm64.yaml  up -d
 
 The `videos` folder contains two study cases of the architecture.
 
-[Example without GUI](videos/GUI_OFF.mp4) <br />
-[Example using GUI](videos/GUI_ON.mp4)
+[Example without GUI](videos/GUI_OFF.mp4) or watch online [here](https://streamable.com/rug2mr)<br />
+[Example using GUI](videos/GUI_ON.mp4) or watch online [here](https://streamable.com/3rct7p)
 
 
 ### Shared_Volume
