@@ -19,7 +19,7 @@ public class MiningPlanet extends Artifact {
 
     static int     simId    = 5; // type of environment
     static int     sleep    = 200;
-    static boolean hasGUI   = false;
+    static boolean hasGUI   = false; //change to true if you want to use the architecture outside Docker, with GUI on
 
     int     agId     = -1;
 

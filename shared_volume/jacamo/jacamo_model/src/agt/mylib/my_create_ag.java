@@ -49,7 +49,13 @@ public class my_create_ag extends DefaultInternalAction {
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
 
-        String host = System.getenv("host");
+        Boolean using_docker = true; // change to false if you want to run the model locally, outside the Docker architecture
+        String host;
+
+        if (using_docker)
+            host = System.getenv("host");
+        else
+            host = "localhost";
 
         RuntimeServices rs = RuntimeServicesFactory.get();
 

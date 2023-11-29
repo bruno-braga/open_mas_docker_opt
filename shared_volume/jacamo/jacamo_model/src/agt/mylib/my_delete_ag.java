@@ -36,10 +36,16 @@ public class my_delete_ag extends DefaultInternalAction {
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
 
         try {
+            Boolean using_docker = true; // change to false if you want to run the model locally, outside the Docker architecture
+            String host;
+
+            if (using_docker)
+                host = System.getenv("host");
+            else
+                host = "localhost";
+
             // RuntimeServices provides services to create agents in the current platform (Local, JADE, JaCaMo, ...)
             RuntimeServices rs = RuntimeServicesFactory.get();
-
-            String host = System.getenv("host");
 
             System.out.println("Executing JAVA custom code - delete");
 
