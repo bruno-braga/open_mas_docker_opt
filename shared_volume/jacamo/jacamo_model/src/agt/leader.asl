@@ -35,10 +35,3 @@ score(miner4,0).
       +score(A,S+1);
       -dropped[source(A)];
       .print("Agent ",A," has dropped ",S+1," pieces of gold").
-/*
-+dropped[source(A)] : score(A,S)
-   <- -score(A,S);
-      +score(A,S+1);
-      -dropped[source(A)];
-      .print("Agent ",A," has dropped ",S+1," pieces of gold").
-*/

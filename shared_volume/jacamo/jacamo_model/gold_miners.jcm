@@ -11,7 +11,7 @@
 */
 
 /*
-Referências:
+References:
 http://jacamo.sourceforge.net/tutorial/gold-miners/
 https://github.com/jacamo-lang/jacamo/blob/master/doc/tutorials/gold-miners/readme.adoc
 http://jacamo.sourceforge.net/tutorial/gold-miners/aop-altissimo-14.pdf
@@ -26,7 +26,11 @@ mas gold_miners {
 
     agent leader
 
-    /* FILA, 1 AGENTE SÓ */
+    // Used only for debugging JaCaMo on Docker
+    // agent test_only_agent_1
+    // agent test_only_agent_2
+
+    /* Queue for just one agent */
     workspace mining {
         // each agent has its own artifact to interface with the Mining Planet scenario
         // first parameter is the id of the scenario

@@ -1,7 +1,3 @@
-// miner agent
-// MINER2 (MINER1 COM FUNÇÕES PRA RECEBER E ENVIAR AGENTES) COM FILA
-// MINER3 SÓ VAI MATAR QUANDO ENTREGAR O GOLD
-
 { include("$jacamoJar/templates/common-cartago.asl") }
 
 /*
@@ -15,15 +11,15 @@ last_dir(null). // the last movement I did
 free.
 score(0).
 
-/* initial_print1. */
 @pfunction2[atomic]
-+initial_print1 : true
++main : true
 <- 
   .print("Hello there. I'm a regular agent");
+  /* Getting Agent's ID and Path */
   ?agent_id(AGENTID);
   ?path(PATH);
   
-  /* Algo que é carregado entre as simulações */  
+  /* Something that is carried through the simulations */  
   .random(R);
   +my_testing(R);
   ?my_testing(R);
@@ -32,6 +28,7 @@ score(0).
   .abolish(agent_id(_));
   .abolish(path(_));
 
+  /* Getting Agent's Sugar, Metabolism and Vision (From NetLogo) */
   ?sugar(SUGAR);
   ?metabolism(METABOLISM);
   ?vision(VISION);
@@ -40,60 +37,20 @@ score(0).
   .print("Metabolism ", METABOLISM);
   .print("Vision ", VISION);
   
+  /* Removing previous values, so the attributes keep updated */
   .abolish(sugar(_));
   .abolish(metabolism(_));
   .abolish(vision(_));
 
   .my_name(MYNAME);
   .concat("src/agt/list/",MYNAME,".asl",NAME)
-  /* É possível salvar o agente já adicionando crenças, como o exemplo do say(hello) */ 
+  /* It is possible to save the agent, adding the beliefs, for examply: say(hello) */
   .save_agent(NAME,[start,say(hello)]);
   .print("Saved my information on file. Sending message to remove agent from simulation");
 
   .send(killer_agent, tell, kill(AGENTID, PATH, MYNAME, SUGAR, METABOLISM, VISION));
+  /* Do "untell" because the same agent can pass through the simulation more than once, so, the belief must be removed */
   .send(killer_agent, untell, kill(AGENTID, PATH, MYNAME, SUGAR, METABOLISM, VISION)).
-
-/*
-+initial_print1 : true
-<-
-  .print("Hello there. I'm saving myself to leave the simulation");
-
-  ?agent_id(V0);
-  ?path(V1);
-  
-  .random(R);
-
-  +my_testing(R);
-
-  ?my_testing(R);
-
-  .print("R: ", R);
-
-  .abolish(agent_id(_));
-  .abolish(path(_));
-
-  ?sugar(B0);
-  ?metabolism(B1);
-  ?vision(B2);
-
-  .print("Sugar ", B0);
-  .print("Metabolism ", B1);
-  .print("Vision ", B2);
-
-  
-  .abolish(sugar(_));
-  .abolish(metabolism(_));
-  .abolish(vision(_));
-
-
-  .my_name(X);
-  .concat("src/agt/list/",X,".asl",NAME)
-  .save_agent(NAME,[start,say(hello)]);
-  .print("Saved my information on file. Sending message to remove agent from simulation");
-
-  .send(killer_agent, tell, kill(V0, V1, X, B0, B1, B2));
-  .send(killer_agent, untell, kill(V0, V1, X, B0, B1, B2)).
-*/
 
 /* rules */
 /* this agent program doesn't have any rules */
@@ -269,7 +226,7 @@ score(0).
      ?score(S);
      -+score(S+1);
      .send(leader,tell,dropped);
-     +initial_print1.
+     +main.
 
 /*
 +!handle(gold(X,Y))

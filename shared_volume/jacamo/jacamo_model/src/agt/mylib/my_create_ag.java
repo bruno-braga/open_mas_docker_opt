@@ -13,7 +13,7 @@ import java.util.List;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.StandardOpenOption;
-// PRO DB
+// For DB
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -118,7 +118,7 @@ public class my_create_ag extends DefaultInternalAction {
                         String bels = "agent_id("+agent_id+")";
                         bels = bels + ",path("+ ch + agent_path + ch + ")";
                         bels = bels + ", sugar("+sugar+"), metabolism("+metabolism+"), vision("+vision+")";
-                        System.out.println("Vai criar o agente com os beliefs: "+bels);
+                        System.out.println("Creating agent with this beliefs: "+bels);
 
                         s.addOption(Settings.INIT_BELS, bels);
                         s.addOption(Settings.INIT_GOALS, "jcm::focus_env_art([art_env(mining,m2view,default)],5)");

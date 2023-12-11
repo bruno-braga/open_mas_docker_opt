@@ -56,7 +56,7 @@ public class my_delete_ag extends DefaultInternalAction {
             System.out.println("Java Args4 - metabolism: "+args[4]);
             System.out.println("Java Args5 - vision: "+args[5]);
 
-            // Tupla pro banco: agent_id, data(montado), path-3
+            // Tuple for DB: agent_id, data(with all attributes), path - 3, because the current model is 3
 
             String tupla_agent_id = String.valueOf(args[0]);
             String tupla_data = "[" + String.valueOf(args[3]) + " " + String.valueOf(args[4]) + " " + String.valueOf(args[5]) + "]";
