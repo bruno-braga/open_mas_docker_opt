@@ -16,19 +16,19 @@ def main():
                 retorno = True
             except requests.exceptions.HTTPError as errh:
                 print(errh)
-                print("Error type 1, sleeping and retrying")
+                print("Error type HTTP, sleeping and retrying")
                 time.sleep(1)
             except requests.exceptions.ConnectionError as errc:
                 print(errc)
-                print("Error type 2, sleeping and retrying")
+                print("Error type Connection, sleeping and retrying")
                 time.sleep(1)
             except requests.exceptions.Timeout as errt:
                 print(errt)
-                print("Error type 3, sleeping and retrying")
+                print("Error type Timeout, sleeping and retrying")
                 time.sleep(1)
             except requests.exceptions.RequestException as err:
                 print(err)
-                print("Error type 4, sleeping and retrying")
+                print("Error type RequestException, sleeping and retrying")
                 time.sleep(1)
 
         print("Left loop")

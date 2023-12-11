@@ -8,8 +8,8 @@ turtles-own [
   metabolism      ;; the amount of sugar that each turtles loses each tick
   vision          ;; the distance that this turtle can see in the horizontal and vertical directions
   vision-points   ;; the points that this turtle can see in relative to it's current position (based on vision)
-  agent_id        ;; IDENTIFICAÇÃO DO AGENTE PARA O MIDDLEWARE
-  historic        ;; HISTÓRICO DE VIAGEM DO AGENTE
+  agent_id        ;; Agent's ID for the OMAS platform
+  historic        ;; Agent's historic for the OMAS platform
 ]
 
 patches-own [
@@ -51,16 +51,16 @@ to new_setup
 end
 
 to new_request_to_register
-  print("NL: funcao python new_request_to_register")
-  print("NL: no netlogo, tempo inicial do request_to_register")
+  print("NL: Python function - new_request_to_register")
+  print("NL: On NetLogo, Start time of request_to_register")
   print(date-and-time)
   py:setup py:python
-  print("NL: iniciando register: ")
+  print("NL: Starting register: ")
   py:run "from db_python_netlogo import request_to_register"
   let result py:runresult (word "request_to_register('" ("m2") "'" "," (400) ", " (800) ")")
-  print("NL: retorno register: ")
+  print("NL: return from register: ")
   print(result)
-  print("NL: no netlogo, tempo final do request_to_register")
+  print("NL: On NetLogo, final time from request_to_register")
   print(date-and-time)
 end
 
@@ -94,7 +94,7 @@ to request_to_register
 end
 
 to new_send_agent_to_model
-  print("NL: funcao python new_send_agent_to_model")
+  print("NL: Python function - new_send_agent_to_model")
   py:setup py:python
   py:run "from db_python_netlogo import send_agent_to_router"
   ; "send_agent_to_router('12', '[1 2 3]', '1-1')"
@@ -107,16 +107,16 @@ to new_send_agent_to_model
   [
     set updated_historic (word "" (historic) "-2")
   ]
-  let tupla []
-  set tupla lput sugar tupla
-  set tupla lput metabolism tupla
-  set tupla lput vision tupla
+  let tuple []
+  set tuple lput sugar tuple
+  set tuple lput metabolism tuple
+  set tuple lput vision tuple
 
   print("NL: sending this agent to router:")
   print(agent_id)
-  let result py:runresult (word "send_agent_to_router('" (agent_id) "', '" tupla "', '" (updated_historic) "')")
+  let result py:runresult (word "send_agent_to_router('" (agent_id) "', '" tuple "', '" (updated_historic) "')")
 
-  print("NL: Envio de agente realizado com sucesso?")
+  print("NL: Agent send successfully?")
   print (result)
 ;  print("NL: Todos os agentes para processar:")
 ;  print(result)
@@ -132,27 +132,27 @@ to new_send_agent_to_model
 ;
 ;      print("NL: agent_id:")
 ;      print(item 0 x)
-;      print("NL: tupla interna:")
+;      print("NL: tuple intern:")
 ;      print(item 1 x)
 ;      print("NL: path:")
 ;      print(item 2 x)
 ;
-;      let tupla_interna read-from-string item 1 x
+;      let tuple_intern read-from-string item 1 x
 ;
-;      print("NL: tupla interna 0 - sugar:")
-;      print(item 0 tupla_interna)
-;      print("NL: tupla interna 1 - metabolism:")
-;      print(item 1 tupla_interna)
-;      print("NL: tupla interna 2 - vision:")
-;      print(item 2 tupla_interna)
+;      print("NL: tuple intern 0 - sugar:")
+;      print(item 0 tuple_intern)
+;      print("NL: tuple intern 1 - metabolism:")
+;      print(item 1 tuple_intern)
+;      print("NL: tuple intern 2 - vision:")
+;      print(item 2 tuple_intern)
 ;
 ;      create-turtles 1
 ;      [
 ;        set agent_id item 0 x
 ;        ;set sugar item 2 line
-;        set sugar item 0 tupla_interna
-;        set metabolism item 1 tupla_interna
-;        set vision item 2 tupla_interna
+;        set sugar item 0 tuple_intern
+;        set metabolism item 1 tuple_intern
+;        set vision item 2 tuple_intern
 ;        ;set historic word (item 5 line) "-2"
 ;        set historic item 2 x
 ;        print ("historic:")
@@ -246,49 +246,49 @@ to send_agent_to_model
 end
 
 to new_check_new_agent
-  print("NL: funcao python new_check_new_agent")
-  print("NL: no netlogo, tempo inicial do new_check_new_agent")
+  print("NL: Python Function - new_check_new_agent")
+  print("NL: NetLogo, Start time - new_check_new_agent")
   print(date-and-time)
   py:setup py:python
   py:run "from db_python_netlogo import receiving_agents"
   let result py:runresult (word "receiving_agents('" ("m2") "')")
   print("NL: receiving_agents: -----------")
-  print("NL: Todos os agentes para processar:")
+  print("NL: All agents to be processed:")
   print(result)
-  print("NL: separados:")
+  print("NL: one by one:")
   ifelse(length result > 0)
   [
-    print("NL: entra primeiro if")
+    print("NL: first if")
     foreach result
     [
       x ->
-      print("NL: agente: ")
+      print("NL: agent: ")
       print (x)
 
       print("NL: agent_id:")
       print(item 0 x)
-      print("NL: tupla interna:")
+      print("NL: tuple intern:")
       print(item 1 x)
       print("NL: path:")
       print(item 2 x)
 
-      let tupla_interna read-from-string item 1 x
+      let tuple_intern read-from-string item 1 x
 
-      print("NL: tupla interna 0 - sugar:")
-      print(item 0 tupla_interna)
-      print("NL: tupla interna 1 - metabolism:")
-      print(item 1 tupla_interna)
-      print("NL: tupla interna 2 - vision:")
-      print(item 2 tupla_interna)
+      print("NL: tuple intern 0 - sugar:")
+      print(item 0 tuple_intern)
+      print("NL: tuple intern 1 - metabolism:")
+      print(item 1 tuple_intern)
+      print("NL: tuple intern 2 - vision:")
+      print(item 2 tuple_intern)
 
       create-turtles 1
       [
         set agent_id item 0 x
-        ;set sugar item 0 tupla_interna
+        ;set sugar item 0 tuple_intern
         ;TEMPORARIO
         set sugar random-in-range 5 25
-        set metabolism item 1 tupla_interna
-        set vision item 2 tupla_interna
+        set metabolism item 1 tuple_intern
+        set vision item 2 tuple_intern
         set historic item 2 x
         print ("historic:")
         print (historic)
@@ -310,57 +310,57 @@ to new_check_new_agent
     ]
   ]
   [
-    print ("banco vazio")
+    print ("Empty DB")
   ]
-  print("NL: no netlogo, tempo final do new_check_new_agent")
+  print("NL: NetLogo, End time - new_check_new_agent")
   print(date-and-time)
-  print("NL: fim receiving_agents: -----------")
+  print("NL: end receiving_agents: -----------")
 end
 
 to testing_python
-print("NL: funcao python testing_python")
+print("NL: Python function - testing_python")
   py:setup py:python
 ;  py:run "from db_python_netlogo import testing_send"
 ;  let result py:runresult (word "testing_send('" "[" "\"" "agent" "\"" " " ("agent_id") " " ("sugar") " " ("metabolism") " " ("vision") " " (word "\"" (ticks) "-1" "\"") "]" "')")
 py:run "from db_python_netlogo import receiving_agents"
   let result py:runresult (word "receiving_agents('" ("m2") "')")
   print("NL: receiving_agents: -----------")
-  print("NL: Todos os agentes para processar:")
+  print("NL: All agents to be processed:")
   print(result)
-  print("NL: separados:")
+  print("NL: one by one:")
   ifelse(length result > 0)
   [
-    print("NL: entra primeiro if")
+    print("NL: first if")
     foreach result
     [
       x ->
       ;print("NL: 1")
       ;foreach read-from-string x
-      print("NL: agente: ")
+      print("NL: agent: ")
       print (x)
 
-      ;let tupla read-from-string item 1 y
+      ;let tuple read-from-string item 1 y
       print("NL: agent_id:")
       print(item 0 x)
-      print("NL: tupla interna:")
+      print("NL: tuple intern:")
       print(item 1 x)
       print("NL: path:")
       print(item 2 x)
 
-      let tupla_interna read-from-string item 1 x
+      let tuple_intern read-from-string item 1 x
 
-      print("NL: tupla interna 0 - sugar:")
-      print(item 0 tupla_interna)
-      print("NL: tupla interna 1 - metabolism:")
-      print(item 1 tupla_interna)
-      print("NL: tupla interna 2 - vision:")
-      print(item 2 tupla_interna)
+      print("NL: tuple intern 0 - sugar:")
+      print(item 0 tuple_intern)
+      print("NL: tuple intern 1 - metabolism:")
+      print(item 1 tuple_intern)
+      print("NL: tuple intern 2 - vision:")
+      print(item 2 tuple_intern)
     ]
   ]
   [
-    print ("banco vazio")
+    print ("Empty DB")
   ]
-  print("NL: fim receiving_agents: -----------")
+  print("NL: end receiving_agents: -----------")
 
 end
 
@@ -433,7 +433,7 @@ to check_new_agent
           set qtd_received_agents_before (qtd_received_agents_before + 1)
         ]
         [
-          print "string fora do padrão"
+          print "String not in pattern"
         ]
       ]
       file-close
@@ -443,7 +443,7 @@ to check_new_agent
   foreach to_delete
   [
     x ->
-    print("NL: excluir:")
+    print("NL: delete:")
     print(x)
     file-delete x
   ]
@@ -606,13 +606,13 @@ to print_alive_agents
   if(alive_agents != "")
   [
 
-    print("NL: funcao python send_agent_to_alive")
+    print("NL: Python function  - send_agent_to_alive")
     py:setup py:python
     py:run "from db_python_netlogo import send_agent_to_alive"
 
     ;let model "m2"
     let result py:runresult (word "send_agent_to_alive('" (alive_agents) "', 'm2')")
-    print("NL: Envio de agente realizado com sucesso?")
+    print("NL: Agent send successfully?")
     print (result)
   ]
   file-close
@@ -628,13 +628,13 @@ to print_alive_agents_single
       print agent_id
       file-write (agent_id)
 
-      print("NL: funcao python send_agent_to_alive")
+      print("NL: Python Function - send_agent_to_alive")
       py:setup py:python
       py:run "from db_python_netlogo import send_agent_to_alive"
 
       ;let model "m2"
       let result py:runresult (word "send_agent_to_alive('" (agent_id) "', 'm2')")
-      print("NL: Envio de agente realizado com sucesso?")
+      print("NL: Agent send successfully?")
       print (result)
     ]
   ]
@@ -707,7 +707,7 @@ to load-config-from-file2
 end
 
 to export_output_to_File
-  print("NL: ---------- FIM DA SIMULACAO...")
+  print("NL: ---------- End of simulation...")
 ;  print("NL: AGENTES QUE ENTRARIAM NA SIMULACAO: ")
 ;  py:setup py:python
 ;  py:run "from db_python_netlogo import receiving_agents"
@@ -727,10 +727,10 @@ to export_output_to_File
 ;    print("NL: Nenhum agente para entrar na simulacao")
 ;  ]
 
-  print("NL: AGENTES VIVOS: ")
+  print("NL: Alive agents: ")
   print_alive_agents
 ;  export-output "netlogo_output/m2.txt"
-  print("NL: ---------- FIM!")
+  print("NL: ---------- END!")
 end
 
 to print_agent_random
