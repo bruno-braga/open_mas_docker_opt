@@ -20,8 +20,8 @@ services:
     networks:
       - my_network
     depends_on:
-      - "modelo_1"
-      - "modelo_2"
+      - "model_1"
+      - "model_2"
       - "api"
       - "router"
       - "clear_files"
@@ -135,8 +135,8 @@ services:
     networks:
       - my_network
 
-  modelo_1:
-    container_name: modelo_1
+  model_1:
+    container_name: model_1
     build:
       context: .
       dockerfile: Dockerfile_NETLOGO
@@ -144,7 +144,7 @@ services:
     command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m1_output.txt'"
     environment:
     - PYTHONUNBUFFERED=1
-    - my_hostname=modelo_1
+    - my_hostname=model_1
     - model_file=/shared_volume/open_sugarscape_m1.nlogo
     - experiment=experiment1
     - auto_run=True
@@ -158,8 +158,8 @@ services:
       - "api"
       - "clear_files"
 
-  modelo_2:
-    container_name: modelo_2
+  model_2:
+    container_name: model_2
     build:
       context: .
       dockerfile: Dockerfile_NETLOGO
@@ -167,7 +167,7 @@ services:
     command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m2_output.txt'"
     environment:
     - PYTHONUNBUFFERED=1
-    - my_hostname=modelo_2
+    - my_hostname=model_2
     - model_file=/shared_volume/open_sugarscape_m2.nlogo
     - experiment=experiment1
     - auto_run=True
