@@ -49,28 +49,28 @@ docker-compose -f docker-compose-local-arm64.yaml  up -d
 ## Containers Description
 
 
-###jacamo
+### jacamo
 Container used to run MAS implemented in JaCaMo.
 
-###api
+### api
 Container responsible for manage database access.
 
-###router
+### router
 Container responsible for receiving all agents that left a given model, analyzing and judging which model to send the agent to. This step specifies the agent input and output protocols of different containers/models. This block is an essential part of the architecture, as the models delegate the task of distributing agents between the models to the Router. When the simulation environment partially shares information about the world, the Router can deal with several problems related to the absence of this information. Judgment can occur in different ways, such as: analyzing the most promising agents, or running machine learning codes and running a new MAS model that retrains the agents. In the simulation scenario, there are two judgment options that the Router can make regarding the list of agents to be processed: i) randomly choose the agent and the target model (random mode); and, ii) process the agents in a single queue, considering all models, and randomly define the target model (general sequential mode).
 
-###db
+### db
 Represents the container responsible for the database where, for each model, all agent input and output information is stored, to be accessed by other containers that may need this information. Operations performed on the DB can be done through the API, that is, other containers do not need to have direct access to the database. In the current implementation, the database used is MySQL.
 
-###clear_files
+### clear_files
 This container handles debugging functionality. It is a container with the function of executing Python code that cleans certain log files, so that information is not accumulated from one simulation to another, especially NetLogo logs. These clean logs are inside the Volume shared between the containers and the host;
 
-###phpmyadmin
+### phpmyadmin
 Represents the container that facilitates access to the DB, providing a Web interface (by default exposed to the host machine) that can import/export content/SQL files and view information in real time or create logs and is chosen according to the DB, as they must be compatible. In the current implementation, the DBMS used for MySQL is PHPMyAdmin.
 
-###php
+### php
 Container that receives information about agent movement through the system and generates exposed and formatted reports for viewing architecture execution metrics. In the current implementation, this container has an Apache Webserver, which runs PHP code that accesses all information about agents that have already passed through the Router and generates a report with all agents, attributes and the path taken by them. The general form of the report is through front-end code (HTML, CSS and JS), which the host machine can access by exposing the port that apache runs on port 80 (by default). Each tuple shown in the interface contains all the essential attributes for each agent interaction so far. It is possible to observe information about the simulation, such as which agent had the longest path taken between the models so far. There is a search option to filter the results by any of the columns. Furthermore, it is possible to filter the results by agent, by model and whether the tuple was processed by the model/router or not. Finally, it is still possible to observe specific information from some SMA tools. For example, in JaCaMo, as each agent has an ASL (AgentSpeak Language) file, it is possible to access this file and see relevant information about that agent.
 
-###model_1 and model_2
+### model_1 and model_2
 Container used to execute MAS implemented in NetLogo.
 
 ## Project Structure
