@@ -19,6 +19,11 @@ To execute the whole architecture locally, use this command:
 ```
 docker-compose -f docker-compose-local.yaml  up -d
 ```
+You can also use the regular `docker-compose.yaml` file, which has the same content as the `docker-compose-local.yaml`. So, if you're using the regular one, you don't need to specify the file, just use the command:
+```
+docker-compose up -d
+```
+
 
 ### Hybrid
 To execute part of the architecture locally and the other remotely, on the cloud, for example, you should use locally:
