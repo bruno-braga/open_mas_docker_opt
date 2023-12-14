@@ -3,7 +3,7 @@
 ## Description
 Framework prototype based on Docker to develop Open Multiagent Systems (Open Multiagent Systems - Open MAS - OMAS).
 
-Currently, the test case of the architecture is using 2 versions of NetLogo's Sugarscape 2 Constant Growback ([more information here])(https://ccl.northwestern.edu/netlogo/models/Sugarscape2ConstantGrowback) and 1 version of JaCaMo's Gold Miners ([more information here])(https://github.com/jacamo-lang/jacamo/blob/master/doc/tutorials/gold-miners/readme.adoc). With the results provided by the test case, the architecture can be adapted to run other models.
+Currently, the test case of the architecture is using 2 versions of NetLogo's [Sugarscape 2 Constant Growback](https://ccl.northwestern.edu/netlogo/models/Sugarscape2ConstantGrowback) and 1 version of JaCaMo's [Gold Miners](https://github.com/jacamo-lang/jacamo/blob/master/doc/tutorials/gold-miners/readme.adoc). With the results provided by the test case, the architecture can be adapted to run other models.
 
 ## Prerequisites
 ```
