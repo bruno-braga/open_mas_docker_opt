@@ -3,6 +3,8 @@
 ## Description
 Framework prototype based on Docker to develop Open Multiagent Systems (Open Multiagent Systems - Open MAS - OMAS).
 
+Currently, the test case of the architecture is using 2 versions of NetLogo's Sugarscape 2 Constant Growback ([more information here])(https://ccl.northwestern.edu/netlogo/models/Sugarscape2ConstantGrowback) and 1 version of JaCaMo's Gold Miners ([more information here])(https://github.com/jacamo-lang/jacamo/blob/master/doc/tutorials/gold-miners/readme.adoc). With the results provided by the test case, the architecture can be adapted to run other models.
+
 ## Prerequisites
 ```
 Docker
@@ -19,7 +21,7 @@ To execute the whole architecture locally, use this command:
 ```
 docker-compose -f docker-compose-local.yaml  up -d
 ```
-You can also use the regular `docker-compose.yaml` file, which has the same content as the `docker-compose-local.yaml`. So, if you're using the regular one, you don't need to specify the file, just use the command:
+You can also use the regular `docker-compose.yaml` file, which has the same content as the `docker-compose-local.yaml`. We're keeping this file for older tutorials. So, if you're using the regular one, you don't need to specify the file, just use the command:
 ```
 docker-compose up -d
 ```
@@ -124,7 +126,7 @@ File used by the clear_files container. Used to clear logs from previous simulat
 File that NetLogo uses to access the API, through the py extension. NetLogo calls functions from this file, which in turn calls functions from access_api which ultimately communicates with the API;
 #### Initialize_db.py
 In case you don't use a structure ready for the DB, the SQL file, the structure of the database can be assembled through this file. Must be run by the Register container;
-#### Open_sugarscape_m1.nlogo and open_sugarscape_m2.nlogo
+#### sugarscape_m1.nlogo and sugarscape_m2.nlogo
 NetLogo file, which will be used by the model container;
 #### Python_execute_netlogo.py
 File used by optional trigger containers, which will condition the start of execution of model containers through some policy. Contains Python code to execute sockets that wait for the command to start executing the models;
