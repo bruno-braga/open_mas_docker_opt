@@ -1,0 +1,186 @@
+version: "3.8"
+services:
+  jacamo:
+    container_name: jacamo
+    build:
+      context: .
+      dockerfile: Dockerfile_GRADLE
+    tty: true           # Container alive
+    #command: "/bin/sh -c 'gradle >> /shared_volume/netlogo_output/gradle_output.txt'"
+    ports:
+      - "3271:3271"
+      - "3272:3272"
+      - "3273:3273"
+    volumes:
+      - ./shared_volume:/shared_volume
+      - ./shared_volume/jacamo/jacamo_model:/home/gradle/project
+    environment:
+      - host=api
+    networks:
+      - my_network
+    depends_on:
+      - "model_1"
+      - "model_2"
+      - "api"
+      - "router"
+      - "clear_files"
+  
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile_PYTHON
+    tty: true           # Container alive
+    command: "python3 /shared_volume/api.py"
+    environment:
+    - PYTHONUNBUFFERED=1
+    ports:
+        - "5000:5000"
+    volumes:
+      - ./shared_volume:/shared_volume
+    networks:
+      - my_network
+    depends_on:
+        db:
+            condition: service_healthy
+  
+  router:
+    container_name: router
+    build:
+      context: .
+      dockerfile: Dockerfile_PYTHON
+    tty: true           # Container alive
+    command: "python3 /shared_volume/router.py"
+    environment:
+    - PYTHONUNBUFFERED=1
+    volumes:
+      - ./shared_volume:/shared_volume
+    networks:
+      - my_network
+    depends_on:
+        db:
+            condition: service_healthy
+
+  db:
+    container_name: db
+    build:
+      context: .
+      dockerfile: Dockerfile_MYSQL
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_ROOT_HOST: '%'
+        # MYSQL_DATABASE: MYSQL_DATABASE
+        # MYSQL_USER: MYSQL_USER
+        # MYSQL_PASSWORD: MYSQL_PASSWORD
+    healthcheck:
+      test:  mysql --user=root --password=root -e 'select * from MYSQL_DATABASE.m1' MYSQL_DATABASE
+    volumes:
+      - ./shared_volume:/shared_volume
+      - ./shared_volume/db_file:/docker-entrypoint-initdb.d
+    ports:
+        - "9906:3306"
+    networks:
+      - my_network
+    depends_on:
+      - clear_files
+      
+  clear_files:
+    container_name: clear_files
+    build:
+      context: .
+      dockerfile: Dockerfile_PYTHON
+    tty: true           # Container alive
+    command: "python3 /shared_volume/clean_simulation_files.py"
+    environment:
+    - PYTHONUNBUFFERED=1
+    volumes:
+      - ./shared_volume:/shared_volume
+    networks:
+      - my_network
+  
+  phpmyadmin:
+      container_name: phpmyadmin
+      build:
+        context: .
+        dockerfile: Dockerfile_PHPMYADMIN
+      networks:
+        - my_network
+      ports:
+          - '8080:80'
+      restart: always
+      environment:
+          PMA_HOST: db
+      depends_on:
+          db:
+            condition: service_healthy
+  php:
+    container_name: php
+    build:
+      context: .
+      dockerfile: Dockerfile_PHP
+    tty: true           # Container alive
+    environment:
+      - output_agents=${output_agents}
+      - host=api
+    ports:
+      - "80:80"
+    volumes:
+      - ./shared_volume:/var/www/html
+      - ./shared_volume:/shared_volume
+    depends_on:
+          db:
+            condition: service_healthy
+    networks:
+      - my_network
+
+  model_1:
+    container_name: model_1
+    build:
+      context: .
+      dockerfile: Dockerfile_NETLOGO
+    tty: true           # Container alive
+    command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m1_output.txt'"
+    environment:
+    - PYTHONUNBUFFERED=1
+    - my_hostname=model_1
+    - model_file=/shared_volume/open_sugarscape_m1.nlogo
+    - experiment=experiment1
+    - auto_run=True
+    - host=api
+    volumes:
+      - ./shared_volume:/shared_volume
+    networks:
+      - my_network
+    depends_on:
+      - "router"
+      - "api"
+      - "clear_files"
+
+  model_2:
+    container_name: model_2
+    build:
+      context: .
+      dockerfile: Dockerfile_NETLOGO
+    tty: true           # Container alive
+    command: "/bin/sh -c 'python3 /shared_volume/python_execute_netlogo.py >> /shared_volume/netlogo_output/m2_output.txt'"
+    environment:
+    - PYTHONUNBUFFERED=1
+    - my_hostname=model_2
+    - model_file=/shared_volume/open_sugarscape_m2.nlogo
+    - experiment=experiment1
+    - auto_run=True
+    - host=api
+    volumes:
+      - ./shared_volume:/shared_volume
+    networks:
+      - my_network
+    depends_on:
+      - "router"
+      - "api"
+      - "clear_files"
+
+networks:
+  my_network:
+    name: my_network
+    driver: bridge
