@@ -5,14 +5,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_PYTHON
-    tty: true           # Container alive
-    command: "python3 /shared_volume/api.py"
     environment:
     - PYTHONUNBUFFERED=1
     ports:
         - "5000:5000"
     volumes:
       - ./shared_volume:/shared_volume
+      - ./api:/usr/src/api
     networks:
       - my_network
     depends_on:

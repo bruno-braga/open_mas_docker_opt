@@ -1,8 +1,15 @@
 FROM python:3
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/api
 
+COPY ./api ./
+ 
 RUN pip3 install mysqlclient
 RUN pip3 install mysql-connector-python
 RUN pip3 install flask
 RUN pip3 install requests
+RUN pip3 install -U pytest
+
+ENTRYPOINT ["python3"]
+
+CMD ["api.py"]
