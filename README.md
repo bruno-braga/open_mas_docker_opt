@@ -84,10 +84,7 @@ Container used to execute MAS implemented in NetLogo.
 
 ### Video
 
-The `videos` folder contains two study cases of the architecture.
-
-[Example without GUI](videos/GUI_OFF.mp4) or watch online [here](https://streamable.com/rug2mr)<br />
-[Example using GUI](videos/GUI_ON.mp4) or watch online [here](https://streamable.com/3rct7p)
+If you want to see the architecture running, check the [`videos` folder](videos). At the moment, it contains two study cases of the architecture (GUI OFF and ON).
 
 
 ### Shared_Volume
