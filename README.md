@@ -84,7 +84,7 @@ Container used to execute MAS implemented in NetLogo.
 
 ### Video
 
-If you want to see the architecture running, check the [`videos` folder](videos). At the moment, it contains two study cases of the architecture (GUI OFF and ON).
+If you want to see the architecture running, check the [`videos`](videos) folder. At the moment, it contains two study cases of the architecture (GUI OFF and ON).
 
 
 ### Shared_Volume
@@ -114,13 +114,13 @@ Files of the py extension, used by NetLogo, to use Python code within NetLogo. I
 Serves as a base for other Python codes used by the architecture;
 
 #### Access_api.py
-Intermediate between the Python code implemented in the NetLogo input/output and the API;
+~~Intermediate between the Python code implemented in the NetLogo input/output and the API~~ (Old);
 #### Api.py
 Code used by the API container. Contains all API methods which are the core of the architecture;
 #### Clean_simulation_files.py
 File used by the clear_files container. Used to clear logs from previous simulations. The files that will be excluded can be chosen within this code;
 #### Db_python_netlogo.py
-File that NetLogo uses to access the API, through the py extension. NetLogo calls functions from this file, which in turn calls functions from access_api which ultimately communicates with the API;
+File that NetLogo uses to access the API, through the py extension;
 #### Initialize_db.py
 In case you don't use a structure ready for the DB, the SQL file, the structure of the database can be assembled through this file. Must be run by the Register container;
 #### sugarscape_m1.nlogo and sugarscape_m2.nlogo
@@ -128,9 +128,9 @@ NetLogo file, which will be used by the model container;
 #### Python_execute_netlogo.py
 File used by optional trigger containers, which will condition the start of execution of model containers through some policy. Contains Python code to execute sockets that wait for the command to start executing the models;
 #### Register.py
-Code executed by the Register container, which contains functions to request the API to create the initial simulation agents;
+~~Code executed by the Register container, which contains functions to request the API to create the initial simulation agents~~ (Old);
 #### Router.py
-Code executed by the Router container. Contains a function in a loop that calls the API in the method to process agents assigned to the Router. Contains routing policies. In this file, it is possible to determine a time between the processing of each agent, to allow the architecture to consume more resources and be able to process more agents per time interval, or to increase the time between processing, reducing machine overload;
+Code executed by the Router container. Contains a function in a loop that calls the API in the method to process agents assigned to the Router. The method contains routing policies. In this file, it is possible to determine a time between the processing of each agent, to allow the architecture to consume more resources and be able to process more agents per time interval, or to increase the time between processing, reducing machine overload;
 #### Sugar-map.txt
 File used by the other two NetLogo files, containing simulation information regarding the positions of the map containing sugar and its quantity.;
 
