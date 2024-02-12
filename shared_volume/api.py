@@ -202,72 +202,6 @@ def process_agents_on_router():
         cnx.close()
   return jsonify(return_list)
 
-@app.route('/api/v1/resources/get_unprocessed_agents_from_router', methods=['GET'])
-def get_unprocessed_agents_from_router():
-  cnx, cursor = connect_to_db()
-  cursor = cnx.cursor()
-
-  query = ("SELECT id, agent_id, data, path, processed FROM router "
-            "WHERE processed = 0 ORDER BY created_at ASC")
-  models_list = ["m1", "m2", "m3"]
-  cursor.execute(query)
-
-
-  return_list = []
-  delete_list = []
-
-  for (id, agent_id, data, path, processed) in cursor:
-    return_list.append([id, agent_id, data, path, processed])
-
-  cursor.close()
-  cnx.close()
-
-  return jsonify(return_list)
-
-
-@app.route('/api/v1/resources/forward_processed_agents_from_router', methods=['POST'])
-def forward_processed_agents_from_router():
-  agents = request.get_json()
-
-  return_list = []
-
-  if (len(agents) == 0):
-    if docker_debugger: print("No agents to be processed at the moment.")
-  else:
-    for tuple in agents:
-      print (tuple)
-      cnx, cursor = connect_to_db()
-      cnx.start_transaction()
-      #id, agent_id, data, path, processed, model_to_send
-      agent_id = str(tuple[1])
-      data = str(tuple[2])
-      path = tuple[3]
-      tuple_id = str(tuple[0])
-      processed = str(0)
-      model_to_send = tuple[5]
-
-      sql1 = "INSERT INTO "+model_to_send+ " (agent_id, data, path, processed) "+"VALUES ('"+agent_id+"', '"+data+"', '"+path+"', '"+processed+"');"
-      sql2 = "UPDATE router SET processed = 1 WHERE id = "+tuple_id+"; "
-      try:
-        cursor.execute(sql1)
-        cursor.execute(sql2)
-        # Make sure data is committed to the database
-        cnx.commit()
-        if docker_debugger: print("Agent_id: "+agent_id+" sended to model "+model_to_send)
-        new_value = {'id': str(agent_id), 'model': model_to_send}
-        return_list.append(new_value)
-      except mysql.connector.Error as err:
-        if docker_debugger: print("**Error** Failed inserting on database: {}".format(err))
-        if docker_debugger: print("**Error** Rolling back ...")
-        if docker_debugger: print(err)
-        db.rollback()  # rollback changes
-        new_value = {'id': str(agent_id), 'model': "ERROR"}
-        return_list.append(new_value)
-      finally:
-        cursor.close()
-        cnx.close()
-  return jsonify(return_list)
-
 
 @app.route('/api/v1/resources/check_new_agents', methods=['GET'])
 def check_new_agentss():
@@ -509,7 +443,7 @@ def sanity_test_agent_path_history():
 
   query = "SELECT * from router where agent_id = " + str(search_agent_id) + " ORDER BY LENGTH(path) ASC";
   if docker_debugger: print(query)
-    
+  	
   cursor.execute(query)
   for id, agent_id, data, path, asl_file_path, processed, created_at, updated_at in cursor:
 

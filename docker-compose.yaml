@@ -53,16 +53,13 @@ services:
     command: "python3 /shared_volume/router.py"
     environment:
     - PYTHONUNBUFFERED=1
-    - host=api
-    - port=5000
-    - route_type=sequential
-    - delay=5
     volumes:
       - ./shared_volume:/shared_volume
     networks:
       - my_network
     depends_on:
-      - "api"
+        db:
+            condition: service_healthy
 
   db:
     container_name: db
