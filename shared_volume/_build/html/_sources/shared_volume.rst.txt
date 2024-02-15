@@ -39,7 +39,7 @@ shared\_volume.clean\_simulation\_files module
 shared\_volume.db\_python\_netlogo module
 -----------------------------------------
 
-.. automodule:: db_python_netlogo
+.. automodule:: netlogo_agent_handler
    :members:
    :undoc-members:
    :show-inheritance:

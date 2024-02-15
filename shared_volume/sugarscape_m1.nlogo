@@ -56,7 +56,7 @@ to new_request_to_register
   print(date-and-time)
   py:setup py:python
   print("NL: Starting register: ")
-  py:run "from db_python_netlogo import request_to_register"
+  py:run "from netlogo_agent_handler import request_to_register"
   let result py:runresult (word "request_to_register('" ("m1") "'" "," (1) ", " (400) ")")
   print("NL: return from register: ")
   print(result)
@@ -96,7 +96,7 @@ end
 to new_send_agent_to_model
   print("NL: Python function - new_send_agent_to_model")
   py:setup py:python
-  py:run "from db_python_netlogo import send_agent_to_router"
+  py:run "from netlogo_agent_handler import send_agent_to_router"
   ; "send_agent_to_router('12', '[1 2 3]', '1-1')"
 
   let updated_historic ""
@@ -250,7 +250,7 @@ to new_check_new_agent
   print("NL: NetLogo, Start time - new_check_new_agent")
   print(date-and-time)
   py:setup py:python
-  py:run "from db_python_netlogo import receiving_agents"
+  py:run "from netlogo_agent_handler import receiving_agents"
   let result py:runresult (word "receiving_agents('" ("m1") "')")
   print("NL: receiving_agents: -----------")
   print("NL: All agents to be processed:")
@@ -320,9 +320,9 @@ end
 to testing_python
 print("NL: Python function - testing_python")
   py:setup py:python
-;  py:run "from db_python_netlogo import testing_send"
+;  py:run "from netlogo_agent_handler import testing_send"
 ;  let result py:runresult (word "testing_send('" "[" "\"" "agent" "\"" " " ("agent_id") " " ("sugar") " " ("metabolism") " " ("vision") " " (word "\"" (ticks) "-1" "\"") "]" "')")
-py:run "from db_python_netlogo import receiving_agents"
+py:run "from netlogo_agent_handler import receiving_agents"
   let result py:runresult (word "receiving_agents('" ("m1") "')")
   print("NL: receiving_agents: -----------")
   print("NL: All agents to be processed:")
@@ -607,7 +607,7 @@ to print_alive_agents
 
     print("NL: Python function  - send_agent_to_alive")
     py:setup py:python
-    py:run "from db_python_netlogo import send_agent_to_alive"
+    py:run "from netlogo_agent_handler import send_agent_to_alive"
 
     ;let model "m1"
     let result py:runresult (word "send_agent_to_alive('" (alive_agents) "', 'm1')")
@@ -629,7 +629,7 @@ to print_alive_agents_single
 
       print("NL: Python Function - send_agent_to_alive")
       py:setup py:python
-      py:run "from db_python_netlogo import send_agent_to_alive"
+      py:run "from netlogo_agent_handler import send_agent_to_alive"
 
       ;let model "m1"
       let result py:runresult (word "send_agent_to_alive('" (agent_id) "', 'm1')")
@@ -709,7 +709,7 @@ to export_output_to_File
   print("NL: ---------- End of simulation...")
 ;  print("NL: AGENTES QUE ENTRARIAM NA SIMULACAO: ")
 ;  py:setup py:python
-;  py:run "from db_python_netlogo import receiving_agents"
+;  py:run "from netlogo_agent_handler import receiving_agents"
 ;  let result py:runresult (word "receiving_agents('" ("m1") "')")
 ;  ifelse(length result > 0)
 ;  [

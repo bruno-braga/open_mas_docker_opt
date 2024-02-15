@@ -34,7 +34,7 @@ def main():
     except requests.exceptions.RequestException as err:
         print(err)
 
-    #from db_python_netlogo import receiving_agents
+    #from netlogo_agent_handler import receiving_agents
     #receiving_agents('" ("m1") "')
     try:
         #request_to_register('" ("m1") "'" "," (1) ", " (400) ")

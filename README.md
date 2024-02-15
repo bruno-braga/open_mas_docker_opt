@@ -119,7 +119,7 @@ Serves as a base for other Python codes used by the architecture;
 Code used by the API container. Contains all API methods which are the core of the architecture;
 #### Clean_simulation_files.py
 File used by the clear_files container. Used to clear logs from previous simulations. The files that will be excluded can be chosen within this code;
-#### Db_python_netlogo.py
+#### Netlogo_agent_handler.py
 File that NetLogo uses to access the API, through the py extension;
 #### Initialize_db.py
 In case you don't use a structure ready for the DB, the SQL file, the structure of the database can be assembled through this file. Must be run by the Register container;
